@@ -1,0 +1,123 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
+import { Product, FURNITURE_CATEGORIES } from '@/lib/types';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import Link from 'next/link';
+
+export default function CatalogPage() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState('Все');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, 'products'), (snapshot) => {
+      const prods = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Product));
+      setProducts(prods);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const filteredProducts = products.filter(p => {
+    const matchCategory = selectedCategory === 'Все' || p.category === selectedCategory;
+    const matchSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchCategory && matchSearch;
+  });
+
+  return (
+    <main className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <h1 className="text-4xl font-bold text-amber-900 mb-8">Каталог мебели</h1>
+
+        {/* Search */}
+        <div className="mb-6">
+          <input
+            type="text"
+            placeholder="Поиск мебели..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600"
+          />
+        </div>
+
+        {/* Categories */}
+        <div className="mb-6 flex flex-wrap gap-2">
+          <button
+            onClick={() => setSelectedCategory('Все')}
+            className={`px-4 py-2 rounded-lg font-medium transition ${
+              selectedCategory === 'Все'
+                ? 'bg-amber-600 text-white'
+                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+            }`}
+          >
+            Все
+          </button>
+          {FURNITURE_CATEGORIES.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`px-4 py-2 rounded-lg font-medium transition ${
+                selectedCategory === cat
+                  ? 'bg-amber-600 text-white'
+                  : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Products Grid */}
+        {loading ? (
+          <div className="text-center py-8">Загрузка...</div>
+        ) : filteredProducts.length === 0 ? (
+          <div className="text-center py-8 text-gray-500">
+            Продукты не найдены
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {filteredProducts.map(product => (
+              <Card key={product.id} className="overflow-hidden hover:shadow-lg transition group">
+                <div className="relative w-full h-48 bg-gray-200">
+                  {product.images && product.images[0] ? (
+                    <Image
+                      src={product.images[0] || "/placeholder.svg"}
+                      alt={product.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-full text-gray-400">Нет изображения</div>
+                  )}
+                </div>
+                <CardContent className="pt-4">
+                  <h3 className="font-bold text-amber-900 mb-1 line-clamp-2">{product.name}</h3>
+                  <p className="text-sm text-gray-600 mb-2">{product.category}</p>
+                  <p className="text-sm text-gray-700 mb-3 line-clamp-2">{product.description}</p>
+                  <div className="flex justify-between items-center mb-3">
+                    <span className="text-lg font-bold text-amber-700">${product.price}</span>
+                    <span className={`text-sm px-2 py-1 rounded ${product.quantity > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                      {product.quantity > 0 ? 'В наличии' : 'Нет'}
+                    </span>
+                  </div>
+                  <Link href={`/product/${product.id}`}>
+                    <Button className="w-full bg-amber-600 hover:bg-amber-700">
+                      Подробнее
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
+      </div>
+    </main>
+  );
+}
