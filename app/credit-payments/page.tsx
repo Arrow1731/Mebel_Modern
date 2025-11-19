@@ -89,7 +89,7 @@ export default function CreditPaymentsPage() {
 
   const downloadPDF = (data: Order[], title: string) => {
     let csv = `${title}\n\n`;
-    csv += 'Клиент,Телефон,Email,Адрес,Сумма,Статус,Дата платежа\n';
+    csv += 'Клиент, Телефон, Адрес, Сумма, Статус, Дата платежа\n';
     data.forEach(order => {
       csv += `${order.clientName},${order.clientPhone},${order.clientEmail},${order.clientAddress || 'N/A'},${order.totalAmount},${order.paymentStatus},${new Date(order.dueDate).toLocaleDateString()}\n`;
     });

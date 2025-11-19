@@ -18,19 +18,19 @@ export default function LoginModal({ onLoginSuccess }: LoginModalProps) {
       localStorage.setItem('isLoggedIn', 'true');
       onLoginSuccess();
     } else {
-      setError('Неверное имя пользователя или пароль');
+      setError("Foydalanuvchi Login yoki Parol Noto'g'ri");
     }
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle>Вход в систему</CardTitle>
+    <div className="fixed inset-0 bg-[#000] bg-opacity-50 flex items-center justify-center z-50">
+      <Card className="w-full max-w-[500px] h-[350px]">
+        <CardHeader className='text-center text-[25px]'>
+          <CardTitle>Tizimga Kirish</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 mt-[20px]">
           <div>
-            <label className="block text-sm font-medium mb-1">Имя пользователя</label>
+            <label className="block text-sm font-medium mb-1">Foydalanuvchi Nomi</label>
             <input
               type="text"
               value={username}
@@ -40,7 +40,7 @@ export default function LoginModal({ onLoginSuccess }: LoginModalProps) {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Пароль</label>
+            <label className="block text-sm font-medium mb-1">Parol</label>
             <input
               type="password"
               value={password}
@@ -52,7 +52,7 @@ export default function LoginModal({ onLoginSuccess }: LoginModalProps) {
           </div>
           {error && <p className="text-red-600 text-sm">{error}</p>}
           <Button onClick={handleLogin} className="w-full bg-amber-600 hover:bg-amber-700">
-            Вход
+            Kirish
           </Button>
         </CardContent>
       </Card>

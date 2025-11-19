@@ -31,7 +31,7 @@ function NavBar() {
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                             href: "/",
                             className: "font-bold text-xl",
-                            children: "Mebelweb"
+                            children: "MEBEL WEB SAYT"
                         }, void 0, false, {
                             fileName: "[project]/components/nav-bar.tsx",
                             lineNumber: 14,
@@ -43,7 +43,7 @@ function NavBar() {
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                     href: "/",
                                     className: "hover:text-amber-200 transition",
-                                    children: "Асосий"
+                                    children: "Ombor"
                                 }, void 0, false, {
                                     fileName: "[project]/components/nav-bar.tsx",
                                     lineNumber: 19,
@@ -52,7 +52,7 @@ function NavBar() {
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                     href: "/catalog",
                                     className: "hover:text-amber-200 transition",
-                                    children: "Каталог"
+                                    children: "Katalog"
                                 }, void 0, false, {
                                     fileName: "[project]/components/nav-bar.tsx",
                                     lineNumber: 20,
@@ -61,7 +61,7 @@ function NavBar() {
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                     href: "/products",
                                     className: "hover:text-amber-200 transition",
-                                    children: "Махсулотлар"
+                                    children: "Mahsulotlar"
                                 }, void 0, false, {
                                     fileName: "[project]/components/nav-bar.tsx",
                                     lineNumber: 21,
@@ -70,7 +70,7 @@ function NavBar() {
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                     href: "/analytics",
                                     className: "hover:text-amber-200 transition",
-                                    children: "Таҳлил"
+                                    children: "Analitika"
                                 }, void 0, false, {
                                     fileName: "[project]/components/nav-bar.tsx",
                                     lineNumber: 22,
@@ -79,7 +79,7 @@ function NavBar() {
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                     href: "/credit-payments",
                                     className: "hover:text-amber-200 transition",
-                                    children: "Кредитлар"
+                                    children: "Kredit"
                                 }, void 0, false, {
                                     fileName: "[project]/components/nav-bar.tsx",
                                     lineNumber: 23,
@@ -120,7 +120,7 @@ function NavBar() {
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                             href: "/",
                             className: "hover:text-amber-200 transition block",
-                            children: "Асосий"
+                            children: "Ombor"
                         }, void 0, false, {
                             fileName: "[project]/components/nav-bar.tsx",
                             lineNumber: 33,
@@ -129,7 +129,7 @@ function NavBar() {
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                             href: "/catalog",
                             className: "hover:text-amber-200 transition block",
-                            children: "Каталог"
+                            children: "Katalog"
                         }, void 0, false, {
                             fileName: "[project]/components/nav-bar.tsx",
                             lineNumber: 34,
@@ -138,7 +138,7 @@ function NavBar() {
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                             href: "/products",
                             className: "hover:text-amber-200 transition block",
-                            children: "Махсулотлар"
+                            children: "Mahsulotlar"
                         }, void 0, false, {
                             fileName: "[project]/components/nav-bar.tsx",
                             lineNumber: 35,
@@ -147,7 +147,7 @@ function NavBar() {
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                             href: "/analytics",
                             className: "hover:text-amber-200 transition block",
-                            children: "Таҳлил"
+                            children: "Analitika"
                         }, void 0, false, {
                             fileName: "[project]/components/nav-bar.tsx",
                             lineNumber: 36,
@@ -156,7 +156,7 @@ function NavBar() {
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                             href: "/credit-payments",
                             className: "hover:text-amber-200 transition block",
-                            children: "Кредитлар"
+                            children: "Kredit"
                         }, void 0, false, {
                             fileName: "[project]/components/nav-bar.tsx",
                             lineNumber: 37,

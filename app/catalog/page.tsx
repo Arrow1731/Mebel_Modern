@@ -26,7 +26,7 @@ export default function CatalogPage() {
   }, []);
 
   const filteredProducts = products.filter(p => {
-    const matchCategory = selectedCategory === 'Все' || p.category === selectedCategory;
+    const matchCategory = selectedCategory === 'Barchasi' || p.category === selectedCategory;
     const matchSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase());
     return matchCategory && matchSearch;
   });
@@ -34,13 +34,13 @@ export default function CatalogPage() {
   return (
     <main className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-amber-900 mb-8">Каталог мебели</h1>
+        <h1 className="text-4xl font-bold text-amber-900 mb-8">Mahsulotlar Katalogi</h1>
 
         {/* Search */}
         <div className="mb-6">
           <input
             type="text"
-            placeholder="Поиск мебели..."
+            placeholder="Mahsulotni Qidirish..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600"
@@ -50,14 +50,14 @@ export default function CatalogPage() {
         {/* Categories */}
         <div className="mb-6 flex flex-wrap gap-2">
           <button
-            onClick={() => setSelectedCategory('Все')}
+            onClick={() => setSelectedCategory('Barchasi')}
             className={`px-4 py-2 rounded-lg font-medium transition ${
-              selectedCategory === 'Все'
+              selectedCategory === 'Barchasi'
                 ? 'bg-amber-600 text-white'
                 : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
             }`}
           >
-            Все
+            Barchasi
           </button>
           {FURNITURE_CATEGORIES.map(cat => (
             <button
@@ -76,10 +76,10 @@ export default function CatalogPage() {
 
         {/* Products Grid */}
         {loading ? (
-          <div className="text-center py-8">Загрузка...</div>
+          <div className="text-center py-8">Yuklanmoqda...</div>
         ) : filteredProducts.length === 0 ? (
           <div className="text-center py-8 text-gray-500">
-            Продукты не найдены
+            Mahsulotlar Topilmadi.
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -94,7 +94,7 @@ export default function CatalogPage() {
                       className="object-cover group-hover:scale-105 transition"
                     />
                   ) : (
-                    <div className="flex items-center justify-center h-full text-gray-400">Нет изображения</div>
+                    <div className="flex items-center justify-center h-full text-gray-400">Mahsulot Surati Mavjud Emas!</div>
                   )}
                 </div>
                 <CardContent className="pt-4">
@@ -104,12 +104,12 @@ export default function CatalogPage() {
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-lg font-bold text-amber-700">${product.price}</span>
                     <span className={`text-sm px-2 py-1 rounded ${product.quantity > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                      {product.quantity > 0 ? 'В наличии' : 'Нет'}
+                      {product.quantity > 0 ? 'Sotuvda Mavjud' : 'Sotuvda Mavjud Emas'}
                     </span>
                   </div>
                   <Link href={`/product/${product.id}`}>
                     <Button className="w-full bg-amber-600 hover:bg-amber-700">
-                      Подробнее
+                      Mahsulot Haqida...
                     </Button>
                   </Link>
                 </CardContent>

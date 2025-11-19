@@ -116,19 +116,19 @@ export default function AnalyticsPage() {
     <main className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-amber-900">Аналитика</h1>
+          <h1 className="text-3xl font-bold text-amber-900">Analitika</h1>
           <div className="flex gap-2">
             <Button
               onClick={downloadCampaignAnalytics}
               className="bg-blue-600 hover:bg-blue-700"
             >
-              <Download className="mr-2" size={16} /> Доход кампании
+              <Download className="mr-2" size={16} /> Kampaniyaga Kirgan Foyda Summasi (So'm)
             </Button>
             <Button
               onClick={downloadMonthlyClientsAnalytics}
               className="bg-green-600 hover:bg-green-700"
             >
-              <Download className="mr-2" size={16} /> Клиенты месячной оплаты
+              <Download className="mr-2" size={16} /> Mijozlarning Oylik To'lov Summasi (So'm)
             </Button>
           </div>
         </div>
@@ -139,19 +139,19 @@ export default function AnalyticsPage() {
             onClick={() => setViewType('daily')}
             className={`px-4 py-2 rounded-lg font-medium ${viewType === 'daily' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}
           >
-            Дневная
+            Kunlik
           </button>
           <button
             onClick={() => setViewType('monthly')}
             className={`px-4 py-2 rounded-lg font-medium ${viewType === 'monthly' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}
           >
-            Месячная
+            Oylik
           </button>
           <button
             onClick={() => setViewType('yearly')}
             className={`px-4 py-2 rounded-lg font-medium ${viewType === 'yearly' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}
           >
-            Годовая
+            Yillik
           </button>
         </div>
 
@@ -203,28 +203,28 @@ export default function AnalyticsPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             <Card className="bg-white border-amber-200">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-gray-600">Доход</CardTitle>
+                <CardTitle className="text-[20px] font-medium text-gray-600">Foyda</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold text-amber-900">{analyticsData.revenue.toLocaleString()} сум</div>
+                <div className="text-3xl font-bold text-amber-900">{analyticsData.revenue.toLocaleString()} So'm</div>
               </CardContent>
             </Card>
 
             <Card className="bg-white border-amber-200">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-gray-600">Заказы</CardTitle>
+                <CardTitle className="text-[20px] font-medium text-gray-600">Buyurmalar</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold text-amber-900">{analyticsData.orders}</div>
+                <div className="text-3xl font-bold text-amber-900">{analyticsData.orders} ta</div>
               </CardContent>
             </Card>
 
             <Card className="bg-white border-amber-200">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-gray-600">Единицы</CardTitle>
+                <CardTitle className="text-[20px] font-medium text-gray-600">Soni</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold text-amber-900">{analyticsData.units}</div>
+                <div className="text-3xl font-bold text-amber-900">{analyticsData.units} ta</div>
               </CardContent>
             </Card>
           </div>
@@ -240,8 +240,8 @@ export default function AnalyticsPage() {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="revenue" fill="#b45309" name="Доход (сум)" />
-                <Bar dataKey="orders" fill="#a16207" name="Заказы" />
+                <Bar dataKey="revenue" fill="#b45309" name="Foyda (So'm)" />
+                <Bar dataKey="orders" fill="#a16207" name="Buyurtmalar" />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>

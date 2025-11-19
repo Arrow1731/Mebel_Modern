@@ -77,16 +77,16 @@ export default function ProductsPage() {
       setImageUrl('');
       setShowForm(false);
     } catch (error) {
-      console.error('Error saving product:', error);
+      console.error('Mahsulotni saqlashda hatolik yuzberdi:', error);
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (confirm('Вы уверены?')) {
+    if (confirm('Siz rozimisiz?')) {
       try {
         await deleteDoc(doc(db, 'products', id));
       } catch (error) {
-        console.error('Error deleting product:', error);
+        console.error("Mahsulotni o'chirishda xatollik yuzberdi:", error);
       }
     }
   };
@@ -112,12 +112,12 @@ export default function ProductsPage() {
     <main className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-amber-900">Управление продуктами</h1>
+          <h1 className="text-3xl font-bold text-amber-900">Mahsulotlar Boshqaruv Paneli</h1>
           <Button
             onClick={() => { setShowForm(true); setEditingId(null); setFormData({ name: '', category: FURNITURE_CATEGORIES[0], price: 0, quantity: 0, description: '' }); setImageUrl(''); }}
             className="bg-amber-600 hover:bg-amber-700"
           >
-            <Plus className="mr-2" /> Добавить продукт
+            <Plus className="mr-2" /> Mahsulot Qo'shish
           </Button>
         </div>
 
@@ -125,7 +125,7 @@ export default function ProductsPage() {
         <div className="mb-6">
           <input
             type="text"
-            placeholder="Поиск по названию или категории..."
+            placeholder="Mahsulotni Nomi yoki Kategoriyasi bo'yich izlash..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg"
@@ -137,12 +137,12 @@ export default function ProductsPage() {
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
             <Card className="w-full max-w-2xl max-h-96 overflow-y-auto">
               <CardHeader>
-                <CardTitle>{editingId ? 'Редактировать' : 'Добавить'} продукт</CardTitle>
+                <CardTitle>{editingId ? 'Tahrirlash' : "Qo'shish"} Mahsulot</CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-1">Название</label>
+                    <label className="block text-sm font-medium mb-1">Nomi</label>
                     <input
                       type="text"
                       value={formData.name}
@@ -152,7 +152,7 @@ export default function ProductsPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Категория</label>
+                    <label className="block text-sm font-medium mb-1">Kategoriyasi</label>
                     <select
                       value={formData.category}
                       onChange={(e) => setFormData({ ...formData, category: e.target.value })}
@@ -165,7 +165,7 @@ export default function ProductsPage() {
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium mb-1">Цена (сум)</label>
+                      <label className="block text-sm font-medium mb-1">Narxi (So'm)</label>
                       <input
                         type="number"
                         step="0.01"
@@ -176,7 +176,7 @@ export default function ProductsPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-1">Количество</label>
+                      <label className="block text-sm font-medium mb-1">Soni</label>
                       <input
                         type="number"
                         value={formData.quantity}
@@ -187,7 +187,7 @@ export default function ProductsPage() {
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">URL изображения</label>
+                    <label className="block text-sm font-medium mb-1">Surat Manzili (URL)</label>
                     <input
                       type="url"
                       value={imageUrl}
@@ -202,7 +202,7 @@ export default function ProductsPage() {
                     )}
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Описание</label>
+                    <label className="block text-sm font-medium mb-1">Mahsulot Haqida Ma'lumot</label>
                     <textarea
                       value={formData.description}
                       onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -212,10 +212,10 @@ export default function ProductsPage() {
                   </div>
                   <div className="flex gap-3 pt-4">
                     <Button type="button" variant="outline" onClick={() => setShowForm(false)} className="flex-1">
-                      Отмена
+                      Bekor Qilish
                     </Button>
                     <Button type="submit" className="flex-1 bg-amber-600 hover:bg-amber-700">
-                      Сохранить
+                      Mahsulotni Saqlash
                     </Button>
                   </div>
                 </form>
@@ -226,17 +226,17 @@ export default function ProductsPage() {
 
         {/* Products Table */}
         {loading ? (
-          <div>Загрузка...</div>
+          <div>Yuklanmoqda...</div>
         ) : (
           <div className="bg-white rounded-lg shadow overflow-x-auto">
             <table className="w-full">
               <thead className="bg-gray-100 border-b">
                 <tr>
-                  <th className="px-4 py-3 text-left font-semibold text-gray-700">Название</th>
-                  <th className="px-4 py-3 text-left font-semibold text-gray-700">Категория</th>
-                  <th className="px-4 py-3 text-left font-semibold text-gray-700">Цена (сум)</th>
-                  <th className="px-4 py-3 text-left font-semibold text-gray-700">Количество</th>
-                  <th className="px-4 py-3 text-left font-semibold text-gray-700">Действия</th>
+                  <th className="px-4 py-3 text-left font-semibold text-gray-700">Mahsulot Nomi</th>
+                  <th className="px-4 py-3 text-left font-semibold text-gray-700">Kategoriyasi</th>
+                  <th className="px-4 py-3 text-left font-semibold text-gray-700">Narxi (So'm)</th>
+                  <th className="px-4 py-3 text-left font-semibold text-gray-700">Soni</th>
+                  <th className="px-4 py-3 text-left font-semibold text-gray-700">Holati </th>
                 </tr>
               </thead>
               <tbody>
@@ -244,7 +244,7 @@ export default function ProductsPage() {
                   <tr key={product.id} className="border-b hover:bg-gray-50">
                     <td className="px-4 py-3">{product.name}</td>
                     <td className="px-4 py-3">{product.category}</td>
-                    <td className="px-4 py-3 font-semibold text-amber-700">{product.price} сум</td>
+                    <td className="px-4 py-3 font-semibold text-amber-700">{product.price} So'm</td>
                     <td className="px-4 py-3">{product.quantity}</td>
                     <td className="px-4 py-3 flex gap-2">
                       <Button
