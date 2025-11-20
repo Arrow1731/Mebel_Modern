@@ -38,8 +38,8 @@ export default function ProductPage() {
     getProduct();
   }, [productId]);
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center">Загрузка...</div>;
-  if (!product) return <div className="min-h-screen flex items-center justify-center">Продукт не найден</div>;
+  if (loading) return <div className="min-h-screen flex items-center justify-center">Yuklanmoqda...</div>;
+  if (!product) return <div className="min-h-screen flex items-center justify-center">Mahsulot Topilmadi</div>;
 
   const fixedSubtotal = product.price * quantity;
   const agreedSum = manualProductSum !== '' ? manualProductSum : fixedSubtotal;
@@ -49,7 +49,7 @@ export default function ProductPage() {
 
   const handleCheckout = async () => {
     if (!customerName || !customerPhone || !customerAddress) {
-      alert('Пожалуйста заполните все поля клиента');
+      alert("Iltimos Bosh Qolgan Kataklarni To'ldiring");
       return;
     }
 
@@ -98,6 +98,7 @@ export default function ProductPage() {
   return (
     <main className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-4xl mx-auto px-4">
+        <h2 className='text-amber-900 font-bold text-[35px]'>Mahsulot Haqida Ma'lumot</h2> <br />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           {/* Images */}
           <div className="space-y-4">
@@ -110,7 +111,7 @@ export default function ProductPage() {
                   className="object-cover"
                 />
               ) : (
-                <div className="flex items-center justify-center h-full text-gray-400">Нет изображения</div>
+                <div className="flex items-center justify-center h-full text-gray-400">Mahsulot Surati Mavjud Emas!</div>
               )}
             </div>
           </div>
@@ -121,18 +122,18 @@ export default function ProductPage() {
               <h1 className="text-3xl font-bold text-amber-900 mb-2">{product.name}</h1>
               <p className="text-gray-600 text-lg mb-4">{product.category}</p>
               <p className="text-gray-700 text-base leading-relaxed mb-4">{product.description}</p>
-              
+
               <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-4xl font-bold text-amber-700">{product.price} сум</span>
+                <span className="text-4xl font-bold text-amber-700">{product.price} So'm</span>
                 <span className={`text-sm px-3 py-1 rounded-full ${product.quantity > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                  {product.quantity > 0 ? 'В наличии' : 'Нет'}
+                  {product.quantity > 0 ? 'Sotuvda Mavjud' : 'Sotuvda Mavjud Emas'}
                 </span>
               </div>
             </div>
 
             {/* Quantity Selector */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">Количество:</label>
+              <label className="block text-sm font-medium text-gray-700">Soni:</label>
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -160,7 +161,7 @@ export default function ProductPage() {
               disabled={product.quantity === 0}
               className="w-full bg-amber-600 hover:bg-amber-700 disabled:opacity-50 text-white py-3 text-lg"
             >
-              <ShoppingCart className="mr-2" /> Купить
+              <ShoppingCart className="mr-2" /> Sotib Olish
             </Button>
           </div>
         </div>
@@ -170,24 +171,24 @@ export default function ProductPage() {
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
             <Card className="w-full max-w-md max-h-96 overflow-y-auto">
               <CardHeader>
-                <CardTitle>Оформление заказа</CardTitle>
+                <CardTitle>Buyurtma Qilish</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="border-b pb-4">
-                  <h3 className="font-semibold text-gray-900 mb-3">Информация клиента</h3>
+                  <h3 className="font-semibold text-gray-900 mb-3">Mijoh Haqida Ma'lumot</h3>
                   <div className="space-y-3">
                     <div>
-                      <label className="block text-sm font-medium mb-1">Имя</label>
+                      <label className="block text-sm font-medium mb-1">Ismi</label>
                       <input
                         type="text"
                         value={customerName}
                         onChange={(e) => setCustomerName(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                        placeholder="ФИО клиента"
+                        placeholder="FIO Mijoz"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-1">Телефон</label>
+                      <label className="block text-sm font-medium mb-1">Telefon Raqami</label>
                       <input
                         type="tel"
                         value={customerPhone}
@@ -197,13 +198,13 @@ export default function ProductPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-1">Адрес</label>
+                      <label className="block text-sm font-medium mb-1">Yashash Manzili</label>
                       <input
                         type="text"
                         value={customerAddress}
                         onChange={(e) => setCustomerAddress(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                        placeholder="Адрес доставки"
+                        placeholder="Manzil"
                       />
                     </div>
                   </div>
@@ -212,62 +213,62 @@ export default function ProductPage() {
                 <div className="border-b pb-4">
                   <div className="flex justify-between mb-2">
                     <span className="text-gray-700">{product.name}</span>
-                    <span className="font-semibold">{fixedSubtotal.toLocaleString()} сум</span>
+                    <span className="font-semibold">{fixedSubtotal.toLocaleString()} So'm</span>
                   </div>
                   <div className="flex justify-between text-sm text-gray-600">
-                    <span>Количество: {quantity}</span>
+                    <span>Soni: {quantity}</span>
                     <span>{product.price.toLocaleString()} x {quantity}</span>
                   </div>
                 </div>
 
                 <div className="border-b pb-4">
-                  <label className="block text-sm font-medium mb-2">Договороная сумма продукта (опционально)</label>
+                  <label className="block text-sm font-medium mb-2">Mijoz Bilin Kelishilgan Narx (Majburiy Emas)</label>
                   <input
                     type="number"
                     value={manualProductSum}
                     onChange={(e) => setManualProductSum(e.target.value ? parseFloat(e.target.value) : '')}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                    placeholder="Оставить пусто для использования суммы продукта"
+                    placeholder="Mahsulot Asil Narxida Sotilgan Bo'lsa Ochiq Qoldiring"
                   />
-                  <p className="text-xs text-gray-500 mt-1">Эта сумма будет считана как договоренная сумма для оформления заказа</p>
+                  <p className="text-xs text-gray-500 mt-1">Bu Narx Mahsulotni Kelishilgan Narxi Xisoblanadi</p>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">Срок кредита (месяцы):</label>
+                  <label className="block text-sm font-medium text-gray-700">Kredit Muddati (Oy):</label>
                   <select
                     value={creditMonths}
                     onChange={(e) => setCreditMonths(parseInt(e.target.value))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg"
                   >
-                    <option value="1">Без кредита (полная оплата)</option>
+                    <option value="1">Kredit To'lovsiz (To'liq Narx)</option>
                     {Array.from({ length: 12 }, (_, i) => i + 1).map(m => (
-                      <option key={m} value={m}>{m} месяцев</option>
+                      <option key={m} value={m}>{m} Oylik</option>
                     ))}
                   </select>
                   {creditMonths > 1 && (
-                    <p className="text-sm text-amber-700">+5% комиссия = {creditFee.toLocaleString()} сум</p>
+                    <p className="text-sm text-amber-700">+5% Komissiya = {creditFee.toLocaleString()} So'm</p>
                   )}
                 </div>
 
                 <div className="space-y-1 border-t pt-4">
-                  <div className="flex justify-between text-sm">
+                  {/* <div className="flex justify-between text-sm">
                     <span>Подитог:</span>
                     <span>{agreedSum.toLocaleString()} сум</span>
-                  </div>
+                  </div> */}
                   {creditMonths > 1 && (
                     <div className="flex justify-between text-sm text-amber-700">
-                      <span>Комиссия кредита (5%):</span>
-                      <span>{creditFee.toLocaleString()} сум</span>
+                      <span>Kredit Komissiyasi (5%):</span>
+                      <span>{creditFee.toLocaleString()} So'm</span>
                     </div>
                   )}
                   <div className="flex justify-between font-bold text-lg text-amber-900 pt-2">
-                    <span>Итого:</span>
-                    <span>{total.toLocaleString()} сум</span>
+                    <span>Jami:</span>
+                    <span>{total.toLocaleString()} So'm</span>
                   </div>
                   {creditMonths > 1 && (
                     <div className="flex justify-between text-sm text-gray-600 pt-2 border-t">
-                      <span>Месячный платеж:</span>
-                      <span>{monthlyPayment.toLocaleString()} сум</span>
+                      <span>Oylik To'lov Summasi:</span>
+                      <span>{monthlyPayment.toLocaleString()} So'm</span>
                     </div>
                   )}
                 </div>
@@ -279,17 +280,17 @@ export default function ProductPage() {
                     className="flex-1"
                     disabled={orderStatus === 'loading'}
                   >
-                    Отмена
+                    Bekor Qilish
                   </Button>
-                  <Button 
+                  <Button
                     onClick={handleCheckout}
                     className="flex-1 bg-amber-600 hover:bg-amber-700"
                     disabled={orderStatus === 'loading'}
                   >
-                    {orderStatus === 'loading' && 'Обработка...'}
-                    {orderStatus === 'success' && 'Заказ создан!'}
-                    {orderStatus === 'error' && 'Ошибка'}
-                    {orderStatus === 'idle' && 'Завершить покупку'}
+                    {orderStatus === 'loading' && 'Yuklanmoqda...'}
+                    {orderStatus === 'success' && 'Buyurtma Yaratildi!'}
+                    {orderStatus === 'error' && 'Xatolik Yuz Berdi'}
+                    {orderStatus === 'idle' && 'Buyurtma Berish'}
                   </Button>
                 </div>
               </CardContent>

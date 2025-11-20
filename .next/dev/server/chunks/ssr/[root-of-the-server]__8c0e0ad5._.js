@@ -295,7 +295,7 @@ function CreditPaymentsPage() {
     };
     const downloadPDF = (data, title)=>{
         let csv = `${title}\n\n`;
-        csv += 'Клиент, Телефон, Адрес, Сумма, Статус, Дата платежа\n';
+        csv += "Mijon Ismni", "To'lov Sanasi \n";
         data.forEach((order)=>{
             csv += `${order.clientName},${order.clientPhone},${order.clientEmail},${order.clientAddress || 'N/A'},${order.totalAmount},${order.paymentStatus},${new Date(order.dueDate).toLocaleDateString()}\n`;
         });
@@ -320,7 +320,7 @@ function CreditPaymentsPage() {
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                             className: "text-3xl font-bold text-amber-900",
-                            children: "Отслеживание кредитных платежей"
+                            children: "Kredit To'lovlarini Nazorat Qilish Bo'limi"
                         }, void 0, false, {
                             fileName: "[project]/app/credit-payments/page.tsx",
                             lineNumber: 109,
@@ -338,7 +338,7 @@ function CreditPaymentsPage() {
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     className: "font-medium",
-                                    children: "Есть платежи до истечения срока!"
+                                    children: "Belgilangan Muddatdan Oldin To'lovlar Mavjud!"
                                 }, void 0, false, {
                                     fileName: "[project]/app/credit-payments/page.tsx",
                                     lineNumber: 113,
@@ -357,7 +357,7 @@ function CreditPaymentsPage() {
                     columnNumber: 9
                 }, this),
                 loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    children: "Загрузка..."
+                    children: "Yuklanmoqda..."
                 }, void 0, false, {
                     fileName: "[project]/app/credit-payments/page.tsx",
                     lineNumber: 119,
@@ -372,7 +372,7 @@ function CreditPaymentsPage() {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                                             className: "text-2xl font-bold text-amber-900",
-                                            children: "Полностью оплаченные"
+                                            children: "To'liq Holda To'lov Qilgan Mijorlar"
                                         }, void 0, false, {
                                             fileName: "[project]/app/credit-payments/page.tsx",
                                             lineNumber: 125,
@@ -390,7 +390,7 @@ function CreditPaymentsPage() {
                                                     lineNumber: 130,
                                                     columnNumber: 19
                                                 }, this),
-                                                " Скачать CSV"
+                                                "CSV Yuklab Olish"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/credit-payments/page.tsx",
@@ -405,7 +405,7 @@ function CreditPaymentsPage() {
                                 }, this),
                                 fullyPaid.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "text-gray-500",
-                                    children: "Нет полностью оплаченных заказов"
+                                    children: "To'liq To'langan Buyurtmalar Yo'q"
                                 }, void 0, false, {
                                     fileName: "[project]/app/credit-payments/page.tsx",
                                     lineNumber: 134,
@@ -421,7 +421,7 @@ function CreditPaymentsPage() {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                             className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Клиент"
+                                                            children: "Mijoz Ismi"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
                                                             lineNumber: 140,
@@ -429,7 +429,7 @@ function CreditPaymentsPage() {
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                             className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Телефон"
+                                                            children: "Telefon Raqami"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
                                                             lineNumber: 141,
@@ -437,7 +437,7 @@ function CreditPaymentsPage() {
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                             className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Адрес"
+                                                            children: "Yashash Manzili"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
                                                             lineNumber: 142,
@@ -445,7 +445,7 @@ function CreditPaymentsPage() {
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                             className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Продукт"
+                                                            children: "Mahsulot Nomi"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
                                                             lineNumber: 143,
@@ -453,7 +453,7 @@ function CreditPaymentsPage() {
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                             className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Сумма"
+                                                            children: "Narxi"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
                                                             lineNumber: 144,
@@ -461,7 +461,7 @@ function CreditPaymentsPage() {
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                             className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Дата платежа"
+                                                            children: "To'lov Qilingan Sana"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
                                                             lineNumber: 145,
@@ -500,7 +500,7 @@ function CreditPaymentsPage() {
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                                 className: "px-4 py-3",
-                                                                children: order.clientAddress || 'N/A'
+                                                                children: order.clientAddress || 'Korsatilmagan'
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/credit-payments/page.tsx",
                                                                 lineNumber: 153,
@@ -508,7 +508,7 @@ function CreditPaymentsPage() {
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                                 className: "px-4 py-3 text-sm",
-                                                                children: order.products?.map((p)=>`${p.productName} (${p.quantity} шт)`).join(', ') || 'N/A'
+                                                                children: order.products?.map((p)=>`${p.productName} (${p.quantity} Dona)`).join(', ') || 'Korsatilmagan'
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/credit-payments/page.tsx",
                                                                 lineNumber: 154,
@@ -518,7 +518,7 @@ function CreditPaymentsPage() {
                                                                 className: "px-4 py-3 font-semibold text-amber-700",
                                                                 children: [
                                                                     order.totalAmount.toLocaleString(),
-                                                                    " сум"
+                                                                    " So'm"
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/credit-payments/page.tsx",
@@ -527,8 +527,11 @@ function CreditPaymentsPage() {
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                                 className: "px-4 py-3",
-                                                                children: new Date(order.dueDate).toLocaleDateString()
-                                                            }, void 0, false, {
+                                                                children: [
+                                                                    new Date(order.dueDate).toLocaleDateString(),
+                                                                    " Yil"
+                                                                ]
+                                                            }, void 0, true, {
                                                                 fileName: "[project]/app/credit-payments/page.tsx",
                                                                 lineNumber: 158,
                                                                 columnNumber: 27
@@ -568,7 +571,7 @@ function CreditPaymentsPage() {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                                             className: "text-2xl font-bold text-amber-900",
-                                            children: "Частично оплаченные"
+                                            children: "Bo'lib To'lashga Harid Qilgan Mijozlar"
                                         }, void 0, false, {
                                             fileName: "[project]/app/credit-payments/page.tsx",
                                             lineNumber: 170,
@@ -586,7 +589,7 @@ function CreditPaymentsPage() {
                                                     lineNumber: 175,
                                                     columnNumber: 19
                                                 }, this),
-                                                " Скачать CSV"
+                                                "CSV Yuklab Olish"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/credit-payments/page.tsx",
@@ -601,7 +604,7 @@ function CreditPaymentsPage() {
                                 }, this),
                                 partiallyPaid.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "text-gray-500",
-                                    children: "Нет частично оплаченных заказов"
+                                    children: "Bo'lib To'lashga Harid Qilgan Mahsulotlar Yo'q"
                                 }, void 0, false, {
                                     fileName: "[project]/app/credit-payments/page.tsx",
                                     lineNumber: 179,
@@ -617,7 +620,7 @@ function CreditPaymentsPage() {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                             className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Клиент"
+                                                            children: "Mijoz Ismi"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
                                                             lineNumber: 185,
@@ -625,7 +628,7 @@ function CreditPaymentsPage() {
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                             className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Телефон"
+                                                            children: "Telefon Raqami"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
                                                             lineNumber: 186,
@@ -633,7 +636,7 @@ function CreditPaymentsPage() {
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                             className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Адрес"
+                                                            children: "Yashash Manzili"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
                                                             lineNumber: 187,
@@ -641,7 +644,7 @@ function CreditPaymentsPage() {
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                             className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Продукт"
+                                                            children: "Mahsulot Nomi"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
                                                             lineNumber: 188,
@@ -649,7 +652,7 @@ function CreditPaymentsPage() {
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                             className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Сумма"
+                                                            children: "Narxi"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
                                                             lineNumber: 189,
@@ -657,7 +660,7 @@ function CreditPaymentsPage() {
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                             className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Оплачено"
+                                                            children: "To'langan Summa"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
                                                             lineNumber: 190,
@@ -665,7 +668,7 @@ function CreditPaymentsPage() {
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                             className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Действие"
+                                                            children: "To'lav Holati"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
                                                             lineNumber: 191,
@@ -673,7 +676,7 @@ function CreditPaymentsPage() {
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                             className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Статус"
+                                                            children: "Holati"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
                                                             lineNumber: 192,
@@ -715,7 +718,7 @@ function CreditPaymentsPage() {
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                                 className: "px-4 py-3",
-                                                                children: order.clientAddress || 'N/A'
+                                                                children: order.clientAddress || 'Kiritilmagan'
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/credit-payments/page.tsx",
                                                                 lineNumber: 203,
@@ -723,7 +726,7 @@ function CreditPaymentsPage() {
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                                 className: "px-4 py-3 text-sm",
-                                                                children: order.products?.map((p)=>`${p.productName} (${p.quantity} шт)`).join(', ') || 'N/A'
+                                                                children: order.products?.map((p)=>`${p.productName} ${p.quantity} Dona`).join(', ') || 'Kiritilmagan'
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/credit-payments/page.tsx",
                                                                 lineNumber: 204,
@@ -769,7 +772,7 @@ function CreditPaymentsPage() {
                                                                                     lineNumber: 217,
                                                                                     columnNumber: 35
                                                                                 }, this),
-                                                                                " Оплачено"
+                                                                                " To'lov Qilingan"
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/app/credit-payments/page.tsx",
@@ -789,7 +792,7 @@ function CreditPaymentsPage() {
                                                                                     lineNumber: 225,
                                                                                     columnNumber: 35
                                                                                 }, this),
-                                                                                " Нет"
+                                                                                " To'lov Qilinmagan"
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/app/credit-payments/page.tsx",
@@ -814,7 +817,7 @@ function CreditPaymentsPage() {
                                                                     children: [
                                                                         "⚠️ ",
                                                                         daysUntilDue,
-                                                                        " дней"
+                                                                        " Kunlar"
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/credit-payments/page.tsx",
@@ -822,7 +825,7 @@ function CreditPaymentsPage() {
                                                                     columnNumber: 33
                                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                     className: "px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm",
-                                                                    children: "Ожидает"
+                                                                    children: "Kutyabdi"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/credit-payments/page.tsx",
                                                                     lineNumber: 235,

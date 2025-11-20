@@ -89,7 +89,7 @@ export default function CreditPaymentsPage() {
 
   const downloadPDF = (data: Order[], title: string) => {
     let csv = `${title}\n\n`;
-    csv += 'Клиент, Телефон, Адрес, Сумма, Статус, Дата платежа\n';
+    csv += "Mijon Ismni", "Telefon", "Yashash Manzili", "Narxi", "Holati", "To'lov Sanasi \n";
     data.forEach(order => {
       csv += `${order.clientName},${order.clientPhone},${order.clientEmail},${order.clientAddress || 'N/A'},${order.totalAmount},${order.paymentStatus},${new Date(order.dueDate).toLocaleDateString()}\n`;
     });
@@ -106,43 +106,43 @@ export default function CreditPaymentsPage() {
     <main className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-amber-900">Отслеживание кредитных платежей</h1>
+          <h1 className="text-3xl font-bold text-amber-900">Kredit To'lovlarini Nazorat Qilish Bo'limi</h1>
           {needsAlert && (
             <div className="flex items-center gap-2 bg-red-100 text-red-700 px-4 py-2 rounded-lg">
               <AlertCircle size={20} />
-              <span className="font-medium">Есть платежи до истечения срока!</span>
+              <span className="font-medium">Belgilangan Muddatdan Oldin To'lovlar Mavjud!</span>
             </div>
           )}
         </div>
 
         {loading ? (
-          <div>Загрузка...</div>
+          <div>Yuklanmoqda...</div>
         ) : (
           <div className="space-y-8">
             {/* Fully Paid */}
             <div>
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold text-amber-900">Полностью оплаченные</h2>
+                <h2 className="text-2xl font-bold text-amber-900">To'liq Holda To'lov Qilgan Mijorlar</h2>
                 <Button
                   onClick={() => downloadPDF(fullyPaid, 'Fully-Paid-Orders')}
                   className="bg-amber-600 hover:bg-amber-700"
                 >
-                  <Download className="mr-2" size={16} /> Скачать CSV
+                  <Download className="mr-2" size={16} />CSV Yuklab Olish
                 </Button>
               </div>
               {fullyPaid.length === 0 ? (
-                <p className="text-gray-500">Нет полностью оплаченных заказов</p>
+                <p className="text-gray-500">To'liq To'langan Buyurtmalar Yo'q</p>
               ) : (
                 <div className="bg-white rounded-lg shadow overflow-x-auto">
                   <table className="w-full">
                     <thead className="bg-gray-100 border-b">
                       <tr>
-                        <th className="px-4 py-3 text-left font-semibold">Клиент</th>
-                        <th className="px-4 py-3 text-left font-semibold">Телефон</th>
-                        <th className="px-4 py-3 text-left font-semibold">Адрес</th>
-                        <th className="px-4 py-3 text-left font-semibold">Продукт</th>
-                        <th className="px-4 py-3 text-left font-semibold">Сумма</th>
-                        <th className="px-4 py-3 text-left font-semibold">Дата платежа</th>
+                        <th className="px-4 py-3 text-left font-semibold">Mijoz Ismi</th>
+                        <th className="px-4 py-3 text-left font-semibold">Telefon Raqami</th>
+                        <th className="px-4 py-3 text-left font-semibold">Yashash Manzili</th>
+                        <th className="px-4 py-3 text-left font-semibold">Mahsulot Nomi</th>
+                        <th className="px-4 py-3 text-left font-semibold">Narxi</th>
+                        <th className="px-4 py-3 text-left font-semibold">To'lov Qilingan Sana</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -150,12 +150,12 @@ export default function CreditPaymentsPage() {
                         <tr key={order.id} className="border-b hover:bg-gray-50">
                           <td className="px-4 py-3">{order.clientName}</td>
                           <td className="px-4 py-3">{order.clientPhone}</td>
-                          <td className="px-4 py-3">{order.clientAddress || 'N/A'}</td>
+                          <td className="px-4 py-3">{order.clientAddress || 'Korsatilmagan'}</td>
                           <td className="px-4 py-3 text-sm">
-                            {order.products?.map(p => `${p.productName} (${p.quantity} шт)`).join(', ') || 'N/A'}
+                            {order.products?.map(p => `${p.productName} (${p.quantity} Dona)`).join(', ') || 'Korsatilmagan'}
                           </td>
-                          <td className="px-4 py-3 font-semibold text-amber-700">{order.totalAmount.toLocaleString()} сум</td>
-                          <td className="px-4 py-3">{new Date(order.dueDate).toLocaleDateString()}</td>
+                          <td className="px-4 py-3 font-semibold text-amber-700">{order.totalAmount.toLocaleString()} So'm</td>
+                          <td className="px-4 py-3">{new Date(order.dueDate).toLocaleDateString()} Yil</td>
                         </tr>
                       ))}
                     </tbody>
@@ -167,29 +167,29 @@ export default function CreditPaymentsPage() {
             {/* Partially Paid */}
             <div>
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold text-amber-900">Частично оплаченные</h2>
+                <h2 className="text-2xl font-bold text-amber-900">Bo'lib To'lashga Harid Qilgan Mijozlar</h2>
                 <Button
                   onClick={() => downloadPDF(partiallyPaid, 'Partially-Paid-Orders')}
                   className="bg-amber-600 hover:bg-amber-700"
                 >
-                  <Download className="mr-2" size={16} /> Скачать CSV
+                  <Download className="mr-2" size={16} />CSV Yuklab Olish
                 </Button>
               </div>
               {partiallyPaid.length === 0 ? (
-                <p className="text-gray-500">Нет частично оплаченных заказов</p>
+                <p className="text-gray-500">Bo'lib To'lashga Harid Qilgan Mahsulotlar Yo'q</p>
               ) : (
                 <div className="bg-white rounded-lg shadow overflow-x-auto">
                   <table className="w-full">
                     <thead className="bg-gray-100 border-b">
                       <tr>
-                        <th className="px-4 py-3 text-left font-semibold">Клиент</th>
-                        <th className="px-4 py-3 text-left font-semibold">Телефон</th>
-                        <th className="px-4 py-3 text-left font-semibold">Адрес</th>
-                        <th className="px-4 py-3 text-left font-semibold">Продукт</th>
-                        <th className="px-4 py-3 text-left font-semibold">Сумма</th>
-                        <th className="px-4 py-3 text-left font-semibold">Оплачено</th>
-                        <th className="px-4 py-3 text-left font-semibold">Действие</th>
-                        <th className="px-4 py-3 text-left font-semibold">Статус</th>
+                        <th className="px-4 py-3 text-left font-semibold">Mijoz Ismi</th>
+                        <th className="px-4 py-3 text-left font-semibold">Telefon Raqami</th>
+                        <th className="px-4 py-3 text-left font-semibold">Yashash Manzili</th>
+                        <th className="px-4 py-3 text-left font-semibold">Mahsulot Nomi</th>
+                        <th className="px-4 py-3 text-left font-semibold">Narxi</th>
+                        <th className="px-4 py-3 text-left font-semibold">To'langan Summa</th>
+                        <th className="px-4 py-3 text-left font-semibold">To'lav Holati</th>
+                        <th className="px-4 py-3 text-left font-semibold">Holati</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -200,9 +200,9 @@ export default function CreditPaymentsPage() {
                           <tr key={order.id} className={`border-b hover:bg-gray-50 ${isUrgent ? 'bg-red-50' : ''}`}>
                             <td className="px-4 py-3">{order.clientName}</td>
                             <td className="px-4 py-3">{order.clientPhone}</td>
-                            <td className="px-4 py-3">{order.clientAddress || 'N/A'}</td>
+                            <td className="px-4 py-3">{order.clientAddress || 'Kiritilmagan'}</td>
                             <td className="px-4 py-3 text-sm">
-                              {order.products?.map(p => `${p.productName} (${p.quantity} шт)`).join(', ') || 'N/A'}
+                              {order.products?.map(p => `${p.productName} ${p.quantity} Dona`).join(', ') || 'Kiritilmagan'}
                             </td>
                             <td className="px-4 py-3 font-semibold text-amber-700">{order.totalAmount.toLocaleString()} сум</td>
                             <td className="px-4 py-3">{order.paidAmount.toLocaleString()} сум</td>
@@ -214,7 +214,7 @@ export default function CreditPaymentsPage() {
                                   disabled={processingId === order.id}
                                   className="bg-green-600 hover:bg-green-700 text-white"
                                 >
-                                  <Check size={16} /> Оплачено
+                                  <Check size={16} /> To'lov Qilingan
                                 </Button>
                                 <Button
                                   size="sm"
@@ -222,18 +222,18 @@ export default function CreditPaymentsPage() {
                                   disabled={processingId === order.id}
                                   className="bg-gray-400 hover:bg-gray-500 text-white"
                                 >
-                                  <X size={16} /> Нет
+                                  <X size={16} /> To'lov Qilinmagan
                                 </Button>
                               </div>
                             </td>
                             <td className="px-4 py-3">
                               {isUrgent ? (
                                 <span className="px-3 py-1 bg-red-200 text-red-800 rounded-full text-sm font-medium">
-                                  ⚠️ {daysUntilDue} дней
+                                  ⚠️ {daysUntilDue} Kunlar
                                 </span>
                               ) : (
                                 <span className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">
-                                  Ожидает
+                                  Kutyabdi
                                 </span>
                               )}
                             </td>
