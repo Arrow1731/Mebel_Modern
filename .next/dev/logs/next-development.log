@@ -1164,3 +1164,199 @@ Import traces:
   Client Component SSR:
     ./app/product/[id]/page.tsx [Client Component SSR]
     ./app/product/[id]/page.tsx [Server Component]
+[05:32:16.028] Browser ERROR   uncaughtError: RangeError: Invalid time value
+[05:32:20.397] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:32:20.687] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[05:32:20.687] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[05:32:20.687] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764322907019}
+[06:13:36.914] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.926] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_31009ba4._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.927] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.927] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.928] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.928] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.928] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.929] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.929] Server  ERROR    ⨯ Error: The default export is not a React Component in "/credit-payments/page"
+[06:13:36.932] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.933] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_31009ba4._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.933] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.934] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.934] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.934] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.934] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.935] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.935] Server  ERROR    ⨯ Error: The default export is not a React Component in "/credit-payments/page"
+[06:13:36.973] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.974] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_31009ba4._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.974] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.974] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.975] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.975] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.975] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.975] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.975] Server  ERROR    ⨯ Error: The default export is not a React Component in "/credit-payments/page"
+[06:13:36.978] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.979] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_31009ba4._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.979] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.979] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.980] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.980] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.980] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.981] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:36.981] Server  ERROR    ⨯ Error: The default export is not a React Component in "/credit-payments/page"
+[06:13:37.025] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:37.026] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_31009ba4._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:37.026] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:37.026] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:37.026] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:37.027] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:37.027] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:37.027] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:37.027] Server  ERROR    ⨯ Error: The default export is not a React Component in "/credit-payments/page"
+[06:13:37.029] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:37.029] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_31009ba4._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:37.029] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:37.030] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:37.030] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:37.030] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:37.031] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:37.031] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:13:37.031] Server  ERROR    ⨯ Error: The default export is not a React Component in "/credit-payments/page"
+[06:13:37.199] Browser ERROR   uncaughtError: Error: The default export is not a React Component in "/credit-payments/page"
+[06:13:44.779] Browser ERROR   ./app/credit-payments/page.tsx:330:5
+Parsing ecmascript source code failed
+  328 |   const needsAlert = partiallyPaid.some(
+  329 |     (o) => getDaysUntilDue(o.dueDate) <= 3
+> 330 |   );
+      |     ^
+  331 |
+
+Expected '}', got '<eof>'
+[06:13:44.779] Browser ERROR   ./app/credit-payments/page.tsx:330:5
+Parsing ecmascript source code failed
+  328 |   const needsAlert = partiallyPaid.some(
+  329 |     (o) => getDaysUntilDue(o.dueDate) <= 3
+> 330 |   );
+      |     ^
+  331 |
+
+Expected '}', got '<eof>'
+[06:13:44.780] Browser ERROR   ./app/credit-payments/page.tsx:330:5
+Parsing ecmascript source code failed
+  328 |   const needsAlert = partiallyPaid.some(
+  329 |     (o) => getDaysUntilDue(o.dueDate) <= 3
+> 330 |   );
+      |     ^
+  331 |
+
+Expected '}', got '<eof>'
+[06:13:44.780] Browser ERROR   ./app/credit-payments/page.tsx:330:5
+Parsing ecmascript source code failed
+  328 |   const needsAlert = partiallyPaid.some(
+  329 |     (o) => getDaysUntilDue(o.dueDate) <= 3
+> 330 |   );
+      |     ^
+  331 |
+
+Expected '}', got '<eof>'
+[06:13:50.779] Browser ERROR   ./app/credit-payments/page.tsx:406:5
+Parsing ecmascript source code failed
+  404 |       setProcessingId(null);
+  405 |     }
+> 406 |   };
+      |     ^
+  407 |
+
+Expected '}', got '<eof>'
+[06:13:50.780] Browser ERROR   ./app/credit-payments/page.tsx:406:5
+Parsing ecmascript source code failed
+  404 |       setProcessingId(null);
+  405 |     }
+> 406 |   };
+      |     ^
+  407 |
+
+Expected '}', got '<eof>'
+[06:13:50.780] Browser ERROR   ./app/credit-payments/page.tsx:406:5
+Parsing ecmascript source code failed
+  404 |       setProcessingId(null);
+  405 |     }
+> 406 |   };
+      |     ^
+  407 |
+
+Expected '}', got '<eof>'
+[06:13:50.780] Browser ERROR   ./app/credit-payments/page.tsx:406:5
+Parsing ecmascript source code failed
+  404 |       setProcessingId(null);
+  405 |     }
+> 406 |   };
+      |     ^
+  407 |
+
+Expected '}', got '<eof>'
+[06:13:55.778] Browser ERROR   ./app/credit-payments/page.tsx:494:5
+Parsing ecmascript source code failed
+  492 |     a.download = `${title}.csv`;
+  493 |     a.click();
+> 494 |   };
+      |     ^
+  495 |
+
+Expected '}', got '<eof>'
+[06:13:55.778] Browser ERROR   ./app/credit-payments/page.tsx:494:5
+Parsing ecmascript source code failed
+  492 |     a.download = `${title}.csv`;
+  493 |     a.click();
+> 494 |   };
+      |     ^
+  495 |
+
+Expected '}', got '<eof>'
+[06:13:55.779] Browser ERROR   ./app/credit-payments/page.tsx:494:5
+Parsing ecmascript source code failed
+  492 |     a.download = `${title}.csv`;
+  493 |     a.click();
+> 494 |   };
+      |     ^
+  495 |
+
+Expected '}', got '<eof>'
+[06:13:55.780] Browser ERROR   ./app/credit-payments/page.tsx:494:5
+Parsing ecmascript source code failed
+  492 |     a.download = `${title}.csv`;
+  493 |     a.click();
+> 494 |   };
+      |     ^
+  495 |
+
+Expected '}', got '<eof>'
+[06:14:01.718] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[06:14:02.781] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[06:14:02.781] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/credit-payments","route":"/credit-payments"}
+[06:14:02.781] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/credit-payments color: rgb(120, 120, 120) color: inherit {"dp":"/credit-payments","o":"http://localhost:3000/credit-payments","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764325408336}
+[06:14:03.597] Server  LOG      ✓ Compiled in 67ms
+[06:27:17.448] Server  LOG      ✓ Compiled in 260ms
+[06:28:11.796] Browser ERROR   uncaughtError: RangeError: Invalid time value
+[06:28:14.159] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[06:28:14.448] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[06:28:14.448] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[06:28:14.448] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764326260781}
+[06:29:38.732] Server  LOG      ✓ Compiled in 76ms
+[06:33:41.224] Server  LOG      ✓ Compiled in 121ms
+[06:33:41.780] Browser ERROR   uncaughtError: ReferenceError: nextPaymentDateInput is not defined
+[06:33:53.391] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[06:33:53.394] Server  LOG      ✓ Compiled in 73ms
+[06:33:53.844] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[06:33:54.827] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[06:33:54.827] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/product/WkyKCvUsV6sts1nilGWx","route":"/product/[id]"}
+[06:33:54.827] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/WkyKCvUsV6sts1nilGWx color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/WkyKCvUsV6sts1nilGWx","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764326600539}
+[06:33:54.905] Server  LOG      ✓ Compiled in 147ms
+[06:34:01.532] Server  LOG      ✓ Compiled in 60ms
+[07:03:01.267] Server  LOG      ✓ Compiled in 80ms
+[07:03:02.646] Server  LOG      ✓ Compiled in 60ms
+[07:03:04.341] Server  LOG      ✓ Compiled in 69ms
+[07:03:17.488] Server  LOG      ✓ Compiled in 53ms
+[07:03:19.638] Server  LOG      ✓ Compiled in 120ms
+[07:03:36.330] Server  LOG      ✓ Compiled in 68ms

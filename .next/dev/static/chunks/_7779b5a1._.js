@@ -118,6 +118,244 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 "[project]/app/credit-payments/page.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
+// 'use client';
+// import { useState, useEffect } from 'react';
+// import { collection, onSnapshot, updateDoc, doc, addDoc } from 'firebase/firestore';
+// import { db } from '@/lib/firebase';
+// import { Order } from '@/lib/types';
+// import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+// import { AlertCircle, Download, Check, X } from 'lucide-react';
+// import { Button } from '@/components/ui/button';
+// export default function CreditPaymentsPage() {
+//   const [orders, setOrders] = useState<Order[]>([]);
+//   const [loading, setLoading] = useState(true);
+//   const [processingId, setProcessingId] = useState<string | null>(null);
+//   useEffect(() => {
+//     const unsubscribe = onSnapshot(collection(db, 'orders'), (snapshot) => {
+//       const ords = snapshot.docs
+//         .map(doc => {
+//           const data = doc.data();
+//           return {
+//             id: doc.id,
+//             ...data,
+//             createdAt: data.createdAt?.toDate?.() || new Date(data.createdAt),
+//             dueDate: data.dueDate?.toDate?.() || new Date(data.dueDate),
+//             payments: data.payments?.map((p: any) => ({ ...p, date: p.date?.toDate?.() || new Date(p.date) })) || []
+//           } as Order;
+//         });
+//       setOrders(ords);
+//       setLoading(false);
+//     });
+//     return () => unsubscribe();
+//   }, []);
+//   const fullyPaid = orders.filter(o => o.paymentStatus === 'fully-paid');
+//   const partiallyPaid = orders.filter(o => o.paymentStatus === 'partial' || (o.paymentStatus === 'pending' && o.creditMonths > 1));
+//   const getDaysUntilDue = (date: Date) => {
+//     const now = new Date();
+//     const diff = new Date(date).getTime() - now.getTime();
+//     return Math.ceil(diff / (1000 * 3600 * 24));
+//   };
+//   const needsAlert = partiallyPaid.some(o => getDaysUntilDue(o.dueDate) <= 3);
+//   const handlePaymentStatus = async (orderId: string, isPaid: boolean) => {
+//     setProcessingId(orderId);
+//     try {
+//       const order = orders.find(o => o.id === orderId);
+//       if (!order) return;
+//       if (isPaid) {
+//         // Mark as fully paid
+//         await updateDoc(doc(db, 'orders', orderId), {
+//           paymentStatus: 'fully-paid',
+//           paidAmount: order.totalAmount,
+//           payments: [
+//             ...(order.payments || []),
+//             { amount: order.totalAmount - order.paidAmount, date: new Date(), month: order.creditMonths }
+//           ]
+//         });
+//         await addDoc(collection(db, 'analytics_log'), {
+//           type: 'payment_completed',
+//           orderId,
+//           clientName: order.clientName,
+//           amount: order.totalAmount - order.paidAmount,
+//           date: new Date(),
+//           timestamp: new Date()
+//         });
+//       } else {
+//         // Mark as not paid (keep pending)
+//         await addDoc(collection(db, 'analytics_log'), {
+//           type: 'payment_skipped',
+//           orderId,
+//           clientName: order.clientName,
+//           amount: order.totalAmount - order.paidAmount,
+//           date: new Date(),
+//           timestamp: new Date()
+//         });
+//       }
+//     } catch (error) {
+//       console.error('Error updating payment status:', error);
+//     } finally {
+//       setProcessingId(null);
+//     }
+//   };
+//   const downloadPDF = (data: Order[], title: string) => {
+//     let csv = `${title}\n\n`;
+//     csv += "Mijon Ismni", "Telefon", "Yashash Manzili", "Narxi", "Holati", "To'lov Sanasi \n";
+//     data.forEach(order => {
+//       csv += `${order.clientName},${order.clientPhone},${order.clientEmail},${order.clientAddress || 'N/A'},${order.totalAmount},${order.paymentStatus},${new Date(order.dueDate).toLocaleDateString()}\n`;
+//     });
+//     const blob = new Blob([csv], { type: 'text/csv' });
+//     const url = window.URL.createObjectURL(blob);
+//     const a = document.createElement('a');
+//     a.href = url;
+//     a.download = `${title}.csv`;
+//     a.click();
+//   };
+//   return (
+//     <main className="min-h-screen bg-gray-50 py-8">
+//       <div className="max-w-7xl mx-auto px-4">
+//         <div className="flex justify-between items-center mb-8">
+//           <h1 className="text-3xl font-bold text-amber-900">Kredit To'lovlarini Nazorat Qilish Bo'limi</h1>
+//           {needsAlert && (
+//             <div className="flex items-center gap-2 bg-red-100 text-red-700 px-4 py-2 rounded-lg">
+//               <AlertCircle size={20} />
+//               <span className="font-medium">Belgilangan Muddatdan Oldin To'lovlar Mavjud!</span>
+//             </div>
+//           )}
+//         </div>
+//         {loading ? (
+//           <div>Yuklanmoqda...</div>
+//         ) : (
+//           <div className="space-y-8">
+//             {/* Fully Paid */}
+//             <div>
+//               <div className="flex justify-between items-center mb-4">
+//                 <h2 className="text-2xl font-bold text-amber-900">To'liq Holda To'lov Qilgan Mijorlar</h2>
+//                 <Button
+//                   onClick={() => downloadPDF(fullyPaid, 'Fully-Paid-Orders')}
+//                   className="bg-amber-600 hover:bg-amber-700"
+//                 >
+//                   <Download className="mr-2" size={16} />CSV Yuklab Olish
+//                 </Button>
+//               </div>
+//               {fullyPaid.length === 0 ? (
+//                 <p className="text-gray-500">To'liq To'langan Buyurtmalar Yo'q</p>
+//               ) : (
+//                 <div className="bg-white rounded-lg shadow overflow-x-auto">
+//                   <table className="w-full">
+//                     <thead className="bg-gray-100 border-b">
+//                       <tr>
+//                         <th className="px-4 py-3 text-left font-semibold">Mijoz Ismi</th>
+//                         <th className="px-4 py-3 text-left font-semibold">Telefon Raqami</th>
+//                         <th className="px-4 py-3 text-left font-semibold">Yashash Manzili</th>
+//                         <th className="px-4 py-3 text-left font-semibold">Mahsulot Nomi</th>
+//                         <th className="px-4 py-3 text-left font-semibold">Narxi</th>
+//                         <th className="px-4 py-3 text-left font-semibold">To'lov Qilingan Sana</th>
+//                       </tr>
+//                     </thead>
+//                     <tbody>
+//                       {fullyPaid.map(order => (
+//                         <tr key={order.id} className="border-b hover:bg-gray-50">
+//                           <td className="px-4 py-3">{order.clientName}</td>
+//                           <td className="px-4 py-3">{order.clientPhone}</td>
+//                           <td className="px-4 py-3">{order.clientAddress || 'Korsatilmagan'}</td>
+//                           <td className="px-4 py-3 text-sm">
+//                             {order.products?.map(p => `${p.productName} (${p.quantity} Dona)`).join(', ') || 'Korsatilmagan'}
+//                           </td>
+//                           <td className="px-4 py-3 font-semibold text-amber-700">{order.totalAmount.toLocaleString()} So'm</td>
+//                           <td className="px-4 py-3">{new Date(order.dueDate).toLocaleDateString()} Yil</td>
+//                         </tr>
+//                       ))}
+//                     </tbody>
+//                   </table>
+//                 </div>
+//               )}
+//             </div>
+//             {/* Partially Paid */}
+//             <div>
+//               <div className="flex justify-between items-center mb-4">
+//                 <h2 className="text-2xl font-bold text-amber-900">Bo'lib To'lashga Harid Qilgan Mijozlar</h2>
+//                 <Button
+//                   onClick={() => downloadPDF(partiallyPaid, 'Partially-Paid-Orders')}
+//                   className="bg-amber-600 hover:bg-amber-700"
+//                 >
+//                   <Download className="mr-2" size={16} />CSV Yuklab Olish
+//                 </Button>
+//               </div>
+//               {partiallyPaid.length === 0 ? (
+//                 <p className="text-gray-500">Bo'lib To'lashga Harid Qilgan Mahsulotlar Yo'q</p>
+//               ) : (
+//                 <div className="bg-white rounded-lg shadow overflow-x-auto">
+//                   <table className="w-full">
+//                     <thead className="bg-gray-100 border-b">
+//                       <tr>
+//                         <th className="px-8 py-3 text-left font-semibold">Mijoz Ismi</th>
+//                         <th className="px-8 py-3 text-left font-semibold">Telefon Raqami</th>
+//                         <th className="px-8 py-3 text-left font-semibold">Yashash Manzili</th>
+//                         <th className="px-8 py-3 text-left font-semibold">Mahsulot Nomi</th>
+//                         <th className="px-8 py-3 text-left font-semibold">Narxi</th>
+//                         <th className="px-8 py-3 text-left font-semibold">To'langan Summa</th>
+//                         <th className="px-8 py-3 text-left font-semibold">To'lav Holati</th>
+//                         <th className="px-8 py-3 text-left font-semibold">Holati</th>
+//                       </tr>
+//                     </thead>
+//                     <tbody>
+//                       {partiallyPaid.map(order => {
+//                         const daysUntilDue = getDaysUntilDue(order.dueDate);
+//                         const isUrgent = daysUntilDue <= 3 && daysUntilDue > 0;
+//                         return (
+//                           <tr key={order.id} className={`border-b hover:bg-gray-50 ${isUrgent ? 'bg-red-50' : ''}`}>
+//                             <td className="px-8 py-3">{order.clientName}</td>
+//                             <td className="px-8 py-3">{order.clientPhone}</td>
+//                             <td className="px-8 py-3">{order.clientAddress || 'Kiritilmagan'}</td>
+//                             <td className="px-8 py-3 text-sm">
+//                               {order.products?.map(p => `${p.productName} ${p.quantity} Dona`).join(', ') || 'Kiritilmagan'}
+//                             </td>
+//                             <td className="px-4 py-3 font-semibold text-amber-700">{order.totalAmount.toLocaleString()} So'm</td>
+//                             <td className="px-4 py-3">{order.paidAmount.toLocaleString()} So'm</td>
+//                             <td className="px-4 py-3">
+//                               <div className="flex gap-2">
+//                                 <Button
+//                                   size="sm"
+//                                   onClick={() => handlePaymentStatus(order.id, true)}
+//                                   disabled={processingId === order.id}
+//                                   className="bg-green-600 hover:bg-green-700 text-white"
+//                                 >
+//                                   <Check size={16} /> To'lov Qilingan
+//                                 </Button>
+//                                 <Button
+//                                   size="sm"
+//                                   onClick={() => handlePaymentStatus(order.id, false)}
+//                                   disabled={processingId === order.id}
+//                                   className="bg-gray-400 hover:bg-gray-500 text-white"
+//                                 >
+//                                   <X size={16} /> To'lov Qilinmagan
+//                                 </Button>
+//                               </div>
+//                             </td>
+//                             <td className="px-4 py-3">
+//                               {isUrgent ? (
+//                                 <span className="px-3 py-1 bg-red-200 text-red-800 rounded-full text-sm font-medium">
+//                                   ⚠️ {daysUntilDue} Kunlar
+//                                 </span>
+//                               ) : (
+//                                 <span className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">
+//                                   Kutyabdi
+//                                 </span>
+//                               )}
+//                             </td>
+//                           </tr>
+//                         );
+//                       })}
+//                     </tbody>
+//                   </table>
+//                 </div>
+//               )}
+//             </div>
+//           </div>
+//         )}
+//       </div>
+//     </main>
+//   );
+// }
 __turbopack_context__.s([
     "default",
     ()=>CreditPaymentsPage
@@ -129,8 +367,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/firebase.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertCircle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-alert.js [app-client] (ecmascript) <export default as AlertCircle>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/download.js [app-client] (ecmascript) <export default as Download>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/check.js [app-client] (ecmascript) <export default as Check>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/x.js [app-client] (ecmascript) <export default as X>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/button.tsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
@@ -145,15 +381,27 @@ function CreditPaymentsPage() {
     const [orders, setOrders] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [processingId, setProcessingId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    // Modal state
+    const [modalOpen, setModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [modalText, setModalText] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
+    // Fixed months (Option A)
+    const FIXED_MONTHS = [
+        'Nov',
+        'Dec',
+        'Jan',
+        'Feb',
+        'Mar'
+    ];
+    // Load orders live from Firestore
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "CreditPaymentsPage.useEffect": ()=>{
             const unsubscribe = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["onSnapshot"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["db"], 'orders'), {
                 "CreditPaymentsPage.useEffect.unsubscribe": (snapshot)=>{
                     const ords = snapshot.docs.map({
-                        "CreditPaymentsPage.useEffect.unsubscribe.ords": (doc)=>{
-                            const data = doc.data();
+                        "CreditPaymentsPage.useEffect.unsubscribe.ords": (d)=>{
+                            const data = d.data();
                             return {
-                                id: doc.id,
+                                id: d.id,
                                 ...data,
                                 createdAt: data.createdAt?.toDate?.() || new Date(data.createdAt),
                                 dueDate: data.dueDate?.toDate?.() || new Date(data.dueDate),
@@ -183,641 +431,734 @@ function CreditPaymentsPage() {
         return Math.ceil(diff / (1000 * 3600 * 24));
     };
     const needsAlert = partiallyPaid.some((o)=>getDaysUntilDue(o.dueDate) <= 3);
-    const handlePaymentStatus = async (orderId, isPaid)=>{
+    // Compute monthly payment for order (fallback logic)
+    const computeMonthly = (order)=>{
+        if (order.monthlyPayment && Number(order.monthlyPayment) > 0) return Number(order.monthlyPayment);
+        const months = order.creditMonths || 1;
+        const total = Number(order.totalAmount || 0);
+        if (months <= 1) return total;
+        const remaining = order.remainingAmount != null ? Number(order.remainingAmount) : total - (order.paidAmount || 0);
+        const fee = months > 1 ? remaining * 0.05 : 0;
+        // round to whole so'm
+        return Math.round((remaining + fee) / months);
+    };
+    // Pay for a specific month (by index). Shows success modal after save.
+    const handlePayForMonth = async (orderId, monthIndex)=>{
         setProcessingId(orderId);
         try {
             const order = orders.find((o)=>o.id === orderId);
             if (!order) return;
-            if (isPaid) {
-                // Mark as fully paid
-                await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["updateDoc"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["db"], 'orders', orderId), {
-                    paymentStatus: 'fully-paid',
-                    paidAmount: order.totalAmount,
-                    payments: [
-                        ...order.payments || [],
-                        {
-                            amount: order.totalAmount - order.paidAmount,
-                            date: new Date(),
-                            month: order.creditMonths
-                        }
-                    ]
-                });
-                await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["addDoc"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["db"], 'analytics_log'), {
-                    type: 'payment_completed',
-                    orderId,
-                    clientName: order.clientName,
-                    amount: order.totalAmount - order.paidAmount,
-                    date: new Date(),
-                    timestamp: new Date()
-                });
-            } else {
-                // Mark as not paid (keep pending)
-                await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["addDoc"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["db"], 'analytics_log'), {
-                    type: 'payment_skipped',
-                    orderId,
-                    clientName: order.clientName,
-                    amount: order.totalAmount - order.paidAmount,
-                    date: new Date(),
-                    timestamp: new Date()
-                });
+            // Prevent double-pay if already present
+            const alreadyPaid = (order.payments || []).some((p)=>p.monthIndex === monthIndex);
+            if (alreadyPaid) {
+                setModalText(`This month (${FIXED_MONTHS[monthIndex]}) is already paid.`);
+                setModalOpen(true);
+                return;
             }
-        } catch (error) {
-            console.error('Error updating payment status:', error);
+            const monthlyAmount = computeMonthly(order);
+            const paymentRecord = {
+                amount: monthlyAmount,
+                date: new Date(),
+                monthIndex,
+                monthLabel: FIXED_MONTHS[monthIndex] || `Month-${monthIndex + 1}`
+            };
+            const newPaidAmount = (order.paidAmount || 0) + monthlyAmount;
+            const isFullyPaid = newPaidAmount >= Number(order.totalAmount || 0);
+            // Update Firestore
+            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["updateDoc"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["db"], 'orders', orderId), {
+                payments: [
+                    ...order.payments || [],
+                    paymentRecord
+                ],
+                paidAmount: newPaidAmount,
+                paymentStatus: isFullyPaid ? 'fully-paid' : 'pending'
+            });
+            // analytics log
+            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["addDoc"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["db"], 'analytics_log'), {
+                type: 'monthly_payment',
+                orderId,
+                clientName: order.clientName,
+                amount: monthlyAmount,
+                monthIndex: paymentRecord.monthIndex,
+                monthLabel: paymentRecord.monthLabel,
+                date: new Date()
+            });
+            // Show success modal AFTER update succeeded (Option A)
+            setModalText(`Partial Payment for month ${paymentRecord.monthLabel} is successfully paid`);
+            setModalOpen(true);
+        } catch (err) {
+            console.error('Payment error:', err);
+            setModalText('An error occurred while processing payment.');
+            setModalOpen(true);
         } finally{
             setProcessingId(null);
         }
     };
-    const downloadPDF = (data, title)=>{
-        let csv = `${title}\n\n`;
-        csv += "Mijon Ismni", "To'lov Sanasi \n";
+    // CSV helper and export
+    const csvEscape = (v)=>{
+        if (v == null) return '';
+        const s = String(v);
+        if (s.includes(',') || s.includes('"')) return `"${s.replace(/"/g, '""')}"`;
+        return s;
+    };
+    const downloadCSV = (data, title)=>{
+        let csv = '\ufeff';
+        const headers = [
+            'Client Name',
+            'Phone',
+            'Phone 2',
+            'Email',
+            'Address',
+            'Products',
+            'Agreed Amount',
+            'Initial Payment',
+            'Remaining',
+            'Credit Months',
+            'Monthly Payment',
+            'Total',
+            'Paid',
+            'Status',
+            'Created At',
+            'Due Date',
+            ...FIXED_MONTHS.map((m)=>`${m} (Scheduled)`),
+            ...FIXED_MONTHS.map((m)=>`${m} (Paid)`)
+        ];
+        csv += headers.join(',') + '\n';
         data.forEach((order)=>{
-            csv += `${order.clientName},${order.clientPhone},${order.clientEmail},${order.clientAddress || 'N/A'},${order.totalAmount},${order.paymentStatus},${new Date(order.dueDate).toLocaleDateString()}\n`;
+            const productNames = order.products?.map((p)=>`${p.productName} x${p.quantity}`).join('; ') || '';
+            const monthly = computeMonthly(order);
+            const paidPerMonth = Array(FIXED_MONTHS.length).fill(0);
+            order.payments?.forEach((p)=>{
+                if (typeof p.monthIndex === 'number' && p.monthIndex >= 0 && p.monthIndex < FIXED_MONTHS.length) {
+                    paidPerMonth[p.monthIndex] += Number(p.amount || 0);
+                } else {
+                    const firstEmpty = paidPerMonth.findIndex((v)=>v === 0);
+                    if (firstEmpty >= 0) paidPerMonth[firstEmpty] += Number(p.amount || 0);
+                }
+            });
+            const scheduledPerMonth = FIXED_MONTHS.map((_, i)=>(order.creditMonths || 0) > i ? monthly : '');
+            const row = [
+                csvEscape(order.clientName),
+                csvEscape(order.clientPhone),
+                csvEscape(order.clientPhone2 || ''),
+                csvEscape(order.clientEmail || ''),
+                csvEscape(order.clientAddress || ''),
+                csvEscape(productNames),
+                order.agreedAmount,
+                order.initialPayment,
+                order.remainingAmount,
+                order.creditMonths,
+                monthly,
+                order.totalAmount,
+                order.paidAmount,
+                order.paymentStatus,
+                order.createdAt?.toLocaleDateString() || '',
+                order.dueDate?.toLocaleDateString() || '',
+                ...scheduledPerMonth,
+                ...paidPerMonth.map((n)=>n === 0 ? '' : n)
+            ];
+            csv += row.join(',') + '\n';
         });
         const blob = new Blob([
             csv
         ], {
-            type: 'text/csv'
+            type: 'text/csv;charset=utf-8;'
         });
-        const url = window.URL.createObjectURL(blob);
+        const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
         a.download = `${title}.csv`;
         a.click();
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
-        className: "min-h-screen bg-gray-50 py-8",
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "max-w-7xl mx-auto px-4",
-            children: [
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex justify-between items-center mb-8",
+        className: "min-h-screen bg-gray-50 py-10 px-6",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                className: "text-3xl font-bold text-amber-900 mb-8",
+                children: "Kredit To'lovlari"
+            }, void 0, false, {
+                fileName: "[project]/app/credit-payments/page.tsx",
+                lineNumber: 506,
+                columnNumber: 7
+            }, this),
+            needsAlert && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex items-center gap-2 bg-red-100 border border-red-300 text-red-700 px-4 py-3 rounded-lg mb-8",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertCircle$3e$__["AlertCircle"], {
+                        size: 20
+                    }, void 0, false, {
+                        fileName: "[project]/app/credit-payments/page.tsx",
+                        lineNumber: 510,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        className: "font-semibold",
+                        children: "⚠️ Ba'zi mijozlarda muddat yakunlanmoqda!"
+                    }, void 0, false, {
+                        fileName: "[project]/app/credit-payments/page.tsx",
+                        lineNumber: 511,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/credit-payments/page.tsx",
+                lineNumber: 509,
+                columnNumber: 9
+            }, this),
+            modalOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 animate-fadeIn",
                     children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                            className: "text-3xl font-bold text-amber-900",
-                            children: "Kredit To'lovlarini Nazorat Qilish Bo'limi"
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                            className: "text-xl font-semibold mb-2",
+                            children: "Payment Status"
                         }, void 0, false, {
                             fileName: "[project]/app/credit-payments/page.tsx",
-                            lineNumber: 109,
-                            columnNumber: 11
+                            lineNumber: 519,
+                            columnNumber: 13
                         }, this),
-                        needsAlert && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex items-center gap-2 bg-red-100 text-red-700 px-4 py-2 rounded-lg",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertCircle$3e$__["AlertCircle"], {
-                                    size: 20
-                                }, void 0, false, {
-                                    fileName: "[project]/app/credit-payments/page.tsx",
-                                    lineNumber: 112,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "font-medium",
-                                    children: "Belgilangan Muddatdan Oldin To'lovlar Mavjud!"
-                                }, void 0, false, {
-                                    fileName: "[project]/app/credit-payments/page.tsx",
-                                    lineNumber: 113,
-                                    columnNumber: 15
-                                }, this)
-                            ]
-                        }, void 0, true, {
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "text-gray-700 mb-6",
+                            children: modalText
+                        }, void 0, false, {
                             fileName: "[project]/app/credit-payments/page.tsx",
-                            lineNumber: 111,
+                            lineNumber: 520,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex justify-end",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                onClick: ()=>setModalOpen(false),
+                                className: "bg-amber-600 hover:bg-amber-700 text-white",
+                                children: "Close"
+                            }, void 0, false, {
+                                fileName: "[project]/app/credit-payments/page.tsx",
+                                lineNumber: 522,
+                                columnNumber: 15
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/app/credit-payments/page.tsx",
+                            lineNumber: 521,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/credit-payments/page.tsx",
-                    lineNumber: 108,
-                    columnNumber: 9
-                }, this),
-                loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    children: "Yuklanmoqda..."
-                }, void 0, false, {
-                    fileName: "[project]/app/credit-payments/page.tsx",
-                    lineNumber: 119,
-                    columnNumber: 11
-                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "space-y-8",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex justify-between items-center mb-4",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                            className: "text-2xl font-bold text-amber-900",
-                                            children: "To'liq Holda To'lov Qilgan Mijorlar"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                            lineNumber: 125,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                            onClick: ()=>downloadPDF(fullyPaid, 'Fully-Paid-Orders'),
-                                            className: "bg-amber-600 hover:bg-amber-700",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
-                                                    className: "mr-2",
-                                                    size: 16
-                                                }, void 0, false, {
-                                                    fileName: "[project]/app/credit-payments/page.tsx",
-                                                    lineNumber: 130,
-                                                    columnNumber: 19
-                                                }, this),
-                                                "CSV Yuklab Olish"
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                            lineNumber: 126,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/app/credit-payments/page.tsx",
-                                    lineNumber: 124,
-                                    columnNumber: 15
-                                }, this),
-                                fullyPaid.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-gray-500",
-                                    children: "To'liq To'langan Buyurtmalar Yo'q"
-                                }, void 0, false, {
-                                    fileName: "[project]/app/credit-payments/page.tsx",
-                                    lineNumber: 134,
-                                    columnNumber: 17
-                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "bg-white rounded-lg shadow overflow-x-auto",
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
-                                        className: "w-full",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("thead", {
-                                                className: "bg-gray-100 border-b",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Mijoz Ismi"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                                            lineNumber: 140,
-                                                            columnNumber: 25
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Telefon Raqami"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                                            lineNumber: 141,
-                                                            columnNumber: 25
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Yashash Manzili"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                                            lineNumber: 142,
-                                                            columnNumber: 25
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Mahsulot Nomi"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                                            lineNumber: 143,
-                                                            columnNumber: 25
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-4 py-3 text-left font-semibold",
-                                                            children: "Narxi"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                                            lineNumber: 144,
-                                                            columnNumber: 25
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-4 py-3 text-left font-semibold",
-                                                            children: "To'lov Qilingan Sana"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                                            lineNumber: 145,
-                                                            columnNumber: 25
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/app/credit-payments/page.tsx",
-                                                    lineNumber: 139,
-                                                    columnNumber: 23
-                                                }, this)
-                                            }, void 0, false, {
-                                                fileName: "[project]/app/credit-payments/page.tsx",
-                                                lineNumber: 138,
-                                                columnNumber: 21
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
-                                                children: fullyPaid.map((order)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                                        className: "border-b hover:bg-gray-50",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-4 py-3",
-                                                                children: order.clientName
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/credit-payments/page.tsx",
-                                                                lineNumber: 151,
-                                                                columnNumber: 27
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-4 py-3",
-                                                                children: order.clientPhone
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/credit-payments/page.tsx",
-                                                                lineNumber: 152,
-                                                                columnNumber: 27
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-4 py-3",
-                                                                children: order.clientAddress || 'Korsatilmagan'
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/credit-payments/page.tsx",
-                                                                lineNumber: 153,
-                                                                columnNumber: 27
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-4 py-3 text-sm",
-                                                                children: order.products?.map((p)=>`${p.productName} (${p.quantity} Dona)`).join(', ') || 'Korsatilmagan'
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/credit-payments/page.tsx",
-                                                                lineNumber: 154,
-                                                                columnNumber: 27
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-4 py-3 font-semibold text-amber-700",
-                                                                children: [
-                                                                    order.totalAmount.toLocaleString(),
-                                                                    " So'm"
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/app/credit-payments/page.tsx",
-                                                                lineNumber: 157,
-                                                                columnNumber: 27
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-4 py-3",
-                                                                children: [
-                                                                    new Date(order.dueDate).toLocaleDateString(),
-                                                                    " Yil"
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/app/credit-payments/page.tsx",
-                                                                lineNumber: 158,
-                                                                columnNumber: 27
-                                                            }, this)
-                                                        ]
-                                                    }, order.id, true, {
-                                                        fileName: "[project]/app/credit-payments/page.tsx",
-                                                        lineNumber: 150,
-                                                        columnNumber: 25
-                                                    }, this))
-                                            }, void 0, false, {
-                                                fileName: "[project]/app/credit-payments/page.tsx",
-                                                lineNumber: 148,
-                                                columnNumber: 21
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/app/credit-payments/page.tsx",
-                                        lineNumber: 137,
-                                        columnNumber: 19
-                                    }, this)
-                                }, void 0, false, {
-                                    fileName: "[project]/app/credit-payments/page.tsx",
-                                    lineNumber: 136,
-                                    columnNumber: 17
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/app/credit-payments/page.tsx",
-                            lineNumber: 123,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex justify-between items-center mb-4",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                            className: "text-2xl font-bold text-amber-900",
-                                            children: "Bo'lib To'lashga Harid Qilgan Mijozlar"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                            lineNumber: 170,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                            onClick: ()=>downloadPDF(partiallyPaid, 'Partially-Paid-Orders'),
-                                            className: "bg-amber-600 hover:bg-amber-700",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
-                                                    className: "mr-2",
-                                                    size: 16
-                                                }, void 0, false, {
-                                                    fileName: "[project]/app/credit-payments/page.tsx",
-                                                    lineNumber: 175,
-                                                    columnNumber: 19
-                                                }, this),
-                                                "CSV Yuklab Olish"
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                            lineNumber: 171,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/app/credit-payments/page.tsx",
-                                    lineNumber: 169,
-                                    columnNumber: 15
-                                }, this),
-                                partiallyPaid.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-gray-500",
-                                    children: "Bo'lib To'lashga Harid Qilgan Mahsulotlar Yo'q"
-                                }, void 0, false, {
-                                    fileName: "[project]/app/credit-payments/page.tsx",
-                                    lineNumber: 179,
-                                    columnNumber: 17
-                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "bg-white rounded-lg shadow overflow-x-auto",
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
-                                        className: "w-full",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("thead", {
-                                                className: "bg-gray-100 border-b",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-8 py-3 text-left font-semibold",
-                                                            children: "Mijoz Ismi"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                                            lineNumber: 185,
-                                                            columnNumber: 25
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-8 py-3 text-left font-semibold",
-                                                            children: "Telefon Raqami"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                                            lineNumber: 186,
-                                                            columnNumber: 25
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-8 py-3 text-left font-semibold",
-                                                            children: "Yashash Manzili"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                                            lineNumber: 187,
-                                                            columnNumber: 25
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-8 py-3 text-left font-semibold",
-                                                            children: "Mahsulot Nomi"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                                            lineNumber: 188,
-                                                            columnNumber: 25
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-8 py-3 text-left font-semibold",
-                                                            children: "Narxi"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                                            lineNumber: 189,
-                                                            columnNumber: 25
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-8 py-3 text-left font-semibold",
-                                                            children: "To'langan Summa"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                                            lineNumber: 190,
-                                                            columnNumber: 25
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-8 py-3 text-left font-semibold",
-                                                            children: "To'lav Holati"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                                            lineNumber: 191,
-                                                            columnNumber: 25
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-8 py-3 text-left font-semibold",
-                                                            children: "Holati"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                                            lineNumber: 192,
-                                                            columnNumber: 25
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/app/credit-payments/page.tsx",
-                                                    lineNumber: 184,
-                                                    columnNumber: 23
-                                                }, this)
-                                            }, void 0, false, {
-                                                fileName: "[project]/app/credit-payments/page.tsx",
-                                                lineNumber: 183,
-                                                columnNumber: 21
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
-                                                children: partiallyPaid.map((order)=>{
-                                                    const daysUntilDue = getDaysUntilDue(order.dueDate);
-                                                    const isUrgent = daysUntilDue <= 3 && daysUntilDue > 0;
-                                                    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                                        className: `border-b hover:bg-gray-50 ${isUrgent ? 'bg-red-50' : ''}`,
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-8 py-3",
-                                                                children: order.clientName
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/credit-payments/page.tsx",
-                                                                lineNumber: 201,
-                                                                columnNumber: 29
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-8 py-3",
-                                                                children: order.clientPhone
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/credit-payments/page.tsx",
-                                                                lineNumber: 202,
-                                                                columnNumber: 29
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-8 py-3",
-                                                                children: order.clientAddress || 'Kiritilmagan'
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/credit-payments/page.tsx",
-                                                                lineNumber: 203,
-                                                                columnNumber: 29
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-8 py-3 text-sm",
-                                                                children: order.products?.map((p)=>`${p.productName} ${p.quantity} Dona`).join(', ') || 'Kiritilmagan'
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/credit-payments/page.tsx",
-                                                                lineNumber: 204,
-                                                                columnNumber: 29
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-4 py-3 font-semibold text-amber-700",
-                                                                children: [
-                                                                    order.totalAmount.toLocaleString(),
-                                                                    " So'm"
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/app/credit-payments/page.tsx",
-                                                                lineNumber: 207,
-                                                                columnNumber: 29
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-4 py-3",
-                                                                children: [
-                                                                    order.paidAmount.toLocaleString(),
-                                                                    " So'm"
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/app/credit-payments/page.tsx",
-                                                                lineNumber: 208,
-                                                                columnNumber: 29
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-4 py-3",
-                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "flex gap-2",
-                                                                    children: [
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                                                            size: "sm",
-                                                                            onClick: ()=>handlePaymentStatus(order.id, true),
-                                                                            disabled: processingId === order.id,
-                                                                            className: "bg-green-600 hover:bg-green-700 text-white",
-                                                                            children: [
-                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
-                                                                                    size: 16
-                                                                                }, void 0, false, {
-                                                                                    fileName: "[project]/app/credit-payments/page.tsx",
-                                                                                    lineNumber: 217,
-                                                                                    columnNumber: 35
-                                                                                }, this),
-                                                                                " To'lov Qilingan"
-                                                                            ]
-                                                                        }, void 0, true, {
-                                                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                                                            lineNumber: 211,
-                                                                            columnNumber: 33
-                                                                        }, this),
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                                                            size: "sm",
-                                                                            onClick: ()=>handlePaymentStatus(order.id, false),
-                                                                            disabled: processingId === order.id,
-                                                                            className: "bg-gray-400 hover:bg-gray-500 text-white",
-                                                                            children: [
-                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
-                                                                                    size: 16
-                                                                                }, void 0, false, {
-                                                                                    fileName: "[project]/app/credit-payments/page.tsx",
-                                                                                    lineNumber: 225,
-                                                                                    columnNumber: 35
-                                                                                }, this),
-                                                                                " To'lov Qilinmagan"
-                                                                            ]
-                                                                        }, void 0, true, {
-                                                                            fileName: "[project]/app/credit-payments/page.tsx",
-                                                                            lineNumber: 219,
-                                                                            columnNumber: 33
-                                                                        }, this)
-                                                                    ]
-                                                                }, void 0, true, {
-                                                                    fileName: "[project]/app/credit-payments/page.tsx",
-                                                                    lineNumber: 210,
-                                                                    columnNumber: 31
-                                                                }, this)
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/credit-payments/page.tsx",
-                                                                lineNumber: 209,
-                                                                columnNumber: 29
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-4 py-3",
-                                                                children: isUrgent ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "px-3 py-1 bg-red-200 text-red-800 rounded-full text-sm font-medium",
-                                                                    children: [
-                                                                        "⚠️ ",
-                                                                        daysUntilDue,
-                                                                        " Kunlar"
-                                                                    ]
-                                                                }, void 0, true, {
-                                                                    fileName: "[project]/app/credit-payments/page.tsx",
-                                                                    lineNumber: 231,
-                                                                    columnNumber: 33
-                                                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm",
-                                                                    children: "Kutyabdi"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/app/credit-payments/page.tsx",
-                                                                    lineNumber: 235,
-                                                                    columnNumber: 33
-                                                                }, this)
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/credit-payments/page.tsx",
-                                                                lineNumber: 229,
-                                                                columnNumber: 29
-                                                            }, this)
-                                                        ]
-                                                    }, order.id, true, {
-                                                        fileName: "[project]/app/credit-payments/page.tsx",
-                                                        lineNumber: 200,
-                                                        columnNumber: 27
-                                                    }, this);
-                                                })
-                                            }, void 0, false, {
-                                                fileName: "[project]/app/credit-payments/page.tsx",
-                                                lineNumber: 195,
-                                                columnNumber: 21
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/app/credit-payments/page.tsx",
-                                        lineNumber: 182,
-                                        columnNumber: 19
-                                    }, this)
-                                }, void 0, false, {
-                                    fileName: "[project]/app/credit-payments/page.tsx",
-                                    lineNumber: 181,
-                                    columnNumber: 17
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/app/credit-payments/page.tsx",
-                            lineNumber: 168,
-                            columnNumber: 13
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/app/credit-payments/page.tsx",
-                    lineNumber: 121,
+                    lineNumber: 518,
                     columnNumber: 11
                 }, this)
-            ]
-        }, void 0, true, {
-            fileName: "[project]/app/credit-payments/page.tsx",
-            lineNumber: 107,
-            columnNumber: 7
-        }, this)
-    }, void 0, false, {
+            }, void 0, false, {
+                fileName: "[project]/app/credit-payments/page.tsx",
+                lineNumber: 517,
+                columnNumber: 9
+            }, this),
+            loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                children: "Loading…"
+            }, void 0, false, {
+                fileName: "[project]/app/credit-payments/page.tsx",
+                lineNumber: 534,
+                columnNumber: 9
+            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+                        className: "mb-14",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex justify-between items-center mb-4",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                        className: "text-2xl font-bold text-green-700",
+                                        children: "To'liq To'langanlar"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/credit-payments/page.tsx",
+                                        lineNumber: 540,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                        onClick: ()=>downloadCSV(fullyPaid, 'Fully-Paid'),
+                                        className: "bg-green-700 text-white",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
+                                                size: 16,
+                                                className: "mr-2"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/credit-payments/page.tsx",
+                                                lineNumber: 542,
+                                                columnNumber: 17
+                                            }, this),
+                                            "CSV Yuklab Olish"
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/credit-payments/page.tsx",
+                                        lineNumber: 541,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/credit-payments/page.tsx",
+                                lineNumber: 539,
+                                columnNumber: 13
+                            }, this),
+                            fullyPaid.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-gray-500",
+                                children: "Hozircha to'liq to'lov qilgan mijozlar yo‘q."
+                            }, void 0, false, {
+                                fileName: "[project]/app/credit-payments/page.tsx",
+                                lineNumber: 547,
+                                columnNumber: 15
+                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "overflow-auto bg-white shadow rounded-lg",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
+                                    className: "w-full text-sm",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("thead", {
+                                            className: "bg-gray-100 border-b",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                        className: "px-4 py-3 text-left",
+                                                        children: "Mijoz"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/credit-payments/page.tsx",
+                                                        lineNumber: 553,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                        className: "px-4 py-3 text-left",
+                                                        children: "Telefon"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/credit-payments/page.tsx",
+                                                        lineNumber: 554,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                        className: "px-4 py-3 text-left",
+                                                        children: "Mahsulotlar"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/credit-payments/page.tsx",
+                                                        lineNumber: 555,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                        className: "px-4 py-3 text-left",
+                                                        children: "Summa"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/credit-payments/page.tsx",
+                                                        lineNumber: 556,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                        className: "px-4 py-3 text-left",
+                                                        children: "Muddat"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/credit-payments/page.tsx",
+                                                        lineNumber: 557,
+                                                        columnNumber: 23
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/credit-payments/page.tsx",
+                                                lineNumber: 552,
+                                                columnNumber: 21
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                            lineNumber: 551,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
+                                            children: fullyPaid.map((o)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                                                    className: "border-b",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                            className: "px-4 py-3",
+                                                            children: o.clientName
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                                            lineNumber: 563,
+                                                            columnNumber: 25
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                            className: "px-4 py-3",
+                                                            children: o.clientPhone
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                                            lineNumber: 564,
+                                                            columnNumber: 25
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                            className: "px-4 py-3",
+                                                            children: o.products?.map((p)=>`${p.productName} (${p.quantity} dona)`).join(', ')
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                                            lineNumber: 565,
+                                                            columnNumber: 25
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                            className: "px-4 py-3 font-semibold text-green-700",
+                                                            children: [
+                                                                Number(o.totalAmount).toLocaleString(),
+                                                                " so‘m"
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                                            lineNumber: 568,
+                                                            columnNumber: 25
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                            className: "px-4 py-3",
+                                                            children: o.dueDate?.toLocaleDateString()
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                                            lineNumber: 569,
+                                                            columnNumber: 25
+                                                        }, this)
+                                                    ]
+                                                }, o.id, true, {
+                                                    fileName: "[project]/app/credit-payments/page.tsx",
+                                                    lineNumber: 562,
+                                                    columnNumber: 23
+                                                }, this))
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                            lineNumber: 560,
+                                            columnNumber: 19
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/credit-payments/page.tsx",
+                                    lineNumber: 550,
+                                    columnNumber: 17
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/app/credit-payments/page.tsx",
+                                lineNumber: 549,
+                                columnNumber: 15
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/credit-payments/page.tsx",
+                        lineNumber: 538,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex justify-between items-center mb-4",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                        className: "text-2xl font-bold text-amber-900",
+                                        children: "Bo‘lib To‘lash Mijozlar"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/credit-payments/page.tsx",
+                                        lineNumber: 581,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                        onClick: ()=>downloadCSV(partiallyPaid, 'Partially-Paid'),
+                                        className: "bg-amber-700 text-white",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
+                                                size: 16,
+                                                className: "mr-2"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/credit-payments/page.tsx",
+                                                lineNumber: 584,
+                                                columnNumber: 17
+                                            }, this),
+                                            "CSV Yuklab Olish"
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/credit-payments/page.tsx",
+                                        lineNumber: 583,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/credit-payments/page.tsx",
+                                lineNumber: 580,
+                                columnNumber: 13
+                            }, this),
+                            partiallyPaid.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-gray-500",
+                                children: "Bo‘lib to‘lashda bo‘lgan mijozlar yo‘q."
+                            }, void 0, false, {
+                                fileName: "[project]/app/credit-payments/page.tsx",
+                                lineNumber: 589,
+                                columnNumber: 15
+                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "overflow-auto bg-white shadow rounded-lg",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
+                                    className: "w-full text-sm",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("thead", {
+                                            className: "bg-gray-100",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                        className: "px-5 py-3 text-left",
+                                                        children: "Mijoz"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/credit-payments/page.tsx",
+                                                        lineNumber: 595,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                        className: "px-5 py-3 text-left",
+                                                        children: "Telefon"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/credit-payments/page.tsx",
+                                                        lineNumber: 596,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                        className: "px-5 py-3 text-left",
+                                                        children: "Mahsulotlar"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/credit-payments/page.tsx",
+                                                        lineNumber: 597,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                        className: "px-5 py-3 text-left",
+                                                        children: "Jami"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/credit-payments/page.tsx",
+                                                        lineNumber: 598,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                        className: "px-5 py-3 text-left",
+                                                        children: "To‘langan"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/credit-payments/page.tsx",
+                                                        lineNumber: 599,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                        className: "px-5 py-3 text-left",
+                                                        children: "To‘lov Qo‘shish"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/credit-payments/page.tsx",
+                                                        lineNumber: 600,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                        className: "px-5 py-3 text-left",
+                                                        children: "Holati"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/credit-payments/page.tsx",
+                                                        lineNumber: 601,
+                                                        columnNumber: 23
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/credit-payments/page.tsx",
+                                                lineNumber: 594,
+                                                columnNumber: 21
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                            lineNumber: 593,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
+                                            children: partiallyPaid.map((o)=>{
+                                                const days = getDaysUntilDue(o.dueDate);
+                                                const urgent = days <= 3 && days > 0;
+                                                const monthly = computeMonthly(o);
+                                                // paid month indices (if present)
+                                                const paidIndices = (o.payments || []).map((p)=>typeof p.monthIndex === 'number' ? p.monthIndex : -1).filter((n)=>n >= 0);
+                                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                                                    className: `border-b ${urgent ? 'bg-red-50' : ''}`,
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                            className: "px-5 py-3",
+                                                            children: o.clientName
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                                            lineNumber: 618,
+                                                            columnNumber: 27
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                            className: "px-5 py-3",
+                                                            children: o.clientPhone
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                                            lineNumber: 619,
+                                                            columnNumber: 27
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                            className: "px-5 py-3",
+                                                            children: o.products?.map((p)=>`${p.productName} (${p.quantity})`).join(', ')
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                                            lineNumber: 620,
+                                                            columnNumber: 27
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                            className: "px-5 py-3 text-amber-700 font-semibold",
+                                                            children: [
+                                                                Number(o.totalAmount).toLocaleString(),
+                                                                " so‘m"
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                                            lineNumber: 622,
+                                                            columnNumber: 27
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                            className: "px-5 py-3",
+                                                            children: [
+                                                                Number(o.paidAmount || 0).toLocaleString(),
+                                                                " so‘m"
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                                            lineNumber: 626,
+                                                            columnNumber: 27
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                            className: "px-5 py-3",
+                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex flex-wrap gap-2",
+                                                                children: Array.from({
+                                                                    length: o.creditMonths || 0
+                                                                }).map((_, i)=>{
+                                                                    const label = FIXED_MONTHS[i] || `M${i + 1}`;
+                                                                    const already = paidIndices.includes(i);
+                                                                    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        children: already ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                            className: "px-3 py-1 bg-green-100 text-green-800 rounded-md text-xs",
+                                                                            disabled: true,
+                                                                            children: [
+                                                                                label,
+                                                                                " — Paid ✓"
+                                                                            ]
+                                                                        }, void 0, true, {
+                                                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                                                            lineNumber: 636,
+                                                                            columnNumber: 39
+                                                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                                            size: "sm",
+                                                                            onClick: ()=>handlePayForMonth(o.id, i),
+                                                                            disabled: processingId === o.id,
+                                                                            className: "bg-green-600 hover:bg-green-700 text-white text-xs",
+                                                                            children: [
+                                                                                "Pay for ",
+                                                                                label
+                                                                            ]
+                                                                        }, void 0, true, {
+                                                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                                                            lineNumber: 640,
+                                                                            columnNumber: 39
+                                                                        }, this)
+                                                                    }, i, false, {
+                                                                        fileName: "[project]/app/credit-payments/page.tsx",
+                                                                        lineNumber: 634,
+                                                                        columnNumber: 35
+                                                                    }, this);
+                                                                })
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/credit-payments/page.tsx",
+                                                                lineNumber: 629,
+                                                                columnNumber: 29
+                                                            }, this)
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                                            lineNumber: 628,
+                                                            columnNumber: 27
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                            className: "px-5 py-3 text-sm",
+                                                            children: [
+                                                                urgent ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "bg-red-200 text-red-800 px-3 py-1 rounded-full",
+                                                                    children: [
+                                                                        days,
+                                                                        " kun qoldi"
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/app/credit-payments/page.tsx",
+                                                                    lineNumber: 657,
+                                                                    columnNumber: 31
+                                                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full",
+                                                                    children: "Kutyapti"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/app/credit-payments/page.tsx",
+                                                                    lineNumber: 659,
+                                                                    columnNumber: 31
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "mt-2 text-xs text-gray-600",
+                                                                    children: FIXED_MONTHS.slice(0, o.creditMonths).map((m, i)=>{
+                                                                        const paid = o.payments?.filter((p)=>p.monthIndex === i)?.reduce((s, p)=>s + Number(p.amount || 0), 0);
+                                                                        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                            children: [
+                                                                                m,
+                                                                                ": ",
+                                                                                monthly.toLocaleString(),
+                                                                                " so‘m",
+                                                                                paid ? ` — Paid: ${paid.toLocaleString()} so‘m` : ''
+                                                                            ]
+                                                                        }, i, true, {
+                                                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                                                            lineNumber: 666,
+                                                                            columnNumber: 35
+                                                                        }, this);
+                                                                    })
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/app/credit-payments/page.tsx",
+                                                                    lineNumber: 662,
+                                                                    columnNumber: 29
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                                            lineNumber: 655,
+                                                            columnNumber: 27
+                                                        }, this)
+                                                    ]
+                                                }, o.id, true, {
+                                                    fileName: "[project]/app/credit-payments/page.tsx",
+                                                    lineNumber: 617,
+                                                    columnNumber: 25
+                                                }, this);
+                                            })
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/credit-payments/page.tsx",
+                                            lineNumber: 605,
+                                            columnNumber: 19
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/credit-payments/page.tsx",
+                                    lineNumber: 592,
+                                    columnNumber: 17
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/app/credit-payments/page.tsx",
+                                lineNumber: 591,
+                                columnNumber: 15
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/credit-payments/page.tsx",
+                        lineNumber: 579,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true)
+        ]
+    }, void 0, true, {
         fileName: "[project]/app/credit-payments/page.tsx",
-        lineNumber: 106,
+        lineNumber: 505,
         columnNumber: 5
     }, this);
 }
-_s(CreditPaymentsPage, "wJPa2NzsaIoMX1GJZma+aEkXCBw=");
+_s(CreditPaymentsPage, "T0G8ZXygA1DPGZz2JJlel1yZUTM=");
 _c = CreditPaymentsPage;
 var _c;
 __turbopack_context__.k.register(_c, "CreditPaymentsPage");
