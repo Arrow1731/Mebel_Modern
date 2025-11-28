@@ -301,3 +301,866 @@
 [00:35:07.422] Server  LOG      ✓ Compiled in 59ms
 [00:35:12.328] Server  LOG      ✓ Compiled in 106ms
 [00:35:38.261] Server  LOG      ✓ Compiled in 100ms
+[03:01:01.132] Server  LOG      ✓ Compiled in 104ms
+[03:09:25.897] Server  LOG      ✓ Compiled in 90ms
+[03:09:27.120] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.132] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_39b7151b._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.133] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.133] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.134] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.134] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.134] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.135] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.135] Server  ERROR    ⨯ Error: The default export is not a React Component in "/product/[id]/page"
+[03:09:27.137] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.138] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_39b7151b._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.138] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.139] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.139] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.139] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.140] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.140] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.140] Server  ERROR    ⨯ Error: The default export is not a React Component in "/product/[id]/page"
+[03:09:27.156] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.156] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_39b7151b._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.157] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.157] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.157] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.158] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.158] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.158] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.159] Server  ERROR    ⨯ Error: The default export is not a React Component in "/product/[id]/page"
+[03:09:27.163] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.163] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_39b7151b._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.164] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.165] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.165] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.165] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.166] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.166] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.167] Server  ERROR    ⨯ Error: The default export is not a React Component in "/product/[id]/page"
+[03:09:27.221] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.221] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_39b7151b._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.222] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.222] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.222] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.223] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.223] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.224] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.225] Server  ERROR    ⨯ Error: The default export is not a React Component in "/product/[id]/page"
+[03:09:27.232] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.232] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_39b7151b._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.233] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.233] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.234] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.234] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.235] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.236] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:09:27.236] Server  ERROR    ⨯ Error: The default export is not a React Component in "/product/[id]/page"
+[03:09:27.421] Browser ERROR   uncaughtError: Error: The default export is not a React Component in "/product/[id]/page"
+[03:09:30.048] Server  LOG      ✓ Compiled in 246ms
+[03:09:38.408] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:09:38.562] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:09:38.562] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/product/WkyKCvUsV6sts1nilGWx","route":"/product/[id]"}
+[03:09:38.562] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/WkyKCvUsV6sts1nilGWx color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/WkyKCvUsV6sts1nilGWx","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314344895}
+[03:09:57.501] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:09:57.649] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:09:57.649] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/product/WkyKCvUsV6sts1nilGWx","route":"/product/[id]"}
+[03:09:57.649] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/WkyKCvUsV6sts1nilGWx color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/WkyKCvUsV6sts1nilGWx","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314363983}
+[03:10:00.297] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:10:00.442] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:10:00.442] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/product/WkyKCvUsV6sts1nilGWx","route":"/product/[id]"}
+[03:10:00.442] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/WkyKCvUsV6sts1nilGWx color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/WkyKCvUsV6sts1nilGWx","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314366776}
+[03:10:07.210] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:10:07.372] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:10:07.372] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/catalog","route":"/catalog"}
+[03:10:07.372] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314373705}
+[03:10:10.682] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:10:10.848] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:10:10.848] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/product/yeYpya8g7TXArz8IBlLU","route":"/product/[id]"}
+[03:10:10.848] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/yeYpya8g7TXArz8IBlLU color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/yeYpya8g7TXArz8IBlLU","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314377181}
+[03:10:23.160] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:10:23.303] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:10:23.303] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/product/yeYpya8g7TXArz8IBlLU","route":"/product/[id]"}
+[03:10:23.303] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/yeYpya8g7TXArz8IBlLU color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/yeYpya8g7TXArz8IBlLU","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314389636}
+[03:10:30.091] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:10:30.243] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:10:30.244] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/product/yeYpya8g7TXArz8IBlLU","route":"/product/[id]"}
+[03:10:30.244] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/yeYpya8g7TXArz8IBlLU color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/yeYpya8g7TXArz8IBlLU","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314396577}
+[03:10:32.072] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314398404}
+[03:10:38.662] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:10:38.806] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:10:38.806] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/product/WkyKCvUsV6sts1nilGWx","route":"/product/[id]"}
+[03:10:38.807] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/WkyKCvUsV6sts1nilGWx color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/WkyKCvUsV6sts1nilGWx","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314405140}
+[03:10:42.275] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:10:42.430] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:10:42.430] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/catalog","route":"/catalog"}
+[03:10:42.430] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314408764}
+[03:11:48.191] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.200] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_5fc1caa5._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.201] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.201] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.201] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.202] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.202] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.202] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.203] Server  ERROR    ⨯ Error: The default export is not a React Component in "/catalog/page"
+[03:11:48.205] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.205] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_5fc1caa5._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.206] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.206] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.207] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.207] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.207] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.208] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.208] Server  ERROR    ⨯ Error: The default export is not a React Component in "/catalog/page"
+[03:11:48.225] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.225] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_5fc1caa5._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.226] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.226] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.226] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.227] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.227] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.227] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.228] Server  ERROR    ⨯ Error: The default export is not a React Component in "/catalog/page"
+[03:11:48.230] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.231] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_5fc1caa5._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.232] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.232] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.232] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.233] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.233] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.234] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.234] Server  ERROR    ⨯ Error: The default export is not a React Component in "/catalog/page"
+[03:11:48.288] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.288] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_5fc1caa5._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.289] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.289] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.289] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.289] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.290] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.290] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.291] Server  ERROR    ⨯ Error: The default export is not a React Component in "/catalog/page"
+[03:11:48.293] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.294] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_5fc1caa5._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.295] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.295] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.296] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.297] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.297] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.298] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:11:48.298] Server  ERROR    ⨯ Error: The default export is not a React Component in "/catalog/page"
+[03:11:48.491] Browser ERROR   uncaughtError: Error: The default export is not a React Component in "/catalog/page"
+[03:11:54.053] Server  LOG      ✓ Compiled in 288ms
+[03:11:56.150] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:11:56.296] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:11:56.296] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/catalog","route":"/catalog"}
+[03:11:56.296] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314482628}
+[03:11:58.979] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:11:59.123] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:11:59.123] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/product/WkyKCvUsV6sts1nilGWx","route":"/product/[id]"}
+[03:11:59.123] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/WkyKCvUsV6sts1nilGWx color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/WkyKCvUsV6sts1nilGWx","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314485456}
+[03:12:14.568] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:12:14.706] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:12:14.706] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/product/yeYpya8g7TXArz8IBlLU","route":"/product/[id]"}
+[03:12:14.706] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/yeYpya8g7TXArz8IBlLU color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/yeYpya8g7TXArz8IBlLU","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314501039}
+[03:12:16.706] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:12:16.857] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:12:16.857] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/product/yeYpya8g7TXArz8IBlLU","route":"/product/[id]"}
+[03:12:16.857] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/yeYpya8g7TXArz8IBlLU color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/yeYpya8g7TXArz8IBlLU","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314503191}
+[03:12:18.607] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:12:18.751] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:12:18.751] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/product/WkyKCvUsV6sts1nilGWx","route":"/product/[id]"}
+[03:12:18.751] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/WkyKCvUsV6sts1nilGWx color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/WkyKCvUsV6sts1nilGWx","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314505084}
+[03:13:38.650] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.660] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_39b7151b._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.660] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.661] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.661] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.661] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.662] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.662] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.662] Server  ERROR    ⨯ Error: The default export is not a React Component in "/product/[id]/page"
+[03:13:38.665] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.666] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_39b7151b._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.666] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.667] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.667] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.668] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.668] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.669] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.669] Server  ERROR    ⨯ Error: The default export is not a React Component in "/product/[id]/page"
+[03:13:38.685] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.686] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_39b7151b._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.686] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.686] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.687] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.687] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.688] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.688] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.688] Server  ERROR    ⨯ Error: The default export is not a React Component in "/product/[id]/page"
+[03:13:38.693] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.694] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_39b7151b._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.695] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.695] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.696] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.696] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.696] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.697] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.697] Server  ERROR    ⨯ Error: The default export is not a React Component in "/product/[id]/page"
+[03:13:38.762] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.762] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_39b7151b._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.763] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.763] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.764] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.764] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.764] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.765] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.765] Server  ERROR    ⨯ Error: The default export is not a React Component in "/product/[id]/page"
+[03:13:38.767] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.767] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_39b7151b._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.768] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.768] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.768] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.769] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.769] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.769] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:13:38.770] Server  ERROR    ⨯ Error: The default export is not a React Component in "/product/[id]/page"
+[03:13:38.888] Browser ERROR   uncaughtError: Error: The default export is not a React Component in "/product/[id]/page"
+[03:13:42.753] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[03:13:43.114] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:13:43.337] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:13:43.499] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:13:43.499] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/product/WkyKCvUsV6sts1nilGWx","route":"/product/[id]"}
+[03:13:43.499] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/WkyKCvUsV6sts1nilGWx color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/WkyKCvUsV6sts1nilGWx","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314589833}
+[03:13:51.111] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/yeYpya8g7TXArz8IBlLU color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/yeYpya8g7TXArz8IBlLU","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314597442}
+[03:13:52.277] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/WkyKCvUsV6sts1nilGWx color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/WkyKCvUsV6sts1nilGWx","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314598609}
+[03:13:53.497] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:13:53.646] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:13:53.646] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/catalog","route":"/catalog"}
+[03:13:53.646] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314599979}
+[03:13:57.184] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:13:57.400] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:13:57.400] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/product/yeYpya8g7TXArz8IBlLU","route":"/product/[id]"}
+[03:13:57.400] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/yeYpya8g7TXArz8IBlLU color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/yeYpya8g7TXArz8IBlLU","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314603732}
+[03:14:02.145] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:14:02.292] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:14:02.292] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/catalog","route":"/catalog"}
+[03:14:02.292] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314608624}
+[03:14:02.966] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/yeYpya8g7TXArz8IBlLU color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/yeYpya8g7TXArz8IBlLU","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314609299}
+[03:14:03.784] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:14:03.920] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:14:03.920] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/catalog","route":"/catalog"}
+[03:14:03.921] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314610253}
+[03:14:04.829] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:14:04.944] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:14:04.944] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/catalog","route":"/catalog"}
+[03:14:04.944] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314611299}
+[03:14:05.109] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:14:05.209] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:14:05.209] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/catalog","route":"/catalog"}
+[03:14:05.209] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314611579}
+[03:14:05.397] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:14:05.607] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:14:05.607] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/catalog","route":"/catalog"}
+[03:14:05.607] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314611975}
+[03:14:05.778] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:14:05.896] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:14:05.896] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/catalog","route":"/catalog"}
+[03:14:05.896] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314612265}
+[03:14:06.062] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:14:06.203] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:14:06.203] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/catalog","route":"/catalog"}
+[03:14:06.203] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314612536}
+[03:14:21.811] Server  LOG      ✓ Compiled in 60ms
+[03:14:26.502] Server  LOG      ✓ Compiled in 74ms
+[03:15:13.645] Server  LOG      ✓ Compiled in 58ms
+[03:15:16.317] Server  LOG      ✓ Compiled in 56ms
+[03:15:20.060] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:15:20.248] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:15:20.248] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/product/WkyKCvUsV6sts1nilGWx","route":"/product/[id]"}
+[03:15:20.248] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/WkyKCvUsV6sts1nilGWx color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/WkyKCvUsV6sts1nilGWx","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314686580}
+[03:17:34.025] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.033] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_39b7151b._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.033] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.034] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.034] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.035] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.035] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.035] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.035] Server  ERROR    ⨯ Error: The default export is not a React Component in "/product/[id]/page"
+[03:17:34.038] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.038] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_39b7151b._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.039] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.040] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.040] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.041] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.041] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.041] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.042] Server  ERROR    ⨯ Error: The default export is not a React Component in "/product/[id]/page"
+[03:17:34.056] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.057] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_39b7151b._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.057] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.058] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.058] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.058] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.059] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.059] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.059] Server  ERROR    ⨯ Error: The default export is not a React Component in "/product/[id]/page"
+[03:17:34.063] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.064] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_39b7151b._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.065] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.065] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.066] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.066] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.067] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.067] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.068] Server  ERROR    ⨯ Error: The default export is not a React Component in "/product/[id]/page"
+[03:17:34.120] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.121] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_39b7151b._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.121] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.122] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.122] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.123] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.123] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.123] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.124] Server  ERROR    ⨯ Error: The default export is not a React Component in "/product/[id]/page"
+[03:17:34.126] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.127] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\.next\dev\server\chunks\ssr\node_modules_next_dist_39b7151b._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.127] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.128] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.128] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.128] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.128] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.129] Server  ERROR   D:\Кеш_Файлы\Nebel_WebSite\V0__D\furniture-factory-website (1)\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:17:34.129] Server  ERROR    ⨯ Error: The default export is not a React Component in "/product/[id]/page"
+[03:17:34.316] Browser ERROR   uncaughtError: Error: The default export is not a React Component in "/product/[id]/page"
+[03:17:37.985] Server  LOG      ✓ Compiled in 290ms
+[03:17:40.353] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:17:40.510] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:17:40.510] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/product/WkyKCvUsV6sts1nilGWx","route":"/product/[id]"}
+[03:17:40.510] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/WkyKCvUsV6sts1nilGWx color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/WkyKCvUsV6sts1nilGWx","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764314826843}
+[03:21:36.944] Server  LOG      ✓ Compiled in 228ms
+[03:21:54.276] Server  LOG      ✓ Compiled in 64ms
+[03:22:00.751] Server  LOG      ✓ Compiled in 129ms
+[03:22:45.736] Browser ERROR   uncaughtError: RangeError: Invalid time value
+[03:22:47.571] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:22:47.988] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:22:47.988] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[03:22:47.988] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764315134322}
+[03:22:50.688] Browser ERROR   uncaughtError: RangeError: Invalid time value
+[03:22:55.094] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:22:55.367] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:22:55.367] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[03:22:55.367] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764315141699}
+[03:24:01.238] Server  LOG      ✓ Compiled in 114ms
+[03:24:05.605] Server  LOG      ✓ Compiled in 291ms
+[03:24:16.092] Server  LOG      ✓ Compiled in 140ms
+[03:24:19.238] Server  LOG      ✓ Compiled in 54ms
+[03:24:23.928] Server  LOG      ✓ Compiled in 346ms
+[03:24:29.641] Server  LOG      ✓ Compiled in 66ms
+[03:24:46.072] Server  LOG      ✓ Compiled in 351ms
+[03:24:50.980] Server  LOG      ✓ Compiled in 370ms
+[03:25:00.168] Server  LOG      ✓ Compiled in 322ms
+[03:25:06.510] Server  LOG      ✓ Compiled in 227ms
+[03:25:08.703] Server  LOG      ✓ Compiled in 341ms
+[03:25:13.764] Server  LOG      ✓ Compiled in 324ms
+[03:25:19.536] Server  LOG      ✓ Compiled in 58ms
+[03:25:21.628] Server  LOG      ✓ Compiled in 170ms
+[03:25:26.414] Server  LOG      ✓ Compiled in 332ms
+[03:29:31.134] Server  LOG      ✓ Compiled in 67ms
+[03:29:31.779] Browser ERROR   uncaughtError: ReferenceError: customerPhone2 is not defined
+[03:29:32.548] Server  LOG      ✓ Compiled in 56ms
+[03:29:32.551] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[03:29:33.133] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:29:33.780] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:29:33.780] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/product/WkyKCvUsV6sts1nilGWx","route":"/product/[id]"}
+[03:29:33.780] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/product/WkyKCvUsV6sts1nilGWx color: rgb(120, 120, 120) color: inherit {"dp":"/product/[id]","o":"http://localhost:3000/product/WkyKCvUsV6sts1nilGWx","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764315539842}
+[03:29:45.996] Server  LOG      ✓ Compiled in 62ms
+[03:29:47.073] Server  LOG      ✓ Compiled in 58ms
+[03:32:02.018] Server  LOG      ✓ Compiled in 86ms
+[03:32:04.046] Server  LOG      ✓ Compiled in 110ms
+[03:32:04.779] Browser ERROR   ./app/product/[id]/page.tsx:357:10
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |          ^^^^^^^^^^^^^
+  358 | const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `customerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:32:04.779] Browser ERROR   ./app/product/[id]/page.tsx:357:25
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |                         ^^^^^^^^^^^^^^^^
+  358 | const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `setCustomerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:32:04.779] Browser ERROR   ./app/product/[id]/page.tsx:357:10
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |          ^^^^^^^^^^^^^
+  358 | const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `customerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:32:04.779] Browser ERROR   ./app/product/[id]/page.tsx:357:25
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |                         ^^^^^^^^^^^^^^^^
+  358 | const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `setCustomerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:32:04.779] Browser ERROR   ./app/product/[id]/page.tsx:357:10
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |          ^^^^^^^^^^^^^
+  358 | const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `customerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:32:04.779] Browser ERROR   ./app/product/[id]/page.tsx:357:25
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |                         ^^^^^^^^^^^^^^^^
+  358 | const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `setCustomerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:32:04.780] Browser ERROR   ./app/product/[id]/page.tsx:357:10
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |          ^^^^^^^^^^^^^
+  358 | const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `customerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:32:04.780] Browser ERROR   ./app/product/[id]/page.tsx:357:25
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |                         ^^^^^^^^^^^^^^^^
+  358 | const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `setCustomerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:32:05.779] Browser ERROR   ./app/product/[id]/page.tsx:357:10
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |          ^^^^^^^^^^^^^
+  358 |   const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `customerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:32:05.779] Browser ERROR   ./app/product/[id]/page.tsx:357:25
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |                         ^^^^^^^^^^^^^^^^
+  358 |   const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `setCustomerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:32:05.779] Browser ERROR   ./app/product/[id]/page.tsx:357:10
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |          ^^^^^^^^^^^^^
+  358 |   const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `customerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:32:05.779] Browser ERROR   ./app/product/[id]/page.tsx:357:25
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |                         ^^^^^^^^^^^^^^^^
+  358 |   const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `setCustomerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:32:05.779] Browser ERROR   ./app/product/[id]/page.tsx:357:10
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |          ^^^^^^^^^^^^^
+  358 |   const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `customerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:32:05.779] Browser ERROR   ./app/product/[id]/page.tsx:357:25
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |                         ^^^^^^^^^^^^^^^^
+  358 |   const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `setCustomerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:32:05.779] Browser ERROR   ./app/product/[id]/page.tsx:357:10
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |          ^^^^^^^^^^^^^
+  358 |   const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `customerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:32:05.779] Browser ERROR   ./app/product/[id]/page.tsx:357:25
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |                         ^^^^^^^^^^^^^^^^
+  358 |   const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `setCustomerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:32:52.889] Server  LOG      ✓ Compiled in 66ms
+[03:33:14.759] Server  LOG      ✓ Compiled in 49ms
+[03:33:16.669] Server  LOG      ✓ Compiled in 49ms
+[03:33:17.932] Server  LOG      ✓ Compiled in 60ms
+[03:33:18.779] Browser ERROR   ./app/product/[id]/page.tsx:357:10
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |          ^^^^^^^^^^^^^
+  358 |   const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `customerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:33:18.779] Browser ERROR   ./app/product/[id]/page.tsx:357:25
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |                         ^^^^^^^^^^^^^^^^
+  358 |   const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `setCustomerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:33:18.779] Browser ERROR   ./app/product/[id]/page.tsx:357:10
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |          ^^^^^^^^^^^^^
+  358 |   const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `customerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:33:18.779] Browser ERROR   ./app/product/[id]/page.tsx:357:25
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |                         ^^^^^^^^^^^^^^^^
+  358 |   const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `setCustomerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:33:18.779] Browser ERROR   ./app/product/[id]/page.tsx:357:10
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |          ^^^^^^^^^^^^^
+  358 |   const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `customerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:33:18.779] Browser ERROR   ./app/product/[id]/page.tsx:357:25
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |                         ^^^^^^^^^^^^^^^^
+  358 |   const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `setCustomerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:33:18.779] Browser ERROR   ./app/product/[id]/page.tsx:357:10
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |          ^^^^^^^^^^^^^
+  358 |   const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `customerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
+[03:33:18.779] Browser ERROR   ./app/product/[id]/page.tsx:357:25
+Ecmascript file had an error
+  355 |   const [initialPayment, setInitialPayment] = useState<number>(0); // NEW
+  356 |   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+> 357 |   const [customerPhone, setCustomerPhone] = useState('');  // required
+      |                         ^^^^^^^^^^^^^^^^
+  358 |   const [customerPhone2, setCustomerPhone2] = useState(''); // optional
+  359 |
+  360 |
+
+the name `setCustomerPhone` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/product/[id]/page.tsx [Client Component Browser]
+    ./app/product/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/product/[id]/page.tsx [Client Component SSR]
+    ./app/product/[id]/page.tsx [Server Component]
