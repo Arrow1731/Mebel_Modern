@@ -619,7 +619,7 @@ function CreditPaymentsPage() {
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-4 py-3 text-left font-semibold",
+                                                            className: "px-8 py-3 text-left font-semibold",
                                                             children: "Mijoz Ismi"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
@@ -627,7 +627,7 @@ function CreditPaymentsPage() {
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-4 py-3 text-left font-semibold",
+                                                            className: "px-8 py-3 text-left font-semibold",
                                                             children: "Telefon Raqami"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
@@ -635,7 +635,7 @@ function CreditPaymentsPage() {
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-4 py-3 text-left font-semibold",
+                                                            className: "px-8 py-3 text-left font-semibold",
                                                             children: "Yashash Manzili"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
@@ -643,7 +643,7 @@ function CreditPaymentsPage() {
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-4 py-3 text-left font-semibold",
+                                                            className: "px-8 py-3 text-left font-semibold",
                                                             children: "Mahsulot Nomi"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
@@ -651,7 +651,7 @@ function CreditPaymentsPage() {
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-4 py-3 text-left font-semibold",
+                                                            className: "px-8 py-3 text-left font-semibold",
                                                             children: "Narxi"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
@@ -659,7 +659,7 @@ function CreditPaymentsPage() {
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-4 py-3 text-left font-semibold",
+                                                            className: "px-8 py-3 text-left font-semibold",
                                                             children: "To'langan Summa"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
@@ -667,7 +667,7 @@ function CreditPaymentsPage() {
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-4 py-3 text-left font-semibold",
+                                                            className: "px-8 py-3 text-left font-semibold",
                                                             children: "To'lav Holati"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
@@ -675,7 +675,7 @@ function CreditPaymentsPage() {
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-4 py-3 text-left font-semibold",
+                                                            className: "px-8 py-3 text-left font-semibold",
                                                             children: "Holati"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/credit-payments/page.tsx",
@@ -701,7 +701,7 @@ function CreditPaymentsPage() {
                                                         className: `border-b hover:bg-gray-50 ${isUrgent ? 'bg-red-50' : ''}`,
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-4 py-3",
+                                                                className: "px-8 py-3",
                                                                 children: order.clientName
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/credit-payments/page.tsx",
@@ -709,7 +709,7 @@ function CreditPaymentsPage() {
                                                                 columnNumber: 29
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-4 py-3",
+                                                                className: "px-8 py-3",
                                                                 children: order.clientPhone
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/credit-payments/page.tsx",
@@ -717,7 +717,7 @@ function CreditPaymentsPage() {
                                                                 columnNumber: 29
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-4 py-3",
+                                                                className: "px-8 py-3",
                                                                 children: order.clientAddress || 'Kiritilmagan'
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/credit-payments/page.tsx",
@@ -725,7 +725,7 @@ function CreditPaymentsPage() {
                                                                 columnNumber: 29
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-4 py-3 text-sm",
+                                                                className: "px-8 py-3 text-sm",
                                                                 children: order.products?.map((p)=>`${p.productName} ${p.quantity} Dona`).join(', ') || 'Kiritilmagan'
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/credit-payments/page.tsx",
@@ -736,7 +736,7 @@ function CreditPaymentsPage() {
                                                                 className: "px-4 py-3 font-semibold text-amber-700",
                                                                 children: [
                                                                     order.totalAmount.toLocaleString(),
-                                                                    " сум"
+                                                                    " So'm"
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/credit-payments/page.tsx",
@@ -747,7 +747,7 @@ function CreditPaymentsPage() {
                                                                 className: "px-4 py-3",
                                                                 children: [
                                                                     order.paidAmount.toLocaleString(),
-                                                                    " сум"
+                                                                    " So'm"
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/credit-payments/page.tsx",

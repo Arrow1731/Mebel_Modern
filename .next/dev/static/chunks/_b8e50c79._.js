@@ -434,6 +434,236 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 "[project]/app/analytics/page.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
+// 'use client';
+// import { useState, useEffect } from 'react';
+// import { collection, onSnapshot } from 'firebase/firestore';
+// import { db } from '@/lib/firebase';
+// import { Order } from '@/lib/types';
+// import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+// import { getDailyAnalytics, getMonthlyAnalytics, getYearlyAnalytics } from '@/lib/analytics-utils';
+// import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+// import LoginModal from '@/components/login-modal';
+// import { Download } from 'lucide-react';
+// import { Button } from '@/components/ui/button';
+// export default function AnalyticsPage() {
+//   const [orders, setOrders] = useState<Order[]>([]);
+//   const [viewType, setViewType] = useState<'daily' | 'monthly' | 'yearly'>('monthly');
+//   const [selectedDate, setSelectedDate] = useState(new Date());
+//   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
+//   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+//   const [analyticsData, setAnalyticsData] = useState<any>(null);
+//   const [chartData, setChartData] = useState<any[]>([]);
+//   const [isLoggedIn, setIsLoggedIn] = useState(false);
+//   const [loading, setLoading] = useState(true);
+//   useEffect(() => {
+//     const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
+//     setIsLoggedIn(loggedIn);
+//     if (!loggedIn) {
+//       setLoading(false);
+//       return;
+//     }
+//     const unsubscribe = onSnapshot(collection(db, 'orders'), (snapshot) => {
+//       const ords = snapshot.docs.map(doc => {
+//         const data = doc.data();
+//         return {
+//           id: doc.id,
+//           ...data,
+//           createdAt: data.createdAt?.toDate?.() || new Date(data.createdAt),
+//           dueDate: data.dueDate?.toDate?.() || new Date(data.dueDate),
+//           payments: data.payments?.map((p: any) => ({ ...p, date: p.date?.toDate?.() || new Date(p.date) })) || []
+//         } as Order;
+//       });
+//       setOrders(ords);
+//       setLoading(false);
+//     });
+//     return () => unsubscribe();
+//   }, []);
+//   useEffect(() => {
+//     if (viewType === 'daily') {
+//       const data = getDailyAnalytics(orders, selectedDate);
+//       setAnalyticsData(data);
+//       const lastWeek = Array.from({ length: 7 }, (_, i) => {
+//         const d = new Date(selectedDate);
+//         d.setDate(d.getDate() - (6 - i));
+//         return getDailyAnalytics(orders, d);
+//       });
+//       setChartData(lastWeek);
+//     } else if (viewType === 'monthly') {
+//       const data = getMonthlyAnalytics(orders, selectedMonth, selectedYear);
+//       setAnalyticsData(data);
+//       const lastYear = Array.from({ length: 12 }, (_, i) => {
+//         const year = selectedYear - (selectedMonth + i <= 12 ? 0 : 1);
+//         const month = ((selectedMonth + i - 1) % 12) + 1;
+//         return getMonthlyAnalytics(orders, month, year);
+//       });
+//       setChartData(lastYear);
+//     } else {
+//       const data = getYearlyAnalytics(orders, selectedYear);
+//       setAnalyticsData(data);
+//       const lastDecade = Array.from({ length: 10 }, (_, i) => 
+//         getYearlyAnalytics(orders, selectedYear - (9 - i))
+//       );
+//       setChartData(lastDecade);
+//     }
+//   }, [viewType, selectedDate, selectedMonth, selectedYear, orders]);
+//   const downloadCampaignAnalytics = () => {
+//     let csv = 'Дата,Кредит месяцев,Сумма,Статус,Доход\n';
+//     orders.forEach(order => {
+//       csv += `${new Date(order.createdAt).toLocaleDateString('uz-UZ')},${order.creditMonths},${order.totalAmount},${order.paymentStatus},${order.totalAmount}\n`;
+//     });
+//     const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+//     const url = window.URL.createObjectURL(blob);
+//     const a = document.createElement('a');
+//     a.href = url;
+//     a.download = `Campaign-Analytics-${new Date().toISOString().split('T')[0]}.csv`;
+//     a.click();
+//   };
+//   const downloadMonthlyClientsAnalytics = () => {
+//     const monthlyClients = orders.filter(o => o.creditMonths === 1);
+//     let csv = 'Имя клиента,Телефон,Адрес,Сумма,Дата,Статус\n';
+//     monthlyClients.forEach(order => {
+//       csv += `${order.clientName},${order.clientPhone},${order.clientAddress || 'N/A'},${order.totalAmount},${new Date(order.createdAt).toLocaleDateString('uz-UZ')},${order.paymentStatus}\n`;
+//     });
+//     const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+//     const url = window.URL.createObjectURL(blob);
+//     const a = document.createElement('a');
+//     a.href = url;
+//     a.download = `Monthly-Clients-Analytics-${new Date().toISOString().split('T')[0]}.csv`;
+//     a.click();
+//   };
+//   if (!isLoggedIn) {
+//     return <LoginModal onLoginSuccess={() => setIsLoggedIn(true)} />;
+//   }
+//   return (
+//     <main className="min-h-screen bg-gray-50 py-8">
+//       <div className="max-w-6xl mx-auto px-4">
+//         <div className="flex justify-between items-center mb-8">
+//           <h1 className="text-3xl font-bold text-amber-900">Analitika</h1>
+//           <div className="flex gap-2">
+//             <Button
+//               onClick={downloadCampaignAnalytics}
+//               className="bg-blue-600 hover:bg-blue-700"
+//             >
+//               <Download className="mr-2" size={16} /> Kampaniyaga Kirgan Foyda Summasi (So'm)
+//             </Button>
+//             <Button
+//               onClick={downloadMonthlyClientsAnalytics}
+//               className="bg-green-600 hover:bg-green-700"
+//             >
+//               <Download className="mr-2" size={16} /> Mijozlarning Oylik To'lov Summasi (So'm)
+//             </Button>
+//           </div>
+//         </div>
+//         {/* View Type Selection */}
+//         <div className="flex gap-2 mb-6">
+//           <button
+//             onClick={() => setViewType('daily')}
+//             className={`px-4 py-2 rounded-lg font-medium ${viewType === 'daily' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}
+//           >
+//             Kunlik
+//           </button>
+//           <button
+//             onClick={() => setViewType('monthly')}
+//             className={`px-4 py-2 rounded-lg font-medium ${viewType === 'monthly' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}
+//           >
+//             Oylik
+//           </button>
+//           <button
+//             onClick={() => setViewType('yearly')}
+//             className={`px-4 py-2 rounded-lg font-medium ${viewType === 'yearly' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}
+//           >
+//             Yillik
+//           </button>
+//         </div>
+//         {/* Date Selection */}
+//         {viewType === 'daily' && (
+//           <div className="mb-6">
+//             <input
+//               type="date"
+//               value={selectedDate.toISOString().split('T')[0]}
+//               onChange={(e) => setSelectedDate(new Date(e.target.value))}
+//               className="px-4 py-2 border rounded-lg"
+//             />
+//           </div>
+//         )}
+//         {viewType === 'monthly' && (
+//           <div className="mb-6 flex gap-4">
+//             <select
+//               value={selectedMonth}
+//               onChange={(e) => setSelectedMonth(parseInt(e.target.value))}
+//               className="px-4 py-2 border rounded-lg"
+//             >
+//               {Array.from({ length: 12 }, (_, i) => (
+//                 <option key={i} value={i + 1}>{new Date(2024, i).toLocaleDateString('ru-RU', { month: 'long' })}</option>
+//               ))}
+//             </select>
+//             <input
+//               type="number"
+//               value={selectedYear}
+//               onChange={(e) => setSelectedYear(parseInt(e.target.value))}
+//               className="px-4 py-2 border rounded-lg w-24"
+//             />
+//           </div>
+//         )}
+//         {viewType === 'yearly' && (
+//           <div className="mb-6">
+//             <input
+//               type="number"
+//               value={selectedYear}
+//               onChange={(e) => setSelectedYear(parseInt(e.target.value))}
+//               className="px-4 py-2 border rounded-lg w-24"
+//             />
+//           </div>
+//         )}
+//         {/* Stats Cards */}
+//         {analyticsData && (
+//           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+//             <Card className="bg-white border-amber-200">
+//               <CardHeader className="pb-2">
+//                 <CardTitle className="text-[20px] font-medium text-gray-600">Foyda</CardTitle>
+//               </CardHeader>
+//               <CardContent>
+//                 <div className="text-3xl font-bold text-amber-900">{analyticsData.revenue.toLocaleString()} So'm</div>
+//               </CardContent>
+//             </Card>
+//             <Card className="bg-white border-amber-200">
+//               <CardHeader className="pb-2">
+//                 <CardTitle className="text-[20px] font-medium text-gray-600">Buyurmalar</CardTitle>
+//               </CardHeader>
+//               <CardContent>
+//                 <div className="text-3xl font-bold text-amber-900">{analyticsData.orders} ta</div>
+//               </CardContent>
+//             </Card>
+//             <Card className="bg-white border-amber-200">
+//               <CardHeader className="pb-2">
+//                 <CardTitle className="text-[20px] font-medium text-gray-600">Soni</CardTitle>
+//               </CardHeader>
+//               <CardContent>
+//                 <div className="text-3xl font-bold text-amber-900">{analyticsData.units} ta</div>
+//               </CardContent>
+//             </Card>
+//           </div>
+//         )}
+//         {/* Chart */}
+//         <Card className="bg-white">
+//           <CardContent className="pt-6">
+//             <ResponsiveContainer width="100%" height={300}>
+//               <BarChart data={chartData}>
+//                 <CartesianGrid strokeDasharray="3 3" />
+//                 <XAxis dataKey="date" />
+//                 <YAxis />
+//                 <Tooltip />
+//                 <Legend />
+//                 <Bar dataKey="revenue" fill="#b45309" name="Foyda (So'm)" />
+//                 <Bar dataKey="orders" fill="#a16207" name="Buyurtmalar" />
+//               </BarChart>
+//             </ResponsiveContainer>
+//           </CardContent>
+//         </Card>
+//       </div>
+//     </main>
+//   );
+// }
 __turbopack_context__.s([
     "default",
     ()=>AnalyticsPage
@@ -561,10 +791,12 @@ function AnalyticsPage() {
         selectedYear,
         orders
     ]);
+    // --- FORMATTER ---
+    const formatMoney = (value)=>Number(value).toLocaleString('ru-RU');
     const downloadCampaignAnalytics = ()=>{
         let csv = 'Дата,Кредит месяцев,Сумма,Статус,Доход\n';
         orders.forEach((order)=>{
-            csv += `${new Date(order.createdAt).toLocaleDateString('uz-UZ')},${order.creditMonths},${order.totalAmount},${order.paymentStatus},${order.totalAmount}\n`;
+            csv += `${new Date(order.createdAt).toLocaleDateString('uz-UZ')},${order.creditMonths},${formatMoney(order.totalAmount)},${order.paymentStatus},${formatMoney(order.totalAmount)}\n`;
         });
         const blob = new Blob([
             '\ufeff' + csv
@@ -581,7 +813,7 @@ function AnalyticsPage() {
         const monthlyClients = orders.filter((o)=>o.creditMonths === 1);
         let csv = 'Имя клиента,Телефон,Адрес,Сумма,Дата,Статус\n';
         monthlyClients.forEach((order)=>{
-            csv += `${order.clientName},${order.clientPhone},${order.clientAddress || 'N/A'},${order.totalAmount},${new Date(order.createdAt).toLocaleDateString('uz-UZ')},${order.paymentStatus}\n`;
+            csv += `${order.clientName},${order.clientPhone},${order.clientAddress || 'N/A'},${formatMoney(order.totalAmount)},${new Date(order.createdAt).toLocaleDateString('uz-UZ')},${order.paymentStatus}\n`;
         });
         const blob = new Blob([
             '\ufeff' + csv
@@ -599,7 +831,7 @@ function AnalyticsPage() {
             onLoginSuccess: ()=>setIsLoggedIn(true)
         }, void 0, false, {
             fileName: "[project]/app/analytics/page.tsx",
-            lineNumber: 112,
+            lineNumber: 392,
             columnNumber: 12
         }, this);
     }
@@ -616,7 +848,7 @@ function AnalyticsPage() {
                             children: "Analitika"
                         }, void 0, false, {
                             fileName: "[project]/app/analytics/page.tsx",
-                            lineNumber: 119,
+                            lineNumber: 401,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -631,14 +863,14 @@ function AnalyticsPage() {
                                             size: 16
                                         }, void 0, false, {
                                             fileName: "[project]/app/analytics/page.tsx",
-                                            lineNumber: 125,
+                                            lineNumber: 404,
                                             columnNumber: 15
                                         }, this),
-                                        " Kampaniyaga Kirgan Foyda Summasi (So'm)"
+                                        " Kampaniya Foydasi (So'm)"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/analytics/page.tsx",
-                                    lineNumber: 121,
+                                    lineNumber: 403,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -650,26 +882,26 @@ function AnalyticsPage() {
                                             size: 16
                                         }, void 0, false, {
                                             fileName: "[project]/app/analytics/page.tsx",
-                                            lineNumber: 131,
+                                            lineNumber: 407,
                                             columnNumber: 15
                                         }, this),
-                                        " Mijozlarning Oylik To'lov Summasi (So'm)"
+                                        " Oylik To'lovlar (So'm)"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/analytics/page.tsx",
-                                    lineNumber: 127,
+                                    lineNumber: 406,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/analytics/page.tsx",
-                            lineNumber: 120,
+                            lineNumber: 402,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/analytics/page.tsx",
-                    lineNumber: 118,
+                    lineNumber: 400,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -681,7 +913,7 @@ function AnalyticsPage() {
                             children: "Kunlik"
                         }, void 0, false, {
                             fileName: "[project]/app/analytics/page.tsx",
-                            lineNumber: 138,
+                            lineNumber: 414,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -690,7 +922,7 @@ function AnalyticsPage() {
                             children: "Oylik"
                         }, void 0, false, {
                             fileName: "[project]/app/analytics/page.tsx",
-                            lineNumber: 144,
+                            lineNumber: 417,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -699,13 +931,13 @@ function AnalyticsPage() {
                             children: "Yillik"
                         }, void 0, false, {
                             fileName: "[project]/app/analytics/page.tsx",
-                            lineNumber: 150,
+                            lineNumber: 420,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/analytics/page.tsx",
-                    lineNumber: 137,
+                    lineNumber: 413,
                     columnNumber: 9
                 }, this),
                 viewType === 'daily' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -717,12 +949,12 @@ function AnalyticsPage() {
                         className: "px-4 py-2 border rounded-lg"
                     }, void 0, false, {
                         fileName: "[project]/app/analytics/page.tsx",
-                        lineNumber: 161,
+                        lineNumber: 428,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/analytics/page.tsx",
-                    lineNumber: 160,
+                    lineNumber: 427,
                     columnNumber: 11
                 }, this),
                 viewType === 'monthly' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -741,12 +973,12 @@ function AnalyticsPage() {
                                     })
                                 }, i, false, {
                                     fileName: "[project]/app/analytics/page.tsx",
-                                    lineNumber: 178,
+                                    lineNumber: 440,
                                     columnNumber: 17
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/app/analytics/page.tsx",
-                            lineNumber: 172,
+                            lineNumber: 434,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -756,13 +988,13 @@ function AnalyticsPage() {
                             className: "px-4 py-2 border rounded-lg w-24"
                         }, void 0, false, {
                             fileName: "[project]/app/analytics/page.tsx",
-                            lineNumber: 181,
+                            lineNumber: 446,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/analytics/page.tsx",
-                    lineNumber: 171,
+                    lineNumber: 433,
                     columnNumber: 11
                 }, this),
                 viewType === 'yearly' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -774,12 +1006,12 @@ function AnalyticsPage() {
                         className: "px-4 py-2 border rounded-lg w-24"
                     }, void 0, false, {
                         fileName: "[project]/app/analytics/page.tsx",
-                        lineNumber: 192,
+                        lineNumber: 457,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/analytics/page.tsx",
-                    lineNumber: 191,
+                    lineNumber: 456,
                     columnNumber: 11
                 }, this),
                 analyticsData && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -795,35 +1027,35 @@ function AnalyticsPage() {
                                         children: "Foyda"
                                     }, void 0, false, {
                                         fileName: "[project]/app/analytics/page.tsx",
-                                        lineNumber: 206,
+                                        lineNumber: 473,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/analytics/page.tsx",
-                                    lineNumber: 205,
+                                    lineNumber: 472,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "text-3xl font-bold text-amber-900",
                                         children: [
-                                            analyticsData.revenue.toLocaleString(),
+                                            formatMoney(analyticsData.revenue),
                                             " So'm"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/analytics/page.tsx",
-                                        lineNumber: 209,
+                                        lineNumber: 476,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/analytics/page.tsx",
-                                    lineNumber: 208,
+                                    lineNumber: 475,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/analytics/page.tsx",
-                            lineNumber: 204,
+                            lineNumber: 471,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -836,12 +1068,12 @@ function AnalyticsPage() {
                                         children: "Buyurmalar"
                                     }, void 0, false, {
                                         fileName: "[project]/app/analytics/page.tsx",
-                                        lineNumber: 215,
+                                        lineNumber: 485,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/analytics/page.tsx",
-                                    lineNumber: 214,
+                                    lineNumber: 484,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -853,18 +1085,18 @@ function AnalyticsPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/analytics/page.tsx",
-                                        lineNumber: 218,
+                                        lineNumber: 488,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/analytics/page.tsx",
-                                    lineNumber: 217,
+                                    lineNumber: 487,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/analytics/page.tsx",
-                            lineNumber: 213,
+                            lineNumber: 483,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -877,12 +1109,12 @@ function AnalyticsPage() {
                                         children: "Soni"
                                     }, void 0, false, {
                                         fileName: "[project]/app/analytics/page.tsx",
-                                        lineNumber: 224,
+                                        lineNumber: 497,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/analytics/page.tsx",
-                                    lineNumber: 223,
+                                    lineNumber: 496,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -894,24 +1126,24 @@ function AnalyticsPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/analytics/page.tsx",
-                                        lineNumber: 227,
+                                        lineNumber: 500,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/analytics/page.tsx",
-                                    lineNumber: 226,
+                                    lineNumber: 499,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/analytics/page.tsx",
-                            lineNumber: 222,
+                            lineNumber: 495,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/analytics/page.tsx",
-                    lineNumber: 203,
+                    lineNumber: 468,
                     columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -928,29 +1160,29 @@ function AnalyticsPage() {
                                         strokeDasharray: "3 3"
                                     }, void 0, false, {
                                         fileName: "[project]/app/analytics/page.tsx",
-                                        lineNumber: 238,
+                                        lineNumber: 514,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$XAxis$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["XAxis"], {
                                         dataKey: "date"
                                     }, void 0, false, {
                                         fileName: "[project]/app/analytics/page.tsx",
-                                        lineNumber: 239,
+                                        lineNumber: 515,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$YAxis$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["YAxis"], {}, void 0, false, {
                                         fileName: "[project]/app/analytics/page.tsx",
-                                        lineNumber: 240,
+                                        lineNumber: 516,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$recharts$2f$es6$2f$component$2f$Tooltip$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tooltip"], {}, void 0, false, {
                                         fileName: "[project]/app/analytics/page.tsx",
-                                        lineNumber: 241,
+                                        lineNumber: 517,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$recharts$2f$es6$2f$component$2f$Legend$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Legend"], {}, void 0, false, {
                                         fileName: "[project]/app/analytics/page.tsx",
-                                        lineNumber: 242,
+                                        lineNumber: 518,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$Bar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Bar"], {
@@ -959,7 +1191,7 @@ function AnalyticsPage() {
                                         name: "Foyda (So'm)"
                                     }, void 0, false, {
                                         fileName: "[project]/app/analytics/page.tsx",
-                                        lineNumber: 243,
+                                        lineNumber: 519,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$Bar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Bar"], {
@@ -968,39 +1200,39 @@ function AnalyticsPage() {
                                         name: "Buyurtmalar"
                                     }, void 0, false, {
                                         fileName: "[project]/app/analytics/page.tsx",
-                                        lineNumber: 244,
+                                        lineNumber: 520,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/analytics/page.tsx",
-                                lineNumber: 237,
+                                lineNumber: 513,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/analytics/page.tsx",
-                            lineNumber: 236,
+                            lineNumber: 512,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/analytics/page.tsx",
-                        lineNumber: 235,
+                        lineNumber: 511,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/analytics/page.tsx",
-                    lineNumber: 234,
+                    lineNumber: 510,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/analytics/page.tsx",
-            lineNumber: 117,
+            lineNumber: 397,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/analytics/page.tsx",
-        lineNumber: 116,
+        lineNumber: 396,
         columnNumber: 5
     }, this);
 }

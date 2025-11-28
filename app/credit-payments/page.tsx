@@ -182,14 +182,14 @@ export default function CreditPaymentsPage() {
                   <table className="w-full">
                     <thead className="bg-gray-100 border-b">
                       <tr>
-                        <th className="px-4 py-3 text-left font-semibold">Mijoz Ismi</th>
-                        <th className="px-4 py-3 text-left font-semibold">Telefon Raqami</th>
-                        <th className="px-4 py-3 text-left font-semibold">Yashash Manzili</th>
-                        <th className="px-4 py-3 text-left font-semibold">Mahsulot Nomi</th>
-                        <th className="px-4 py-3 text-left font-semibold">Narxi</th>
-                        <th className="px-4 py-3 text-left font-semibold">To'langan Summa</th>
-                        <th className="px-4 py-3 text-left font-semibold">To'lav Holati</th>
-                        <th className="px-4 py-3 text-left font-semibold">Holati</th>
+                        <th className="px-8 py-3 text-left font-semibold">Mijoz Ismi</th>
+                        <th className="px-8 py-3 text-left font-semibold">Telefon Raqami</th>
+                        <th className="px-8 py-3 text-left font-semibold">Yashash Manzili</th>
+                        <th className="px-8 py-3 text-left font-semibold">Mahsulot Nomi</th>
+                        <th className="px-8 py-3 text-left font-semibold">Narxi</th>
+                        <th className="px-8 py-3 text-left font-semibold">To'langan Summa</th>
+                        <th className="px-8 py-3 text-left font-semibold">To'lav Holati</th>
+                        <th className="px-8 py-3 text-left font-semibold">Holati</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -198,14 +198,14 @@ export default function CreditPaymentsPage() {
                         const isUrgent = daysUntilDue <= 3 && daysUntilDue > 0;
                         return (
                           <tr key={order.id} className={`border-b hover:bg-gray-50 ${isUrgent ? 'bg-red-50' : ''}`}>
-                            <td className="px-4 py-3">{order.clientName}</td>
-                            <td className="px-4 py-3">{order.clientPhone}</td>
-                            <td className="px-4 py-3">{order.clientAddress || 'Kiritilmagan'}</td>
-                            <td className="px-4 py-3 text-sm">
+                            <td className="px-8 py-3">{order.clientName}</td>
+                            <td className="px-8 py-3">{order.clientPhone}</td>
+                            <td className="px-8 py-3">{order.clientAddress || 'Kiritilmagan'}</td>
+                            <td className="px-8 py-3 text-sm">
                               {order.products?.map(p => `${p.productName} ${p.quantity} Dona`).join(', ') || 'Kiritilmagan'}
                             </td>
-                            <td className="px-4 py-3 font-semibold text-amber-700">{order.totalAmount.toLocaleString()} сум</td>
-                            <td className="px-4 py-3">{order.paidAmount.toLocaleString()} сум</td>
+                            <td className="px-4 py-3 font-semibold text-amber-700">{order.totalAmount.toLocaleString()} So'm</td>
+                            <td className="px-4 py-3">{order.paidAmount.toLocaleString()} So'm</td>
                             <td className="px-4 py-3">
                               <div className="flex gap-2">
                                 <Button

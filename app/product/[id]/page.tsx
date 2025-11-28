@@ -97,7 +97,7 @@ export default function ProductPage() {
 
   return (
     <main className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-4xl mx-auto px-4">
+      <div className="max-w-[1600px] mx-auto px-4">
         <h2 className='text-amber-900 font-bold text-[35px]'>Mahsulot Haqida Ma'lumot</h2> <br />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           {/* Images */}
@@ -117,23 +117,25 @@ export default function ProductPage() {
           </div>
 
           {/* Product Info */}
-          <div className="space-y-6">
+          <div className="space-y-[45px]">
             <div>
-              <h1 className="text-3xl font-bold text-amber-900 mb-2">{product.name}</h1>
-              <p className="text-gray-600 text-lg mb-4">{product.category}</p>
-              <p className="text-gray-700 text-base leading-relaxed mb-4">{product.description}</p>
+              <h1 className="text-3xl text-amber-900 mb-2">Mahsulot Nomi: <b>{product.name}</b></h1>
+              <p className="text-gray-600 text-lg mb-4">Mahsulot Kategoriyasi: <b>{product.category}</b></p>
+              <p className="text-gray-700 text-base leading-relaxed mb-4">Mahsulot Haqida Ma'lumot: <b>{product.description}</b></p>
 
               <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-4xl font-bold text-amber-700">{product.price} So'm</span>
-                <span className={`text-sm px-3 py-1 rounded-full ${product.quantity > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                  {product.quantity > 0 ? 'Sotuvda Mavjud' : 'Sotuvda Mavjud Emas'}
+                <span className="text-4xl text-amber-700">
+                  Mahsulot Narxi: <b>{Number(product.price).toLocaleString('ru-RU')} So'm</b>
+                </span>
+                <span className={`text-sm px-3 py-1 rounded-full text-center ${product.quantity > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                  <b>{product.quantity > 0 ? 'Sotuvda Mavjud' : 'Sotuvda Mavjud Emas'}</b>
                 </span>
               </div>
             </div>
 
             {/* Quantity Selector */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">Soni:</label>
+              <label className="block text-[30px] font-medium text-gray-700">Soni:</label>
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -145,7 +147,7 @@ export default function ProductPage() {
                   type="number"
                   value={quantity}
                   onChange={(e) => setQuantity(Math.min(product.quantity, Math.max(1, parseInt(e.target.value) || quantity)))}
-                  className="w-20 text-center border border-gray-300 rounded-lg px-2 py-2"
+                  className="max-w-[35px] w-full text-center border border-gray-300 rounded-sm "
                 />
                 <button
                   onClick={() => setQuantity(Math.min(product.quantity, quantity + 1))}
@@ -161,21 +163,21 @@ export default function ProductPage() {
               disabled={product.quantity === 0}
               className="w-full bg-amber-600 hover:bg-amber-700 disabled:opacity-50 text-white py-3 text-lg"
             >
-              <ShoppingCart className="mr-2" /> Sotib Olish
+              <ShoppingCart className="mr-2" /> Sotish
             </Button>
           </div>
         </div>
 
         {/* Checkout Modal */}
         {showCheckout && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <Card className="w-full max-w-md max-h-96 overflow-y-auto">
+          <div className="fixed inset-0 bg-[#808080] flex justify-center z-50 p-[30px]">
+            <Card className="w-full max-w-[1000px] max-h-[900px] overflow-y-auto">
               <CardHeader>
-                <CardTitle>Buyurtma Qilish</CardTitle>
+                <CardTitle className='text-center text-[45px]'>Buyurtmani Rasmiylashtirish</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="border-b pb-4">
-                  <h3 className="font-semibold text-gray-900 mb-3">Mijoh Haqida Ma'lumot</h3>
+                <div className="border-b pb-[10px]">
+                  <h3 className="font-semibold text-gray-900 mb-3">Mijoz Haqida Ma'lumot</h3>
                   <div className="space-y-3">
                     <div>
                       <label className="block text-sm font-medium mb-1">Ismi</label>
@@ -222,7 +224,7 @@ export default function ProductPage() {
                 </div>
 
                 <div className="border-b pb-4">
-                  <label className="block text-sm font-medium mb-2">Mijoz Bilin Kelishilgan Narx (Majburiy Emas)</label>
+                  <label className="block text-sm font-medium mb-2">Mijoz Bilan Kelishilgan Narx (Majburiy Emas)</label>
                   <input
                     type="number"
                     value={manualProductSum}
@@ -230,7 +232,7 @@ export default function ProductPage() {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg"
                     placeholder="Mahsulot Asil Narxida Sotilgan Bo'lsa Ochiq Qoldiring"
                   />
-                  <p className="text-xs text-gray-500 mt-1">Bu Narx Mahsulotni Kelishilgan Narxi Xisoblanadi</p>
+                  {/* <p className="text-xs text-gray-500 mt-1">Bu Narx Mahsulotni Kelishilgan Narxi Xisoblanadi</p> */}
                 </div>
 
                 <div className="space-y-2">
@@ -297,6 +299,7 @@ export default function ProductPage() {
             </Card>
           </div>
         )}
+
       </div>
     </main>
   );

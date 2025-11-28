@@ -48,15 +48,15 @@ export interface Analytics {
 }
 
 export const FURNITURE_CATEGORIES = [
-  'Барчаси',
-  'Спальний комплект',
-  'Шикафлар',
-  'Тримолар',
-  'Сандиклар',
-  'Стол-Стуллар',
-  'Тапчанлар',
-  'Сервант ва панеллар',
-  'Прихожкалар',
-  'Кухний мебеллар',
-  'Болалар мебеллари'
+  // 'Барчаси',
+  'Spalniy Komplekt',
+  'Shikaflar',
+  'Trimolar',
+  'Sandiklar',
+  'Stol - Stullar',
+  'Tapchanlar',
+  'Servant va Panellar',
+  'Prixojkalar',
+  'Oshxona Mebellari',
+  'Bolalar Mebellari'
 ];
