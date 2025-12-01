@@ -1,4 +1,5 @@
 {
+  "/analytics/page": "app/analytics/page.js",
   "/catalog/page": "app/catalog/page.js",
   "/credit-customers/page": "app/credit-customers/page.js",
   "/credit-payments/page": "app/credit-payments/page.js",

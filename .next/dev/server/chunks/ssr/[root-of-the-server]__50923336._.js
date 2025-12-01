@@ -1,0 +1,1286 @@
+module.exports = [
+"[externals]/util [external] (util, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("util", () => require("util"));
+
+module.exports = mod;
+}),
+"[externals]/crypto [external] (crypto, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("crypto", () => require("crypto"));
+
+module.exports = mod;
+}),
+"[externals]/process [external] (process, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("process", () => require("process"));
+
+module.exports = mod;
+}),
+"[externals]/tls [external] (tls, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("tls", () => require("tls"));
+
+module.exports = mod;
+}),
+"[externals]/fs [external] (fs, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("fs", () => require("fs"));
+
+module.exports = mod;
+}),
+"[externals]/os [external] (os, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("os", () => require("os"));
+
+module.exports = mod;
+}),
+"[externals]/net [external] (net, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("net", () => require("net"));
+
+module.exports = mod;
+}),
+"[externals]/events [external] (events, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("events", () => require("events"));
+
+module.exports = mod;
+}),
+"[externals]/stream [external] (stream, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("stream", () => require("stream"));
+
+module.exports = mod;
+}),
+"[externals]/path [external] (path, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("path", () => require("path"));
+
+module.exports = mod;
+}),
+"[externals]/http2 [external] (http2, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("http2", () => require("http2"));
+
+module.exports = mod;
+}),
+"[externals]/http [external] (http, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("http", () => require("http"));
+
+module.exports = mod;
+}),
+"[externals]/url [external] (url, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("url", () => require("url"));
+
+module.exports = mod;
+}),
+"[externals]/dns [external] (dns, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("dns", () => require("dns"));
+
+module.exports = mod;
+}),
+"[externals]/zlib [external] (zlib, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("zlib", () => require("zlib"));
+
+module.exports = mod;
+}),
+"[project]/Mebel_Modern/lib/firebase.ts [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "db",
+    ()=>db,
+    "storage",
+    ()=>storage
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$firebase$2f$app$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/firebase/app/dist/index.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f40$firebase$2f$app$2f$dist$2f$esm$2f$index$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/@firebase/app/dist/esm/index.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$firebase$2f$firestore$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/firebase/firestore/dist/index.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/@firebase/firestore/dist/index.node.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$firebase$2f$storage$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/firebase/storage/dist/index.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f40$firebase$2f$storage$2f$dist$2f$node$2d$esm$2f$index$2e$node$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/@firebase/storage/dist/node-esm/index.node.esm.js [app-ssr] (ecmascript)");
+;
+;
+;
+const firebaseConfig = {
+    apiKey: "AIzaSyDzl9OP8Avxt6qvxI7H91RwA6SMwvEsfjg",
+    authDomain: "mebelweb-c3706.firebaseapp.com",
+    projectId: "mebelweb-c3706",
+    storageBucket: "mebelweb-c3706.firebasestorage.app",
+    messagingSenderId: "914008148864",
+    appId: "1:914008148864:web:36dbf5a4a738f8b72d8f65"
+};
+const app = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f40$firebase$2f$app$2f$dist$2f$esm$2f$index$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["initializeApp"])(firebaseConfig);
+const db = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getFirestore"])(app);
+const storage = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f40$firebase$2f$storage$2f$dist$2f$node$2d$esm$2f$index$2e$node$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getStorage"])(app);
+}),
+"[project]/Mebel_Modern/lib/utils.ts [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "cn",
+    ()=>cn
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/clsx/dist/clsx.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$tailwind$2d$merge$2f$dist$2f$bundle$2d$mjs$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/tailwind-merge/dist/bundle-mjs.mjs [app-ssr] (ecmascript)");
+;
+;
+function cn(...inputs) {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$tailwind$2d$merge$2f$dist$2f$bundle$2d$mjs$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["twMerge"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["clsx"])(inputs));
+}
+}),
+"[project]/Mebel_Modern/components/ui/card.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "Card",
+    ()=>Card,
+    "CardAction",
+    ()=>CardAction,
+    "CardContent",
+    ()=>CardContent,
+    "CardDescription",
+    ()=>CardDescription,
+    "CardFooter",
+    ()=>CardFooter,
+    "CardHeader",
+    ()=>CardHeader,
+    "CardTitle",
+    ()=>CardTitle
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/lib/utils.ts [app-ssr] (ecmascript)");
+;
+;
+function Card({ className, ...props }) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        "data-slot": "card",
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])('bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm', className),
+        ...props
+    }, void 0, false, {
+        fileName: "[project]/Mebel_Modern/components/ui/card.tsx",
+        lineNumber: 7,
+        columnNumber: 5
+    }, this);
+}
+function CardHeader({ className, ...props }) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        "data-slot": "card-header",
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])('@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6', className),
+        ...props
+    }, void 0, false, {
+        fileName: "[project]/Mebel_Modern/components/ui/card.tsx",
+        lineNumber: 20,
+        columnNumber: 5
+    }, this);
+}
+function CardTitle({ className, ...props }) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        "data-slot": "card-title",
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])('leading-none font-semibold', className),
+        ...props
+    }, void 0, false, {
+        fileName: "[project]/Mebel_Modern/components/ui/card.tsx",
+        lineNumber: 33,
+        columnNumber: 5
+    }, this);
+}
+function CardDescription({ className, ...props }) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        "data-slot": "card-description",
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])('text-muted-foreground text-sm', className),
+        ...props
+    }, void 0, false, {
+        fileName: "[project]/Mebel_Modern/components/ui/card.tsx",
+        lineNumber: 43,
+        columnNumber: 5
+    }, this);
+}
+function CardAction({ className, ...props }) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        "data-slot": "card-action",
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])('col-start-2 row-span-2 row-start-1 self-start justify-self-end', className),
+        ...props
+    }, void 0, false, {
+        fileName: "[project]/Mebel_Modern/components/ui/card.tsx",
+        lineNumber: 53,
+        columnNumber: 5
+    }, this);
+}
+function CardContent({ className, ...props }) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        "data-slot": "card-content",
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])('px-6', className),
+        ...props
+    }, void 0, false, {
+        fileName: "[project]/Mebel_Modern/components/ui/card.tsx",
+        lineNumber: 66,
+        columnNumber: 5
+    }, this);
+}
+function CardFooter({ className, ...props }) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        "data-slot": "card-footer",
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])('flex items-center px-6 [.border-t]:pt-6', className),
+        ...props
+    }, void 0, false, {
+        fileName: "[project]/Mebel_Modern/components/ui/card.tsx",
+        lineNumber: 76,
+        columnNumber: 5
+    }, this);
+}
+;
+}),
+"[project]/Mebel_Modern/components/ui/button.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "Button",
+    ()=>Button,
+    "buttonVariants",
+    ()=>buttonVariants
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f40$radix$2d$ui$2f$react$2d$slot$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/@radix-ui/react-slot/dist/index.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$class$2d$variance$2d$authority$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/class-variance-authority/dist/index.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/lib/utils.ts [app-ssr] (ecmascript)");
+;
+;
+;
+;
+const buttonVariants = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$class$2d$variance$2d$authority$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cva"])("inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive", {
+    variants: {
+        variant: {
+            default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+            destructive: 'bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
+            outline: 'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50',
+            secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+            ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
+            link: 'text-primary underline-offset-4 hover:underline'
+        },
+        size: {
+            default: 'h-9 px-4 py-2 has-[>svg]:px-3',
+            sm: 'h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5',
+            lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
+            icon: 'size-9',
+            'icon-sm': 'size-8',
+            'icon-lg': 'size-10'
+        }
+    },
+    defaultVariants: {
+        variant: 'default',
+        size: 'default'
+    }
+});
+function Button({ className, variant, size, asChild = false, ...props }) {
+    const Comp = asChild ? __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f40$radix$2d$ui$2f$react$2d$slot$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Slot"] : 'button';
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Comp, {
+        "data-slot": "button",
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])(buttonVariants({
+            variant,
+            size,
+            className
+        })),
+        ...props
+    }, void 0, false, {
+        fileName: "[project]/Mebel_Modern/components/ui/button.tsx",
+        lineNumber: 52,
+        columnNumber: 5
+    }, this);
+}
+;
+}),
+"[project]/Mebel_Modern/components/login-modal.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>LoginModal
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/components/ui/button.tsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/components/ui/card.tsx [app-ssr] (ecmascript)");
+'use client';
+;
+;
+;
+;
+function LoginModal({ onLoginSuccess }) {
+    const [username, setUsername] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
+    const [password, setPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
+    const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
+    const handleLogin = ()=>{
+        if (username === 'admin' && password === 'admin123') {
+            localStorage.setItem('isLoggedIn', 'true');
+            onLoginSuccess();
+        } else {
+            setError("Foydalanuvchi Login yoki Parol Noto'g'ri");
+        }
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "fixed inset-0 bg-[#000] bg-opacity-50 flex items-center justify-center z-50",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
+            className: "w-full max-w-[500px] h-[350px]",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardHeader"], {
+                    className: "text-center text-[25px]",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardTitle"], {
+                        children: "Tizimga Kirish"
+                    }, void 0, false, {
+                        fileName: "[project]/Mebel_Modern/components/login-modal.tsx",
+                        lineNumber: 29,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/Mebel_Modern/components/login-modal.tsx",
+                    lineNumber: 28,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardContent"], {
+                    className: "space-y-4 mt-[20px]",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                    className: "block text-sm font-medium mb-1",
+                                    children: "Foydalanuvchi Nomi"
+                                }, void 0, false, {
+                                    fileName: "[project]/Mebel_Modern/components/login-modal.tsx",
+                                    lineNumber: 33,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                    type: "text",
+                                    value: username,
+                                    onChange: (e)=>setUsername(e.target.value),
+                                    className: "w-full px-3 py-2 border border-gray-300 rounded-lg",
+                                    placeholder: "admin"
+                                }, void 0, false, {
+                                    fileName: "[project]/Mebel_Modern/components/login-modal.tsx",
+                                    lineNumber: 34,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/Mebel_Modern/components/login-modal.tsx",
+                            lineNumber: 32,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                    className: "block text-sm font-medium mb-1",
+                                    children: "Parol"
+                                }, void 0, false, {
+                                    fileName: "[project]/Mebel_Modern/components/login-modal.tsx",
+                                    lineNumber: 43,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                    type: "password",
+                                    value: password,
+                                    onChange: (e)=>setPassword(e.target.value),
+                                    onKeyPress: (e)=>e.key === 'Enter' && handleLogin(),
+                                    className: "w-full px-3 py-2 border border-gray-300 rounded-lg",
+                                    placeholder: "admin123"
+                                }, void 0, false, {
+                                    fileName: "[project]/Mebel_Modern/components/login-modal.tsx",
+                                    lineNumber: 44,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/Mebel_Modern/components/login-modal.tsx",
+                            lineNumber: 42,
+                            columnNumber: 11
+                        }, this),
+                        error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "text-red-600 text-sm",
+                            children: error
+                        }, void 0, false, {
+                            fileName: "[project]/Mebel_Modern/components/login-modal.tsx",
+                            lineNumber: 53,
+                            columnNumber: 21
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                            onClick: handleLogin,
+                            className: "w-full bg-amber-600 hover:bg-amber-700",
+                            children: "Kirish"
+                        }, void 0, false, {
+                            fileName: "[project]/Mebel_Modern/components/login-modal.tsx",
+                            lineNumber: 54,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/Mebel_Modern/components/login-modal.tsx",
+                    lineNumber: 31,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/Mebel_Modern/components/login-modal.tsx",
+            lineNumber: 27,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/Mebel_Modern/components/login-modal.tsx",
+        lineNumber: 26,
+        columnNumber: 5
+    }, this);
+}
+}),
+"[project]/Mebel_Modern/app/analytics/page.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+// 'use client';
+// import { useState, useEffect } from 'react';
+// import { collection, onSnapshot } from 'firebase/firestore';
+// import { db } from '@/lib/firebase';
+// import { Order } from '@/lib/types';
+// import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+// import { getDailyAnalytics, getMonthlyAnalytics, getYearlyAnalytics } from '@/lib/analytics-utils';
+// import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+// import LoginModal from '@/components/login-modal';
+// import { Download } from 'lucide-react';
+// import { Button } from '@/components/ui/button';
+// export default function AnalyticsPage() {
+//   const [orders, setOrders] = useState<Order[]>([]);
+//   const [viewType, setViewType] = useState<'daily' | 'monthly' | 'yearly'>('monthly');
+//   const [selectedDate, setSelectedDate] = useState(new Date());
+//   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
+//   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+//   const [analyticsData, setAnalyticsData] = useState<any>(null);
+//   const [chartData, setChartData] = useState<any[]>([]);
+//   const [isLoggedIn, setIsLoggedIn] = useState(false);
+//   const [loading, setLoading] = useState(true);
+//   useEffect(() => {
+//     const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
+//     setIsLoggedIn(loggedIn);
+//     if (!loggedIn) {
+//       setLoading(false);
+//       return;
+//     }
+//     const unsubscribe = onSnapshot(collection(db, 'orders'), (snapshot) => {
+//       const ords = snapshot.docs.map(doc => {
+//         const data = doc.data();
+//         return {
+//           id: doc.id,
+//           ...data,
+//           createdAt: data.createdAt?.toDate?.() || new Date(data.createdAt),
+//           dueDate: data.dueDate?.toDate?.() || new Date(data.dueDate),
+//           payments: data.payments?.map((p: any) => ({ ...p, date: p.date?.toDate?.() || new Date(p.date) })) || []
+//         } as Order;
+//       });
+//       setOrders(ords);
+//       setLoading(false);
+//     });
+//     return () => unsubscribe();
+//   }, []);
+//   useEffect(() => {
+//     if (viewType === 'daily') {
+//       const data = getDailyAnalytics(orders, selectedDate);
+//       setAnalyticsData(data);
+//       const lastWeek = Array.from({ length: 7 }, (_, i) => {
+//         const d = new Date(selectedDate);
+//         d.setDate(d.getDate() - (6 - i));
+//         return getDailyAnalytics(orders, d);
+//       });
+//       setChartData(lastWeek);
+//     } else if (viewType === 'monthly') {
+//       const data = getMonthlyAnalytics(orders, selectedMonth, selectedYear);
+//       setAnalyticsData(data);
+//       const lastYear = Array.from({ length: 12 }, (_, i) => {
+//         const year = selectedYear - (selectedMonth + i <= 12 ? 0 : 1);
+//         const month = ((selectedMonth + i - 1) % 12) + 1;
+//         return getMonthlyAnalytics(orders, month, year);
+//       });
+//       setChartData(lastYear);
+//     } else {
+//       const data = getYearlyAnalytics(orders, selectedYear);
+//       setAnalyticsData(data);
+//       const lastDecade = Array.from({ length: 10 }, (_, i) =>
+//         getYearlyAnalytics(orders, selectedYear - (9 - i))
+//       );
+//       setChartData(lastDecade);
+//     }
+//   }, [viewType, selectedDate, selectedMonth, selectedYear, orders]);
+//   // --- FORMATTER ---
+//   const formatMoney = (value: number) => Number(value).toLocaleString('ru-RU');
+//   const downloadCampaignAnalytics = () => {
+//     let csv = 'Дата,Кредит месяцев,Сумма,Статус,Доход\n';
+//     orders.forEach(order => {
+//       csv += `${new Date(order.createdAt).toLocaleDateString('uz-UZ')},${order.creditMonths},${formatMoney(order.totalAmount)},${order.paymentStatus},${formatMoney(order.totalAmount)}\n`;
+//     });
+//     const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+//     const url = window.URL.createObjectURL(blob);
+//     const a = document.createElement('a');
+//     a.href = url;
+//     a.download = `Campaign-Analytics-${new Date().toISOString().split('T')[0]}.csv`;
+//     a.click();
+//   };
+//   const downloadMonthlyClientsAnalytics = () => {
+//     const monthlyClients = orders.filter(o => o.creditMonths === 1);
+//     let csv = 'Имя клиента,Телефон,Адрес,Сумма,Дата,Статус\n';
+//     monthlyClients.forEach(order => {
+//       csv += `${order.clientName},${order.clientPhone},${order.clientAddress || 'N/A'},${formatMoney(order.totalAmount)},${new Date(order.createdAt).toLocaleDateString('uz-UZ')},${order.paymentStatus}\n`;
+//     });
+//     const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+//     const url = window.URL.createObjectURL(blob);
+//     const a = document.createElement('a');
+//     a.href = url;
+//     a.download = `Monthly-Clients-Analytics-${new Date().toISOString().split('T')[0]}.csv`;
+//     a.click();
+//   };
+//   if (!isLoggedIn) {
+//     return <LoginModal onLoginSuccess={() => setIsLoggedIn(true)} />;
+//   }
+//   return (
+//     <main className="min-h-screen bg-gray-50 py-8">
+//       <div className="max-w-6xl mx-auto px-4">
+//         {/* HEADER */}
+//         <div className="flex justify-between items-center mb-8">
+//           <h1 className="text-3xl font-bold text-amber-900">Analitika</h1>
+//           <div className="flex gap-2">
+//             <Button onClick={downloadCampaignAnalytics} className="bg-blue-600 hover:bg-blue-700">
+//               <Download className="mr-2" size={16} /> Kampaniya Foydasi (So'm)
+//             </Button>
+//             <Button onClick={downloadMonthlyClientsAnalytics} className="bg-green-600 hover:bg-green-700">
+//               <Download className="mr-2" size={16} /> Oylik To'lovlar (So'm)
+//             </Button>
+//           </div>
+//         </div>
+//         {/* VIEW TYPE */}
+//         <div className="flex gap-2 mb-6">
+//           <button onClick={() => setViewType('daily')} className={`px-4 py-2 rounded-lg font-medium ${viewType === 'daily' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}>
+//             Kunlik
+//           </button>
+//           <button onClick={() => setViewType('monthly')} className={`px-4 py-2 rounded-lg font-medium ${viewType === 'monthly' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}>
+//             Oylik
+//           </button>
+//           <button onClick={() => setViewType('yearly')} className={`px-4 py-2 rounded-lg font-medium ${viewType === 'yearly' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}>
+//             Yillik
+//           </button>
+//         </div>
+//         {/* DATE PICKERS */}
+//         {viewType === 'daily' && (
+//           <div className="mb-6">
+//             <input type="date" value={selectedDate.toISOString().split('T')[0]} onChange={(e) => setSelectedDate(new Date(e.target.value))} className="px-4 py-2 border rounded-lg" />
+//           </div>
+//         )}
+//         {viewType === 'monthly' && (
+//           <div className="mb-6 flex gap-4">
+//             <select
+//               value={selectedMonth}
+//               onChange={(e) => setSelectedMonth(parseInt(e.target.value))}
+//               className="px-4 py-2 border rounded-lg"
+//             >
+//               {Array.from({ length: 12 }, (_, i) => (
+//                 <option key={i} value={i + 1}>
+//                   {new Date(2024, i).toLocaleDateString('ru-RU', { month: 'long' })}
+//                 </option>
+//               ))}
+//             </select>
+//             <input
+//               type="number"
+//               value={selectedYear}
+//               onChange={(e) => setSelectedYear(parseInt(e.target.value))}
+//               className="px-4 py-2 border rounded-lg w-24"
+//             />
+//           </div>
+//         )}
+//         {viewType === 'yearly' && (
+//           <div className="mb-6">
+//             <input
+//               type="number"
+//               value={selectedYear}
+//               onChange={(e) => setSelectedYear(parseInt(e.target.value))}
+//               className="px-4 py-2 border rounded-lg w-24"
+//             />
+//           </div>
+//         )}
+//         {/* STATS CARDS */}
+//         {analyticsData && (
+//           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+//             {/* REVENUE */}
+//             <Card className="bg-white border-amber-200">
+//               <CardHeader className="pb-2">
+//                 <CardTitle className="text-[20px] font-medium text-gray-600">Foyda</CardTitle>
+//               </CardHeader>
+//               <CardContent>
+//                 <div className="text-3xl font-bold text-amber-900">
+//                   {formatMoney(analyticsData.revenue)} So'm
+//                 </div>
+//               </CardContent>
+//             </Card>
+//             {/* ORDERS */}
+//             <Card className="bg-white border-amber-200">
+//               <CardHeader className="pb-2">
+//                 <CardTitle className="text-[20px] font-medium text-gray-600">Buyurmalar</CardTitle>
+//               </CardHeader>
+//               <CardContent>
+//                 <div className="text-3xl font-bold text-amber-900">
+//                   {analyticsData.orders} ta
+//                 </div>
+//               </CardContent>
+//             </Card>
+//             {/* UNITS */}
+//             <Card className="bg-white border-amber-200">
+//               <CardHeader className="pb-2">
+//                 <CardTitle className="text-[20px] font-medium text-gray-600">Soni</CardTitle>
+//               </CardHeader>
+//               <CardContent>
+//                 <div className="text-3xl font-bold text-amber-900">
+//                   {analyticsData.units} ta
+//                 </div>
+//               </CardContent>
+//             </Card>
+//           </div>
+//         )}
+//         {/* CHART */}
+//         <Card className="bg-white">
+//           <CardContent className="pt-6">
+//             <ResponsiveContainer width="100%" height={300}>
+//               <BarChart data={chartData}>
+//                 <CartesianGrid strokeDasharray="3 3" />
+//                 <XAxis dataKey="date" />
+//                 <YAxis />
+//                 <Tooltip />
+//                 <Legend />
+//                 <Bar dataKey="revenue" fill="#b45309" name="Foyda (So'm)" />
+//                 <Bar dataKey="orders" fill="#a16207" name="Buyurtmalar" />
+//               </BarChart>
+//             </ResponsiveContainer>
+//           </CardContent>
+//         </Card>
+//       </div>
+//     </main>
+//   );
+// }
+__turbopack_context__.s([
+    "default",
+    ()=>AnalyticsPage
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$firebase$2f$firestore$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/firebase/firestore/dist/index.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/@firebase/firestore/dist/index.node.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/lib/firebase.ts [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/components/ui/card.tsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$recharts$2f$es6$2f$chart$2f$BarChart$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/recharts/es6/chart/BarChart.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$Bar$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/recharts/es6/cartesian/Bar.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$XAxis$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/recharts/es6/cartesian/XAxis.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$YAxis$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/recharts/es6/cartesian/YAxis.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$CartesianGrid$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/recharts/es6/cartesian/CartesianGrid.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$recharts$2f$es6$2f$component$2f$Tooltip$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/recharts/es6/component/Tooltip.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$recharts$2f$es6$2f$component$2f$Legend$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/recharts/es6/component/Legend.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$recharts$2f$es6$2f$component$2f$ResponsiveContainer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/recharts/es6/component/ResponsiveContainer.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$login$2d$modal$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/components/login-modal.tsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__ = __turbopack_context__.i("[project]/Mebel_Modern/node_modules/lucide-react/dist/esm/icons/download.js [app-ssr] (ecmascript) <export default as Download>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Mebel_Modern/components/ui/button.tsx [app-ssr] (ecmascript)");
+'use client';
+;
+;
+;
+;
+;
+;
+;
+;
+;
+// --- ANALITIKA FUNKSIYALARI ---
+// Daily analitika
+const getDailyAnalytics = (orders, date)=>{
+    const dayStart = new Date(date);
+    dayStart.setHours(0, 0, 0, 0);
+    const dayEnd = new Date(date);
+    dayEnd.setHours(23, 59, 59, 999);
+    const filtered = orders.filter((o)=>{
+        const created = new Date(o.createdAt);
+        return created >= dayStart && created <= dayEnd;
+    });
+    const revenue = filtered.reduce((sum, o)=>sum + Number(o.totalAmount || 0), 0);
+    const units = filtered.reduce((sum, o)=>sum + (o.products?.reduce((a, p)=>a + (p.quantity || 0), 0) || 0), 0);
+    const totalOrders = filtered.length;
+    return {
+        revenue,
+        units,
+        orders: totalOrders
+    };
+};
+// Monthly analitika
+const getMonthlyAnalytics = (orders, month, year)=>{
+    const filtered = orders.filter((o)=>{
+        const created = new Date(o.createdAt);
+        return created.getMonth() + 1 === month && created.getFullYear() === year;
+    });
+    const revenue = filtered.reduce((sum, o)=>sum + Number(o.totalAmount || 0), 0);
+    const units = filtered.reduce((sum, o)=>sum + (o.products?.reduce((a, p)=>a + (p.quantity || 0), 0) || 0), 0);
+    const totalOrders = filtered.length;
+    return {
+        revenue,
+        units,
+        orders: totalOrders,
+        date: `${month}-${year}`
+    };
+};
+// Yearly analitika
+const getYearlyAnalytics = (orders, year)=>{
+    const filtered = orders.filter((o)=>{
+        const created = new Date(o.createdAt);
+        return created.getFullYear() === year;
+    });
+    const revenue = filtered.reduce((sum, o)=>sum + Number(o.totalAmount || 0), 0);
+    const units = filtered.reduce((sum, o)=>sum + (o.products?.reduce((a, p)=>a + (p.quantity || 0), 0) || 0), 0);
+    const totalOrders = filtered.length;
+    return {
+        revenue,
+        units,
+        orders: totalOrders,
+        date: `${year}`
+    };
+};
+function AnalyticsPage() {
+    const [orders, setOrders] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [viewType, setViewType] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('monthly');
+    const [selectedDate, setSelectedDate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(new Date());
+    const [selectedMonth, setSelectedMonth] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(new Date().getMonth() + 1);
+    const [selectedYear, setSelectedYear] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(new Date().getFullYear());
+    const [analyticsData, setAnalyticsData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [chartData, setChartData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [isLoggedIn, setIsLoggedIn] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
+    // --- Firestore snapshot va login tekshiruv ---
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        const loggedIn = localStorage.getItem('isLoggedInAnalytics') === 'true';
+        setIsLoggedIn(loggedIn);
+        if (!loggedIn) {
+            setLoading(false);
+            return;
+        }
+        const unsubscribe = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["onSnapshot"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["db"], 'orders'), (snapshot)=>{
+            const ords = snapshot.docs.map((doc)=>{
+                const data = doc.data();
+                return {
+                    id: doc.id,
+                    ...data,
+                    createdAt: data.createdAt?.toDate?.() || new Date(data.createdAt),
+                    dueDate: data.dueDate?.toDate?.() || new Date(data.dueDate),
+                    payments: data.payments?.map((p)=>({
+                            ...p,
+                            date: p.date?.toDate?.() || new Date(p.date)
+                        })) || []
+                };
+            });
+            setOrders(ords);
+            setLoading(false);
+        });
+        return ()=>unsubscribe();
+    }, []);
+    // --- Analitika hisoblash ---
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (!orders.length) return;
+        if (viewType === 'daily') {
+            const data = getDailyAnalytics(orders, selectedDate);
+            setAnalyticsData(data);
+            const lastWeek = Array.from({
+                length: 7
+            }, (_, i)=>{
+                const d = new Date(selectedDate);
+                d.setDate(d.getDate() - (6 - i));
+                return {
+                    ...getDailyAnalytics(orders, d),
+                    date: d.toLocaleDateString('uz-UZ')
+                };
+            });
+            setChartData(lastWeek);
+        } else if (viewType === 'monthly') {
+            const data = getMonthlyAnalytics(orders, selectedMonth, selectedYear);
+            setAnalyticsData(data);
+            const lastYear = Array.from({
+                length: 12
+            }, (_, i)=>{
+                const month = (selectedMonth + i - 1) % 12 + 1;
+                const year = selectedYear - Math.floor((selectedMonth + i - 1) / 12);
+                return getMonthlyAnalytics(orders, month, year);
+            });
+            setChartData(lastYear);
+        } else {
+            const data = getYearlyAnalytics(orders, selectedYear);
+            setAnalyticsData(data);
+            const lastDecade = Array.from({
+                length: 10
+            }, (_, i)=>getYearlyAnalytics(orders, selectedYear - (9 - i)));
+            setChartData(lastDecade);
+        }
+    }, [
+        viewType,
+        selectedDate,
+        selectedMonth,
+        selectedYear,
+        orders
+    ]);
+    // --- Pul formatlash ---
+    const formatMoney = (value)=>Number(value).toLocaleString('uz-UZ');
+    // --- CSV eksport ---
+    const downloadCampaignAnalytics = ()=>{
+        let csv = 'Sana,Kredit oylar,Summa,Holat,Foyda\n';
+        orders.forEach((order)=>{
+            csv += `${new Date(order.createdAt).toLocaleDateString('uz-UZ')},${order.creditMonths},${formatMoney(order.totalAmount)},${order.paymentStatus},${formatMoney(order.totalAmount)}\n`;
+        });
+        const blob = new Blob([
+            '\ufeff' + csv
+        ], {
+            type: 'text/csv;charset=utf-8;'
+        });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Kampaniya-Analitika-${new Date().toISOString().split('T')[0]}.csv`;
+        a.click();
+    };
+    const downloadMonthlyClientsAnalytics = ()=>{
+        const monthlyClients = orders.filter((o)=>o.creditMonths === 1);
+        let csv = 'Mijoz,Telefon,Manzil,Summa,Sana,Holat\n';
+        monthlyClients.forEach((order)=>{
+            csv += `${order.clientName},${order.clientPhone},${order.clientAddress || 'N/A'},${formatMoney(order.totalAmount)},${new Date(order.createdAt).toLocaleDateString('uz-UZ')},${order.paymentStatus}\n`;
+        });
+        const blob = new Blob([
+            '\ufeff' + csv
+        ], {
+            type: 'text/csv;charset=utf-8;'
+        });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Oylik-Mijozlar-Analitika-${new Date().toISOString().split('T')[0]}.csv`;
+        a.click();
+    };
+    if (!isLoggedIn) {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$login$2d$modal$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+            loginKey: "isLoggedInAnalytics",
+            onLoginSuccess: ()=>setIsLoggedIn(true)
+        }, void 0, false, {
+            fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+            lineNumber: 439,
+            columnNumber: 12
+        }, this);
+    }
+    if (loading) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+        children: "Yuklanmoqda…"
+    }, void 0, false, {
+        fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+        lineNumber: 442,
+        columnNumber: 23
+    }, this);
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
+        className: "min-h-screen bg-gray-50 py-8",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "max-w-6xl mx-auto px-4",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex justify-between items-center mb-8",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                            className: "text-3xl font-bold text-amber-900",
+                            children: "Analitika"
+                        }, void 0, false, {
+                            fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                            lineNumber: 450,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex gap-2",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                                    onClick: downloadCampaignAnalytics,
+                                    className: "bg-blue-600 hover:bg-blue-700",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
+                                            className: "mr-2",
+                                            size: 16
+                                        }, void 0, false, {
+                                            fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                            lineNumber: 453,
+                                            columnNumber: 15
+                                        }, this),
+                                        " Kampaniya Foydasi (So'm)"
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                    lineNumber: 452,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                                    onClick: downloadMonthlyClientsAnalytics,
+                                    className: "bg-green-600 hover:bg-green-700",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
+                                            className: "mr-2",
+                                            size: 16
+                                        }, void 0, false, {
+                                            fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                            lineNumber: 456,
+                                            columnNumber: 15
+                                        }, this),
+                                        " Oylik To'lovlar (So'm)"
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                    lineNumber: 455,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                            lineNumber: 451,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                    lineNumber: 449,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex gap-2 mb-6",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                            onClick: ()=>setViewType('daily'),
+                            className: `px-4 py-2 rounded-lg font-medium ${viewType === 'daily' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`,
+                            children: "Kunlik"
+                        }, void 0, false, {
+                            fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                            lineNumber: 463,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                            onClick: ()=>setViewType('monthly'),
+                            className: `px-4 py-2 rounded-lg font-medium ${viewType === 'monthly' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`,
+                            children: "Oylik"
+                        }, void 0, false, {
+                            fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                            lineNumber: 464,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                            onClick: ()=>setViewType('yearly'),
+                            className: `px-4 py-2 rounded-lg font-medium ${viewType === 'yearly' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`,
+                            children: "Yillik"
+                        }, void 0, false, {
+                            fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                            lineNumber: 465,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                    lineNumber: 462,
+                    columnNumber: 9
+                }, this),
+                viewType === 'daily' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "mb-6",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                        type: "date",
+                        value: selectedDate.toISOString().split('T')[0],
+                        onChange: (e)=>setSelectedDate(new Date(e.target.value)),
+                        className: "px-4 py-2 border rounded-lg"
+                    }, void 0, false, {
+                        fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                        lineNumber: 471,
+                        columnNumber: 13
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                    lineNumber: 470,
+                    columnNumber: 11
+                }, this),
+                viewType === 'monthly' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "mb-6 flex gap-4",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                            value: selectedMonth,
+                            onChange: (e)=>setSelectedMonth(parseInt(e.target.value)),
+                            className: "px-4 py-2 border rounded-lg",
+                            children: Array.from({
+                                length: 12
+                            }, (_, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                    value: i + 1,
+                                    children: new Date(2024, i).toLocaleDateString('uz-UZ', {
+                                        month: 'long'
+                                    })
+                                }, i, false, {
+                                    fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                    lineNumber: 479,
+                                    columnNumber: 17
+                                }, this))
+                        }, void 0, false, {
+                            fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                            lineNumber: 477,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                            type: "number",
+                            value: selectedYear,
+                            onChange: (e)=>setSelectedYear(parseInt(e.target.value)),
+                            className: "px-4 py-2 border rounded-lg w-24"
+                        }, void 0, false, {
+                            fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                            lineNumber: 482,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                    lineNumber: 476,
+                    columnNumber: 11
+                }, this),
+                viewType === 'yearly' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "mb-6",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                        type: "number",
+                        value: selectedYear,
+                        onChange: (e)=>setSelectedYear(parseInt(e.target.value)),
+                        className: "px-4 py-2 border rounded-lg w-24"
+                    }, void 0, false, {
+                        fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                        lineNumber: 488,
+                        columnNumber: 13
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                    lineNumber: 487,
+                    columnNumber: 11
+                }, this),
+                analyticsData && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "grid grid-cols-1 md:grid-cols-3 gap-4 mb-8",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
+                            className: "bg-white border-amber-200",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardHeader"], {
+                                    className: "pb-2",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardTitle"], {
+                                        className: "text-[20px] font-medium text-gray-600",
+                                        children: "Foyda"
+                                    }, void 0, false, {
+                                        fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                        lineNumber: 496,
+                                        columnNumber: 44
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                    lineNumber: 496,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardContent"], {
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "text-3xl font-bold text-amber-900",
+                                        children: [
+                                            formatMoney(analyticsData.revenue),
+                                            " So'm"
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                        lineNumber: 497,
+                                        columnNumber: 28
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                    lineNumber: 497,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                            lineNumber: 495,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
+                            className: "bg-white border-amber-200",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardHeader"], {
+                                    className: "pb-2",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardTitle"], {
+                                        className: "text-[20px] font-medium text-gray-600",
+                                        children: "Buyurtmalar"
+                                    }, void 0, false, {
+                                        fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                        lineNumber: 500,
+                                        columnNumber: 44
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                    lineNumber: 500,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardContent"], {
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "text-3xl font-bold text-amber-900",
+                                        children: [
+                                            analyticsData.orders,
+                                            " ta"
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                        lineNumber: 501,
+                                        columnNumber: 28
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                    lineNumber: 501,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                            lineNumber: 499,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
+                            className: "bg-white border-amber-200",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardHeader"], {
+                                    className: "pb-2",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardTitle"], {
+                                        className: "text-[20px] font-medium text-gray-600",
+                                        children: "Soni"
+                                    }, void 0, false, {
+                                        fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                        lineNumber: 504,
+                                        columnNumber: 44
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                    lineNumber: 504,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardContent"], {
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "text-3xl font-bold text-amber-900",
+                                        children: [
+                                            analyticsData.units,
+                                            " ta"
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                        lineNumber: 505,
+                                        columnNumber: 28
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                    lineNumber: 505,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                            lineNumber: 503,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                    lineNumber: 494,
+                    columnNumber: 11
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
+                    className: "bg-white",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardContent"], {
+                        className: "pt-6",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$recharts$2f$es6$2f$component$2f$ResponsiveContainer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ResponsiveContainer"], {
+                            width: "100%",
+                            height: 300,
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$recharts$2f$es6$2f$chart$2f$BarChart$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["BarChart"], {
+                                data: chartData,
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$CartesianGrid$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CartesianGrid"], {
+                                        strokeDasharray: "3 3"
+                                    }, void 0, false, {
+                                        fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                        lineNumber: 515,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$XAxis$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["XAxis"], {
+                                        dataKey: "date"
+                                    }, void 0, false, {
+                                        fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                        lineNumber: 516,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$YAxis$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["YAxis"], {}, void 0, false, {
+                                        fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                        lineNumber: 517,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$recharts$2f$es6$2f$component$2f$Tooltip$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Tooltip"], {}, void 0, false, {
+                                        fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                        lineNumber: 518,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$recharts$2f$es6$2f$component$2f$Legend$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Legend"], {}, void 0, false, {
+                                        fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                        lineNumber: 519,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$Bar$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Bar"], {
+                                        dataKey: "revenue",
+                                        fill: "#b45309",
+                                        name: "Foyda (So'm)"
+                                    }, void 0, false, {
+                                        fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                        lineNumber: 520,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Mebel_Modern$2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$Bar$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Bar"], {
+                                        dataKey: "orders",
+                                        fill: "#a16207",
+                                        name: "Buyurtmalar"
+                                    }, void 0, false, {
+                                        fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                        lineNumber: 521,
+                                        columnNumber: 17
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                                lineNumber: 514,
+                                columnNumber: 15
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                            lineNumber: 513,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                        lineNumber: 512,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+                    lineNumber: 511,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+            lineNumber: 446,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/Mebel_Modern/app/analytics/page.tsx",
+        lineNumber: 445,
+        columnNumber: 5
+    }, this);
+}
+}),
+];
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__50923336._.js.map

@@ -10,6 +10,7 @@
 // import LoginModal from '@/components/login-modal';
 // import { Download } from 'lucide-react';
 // import { Button } from '@/components/ui/button';
+// import { useRouter } from 'next/navigation';
 
 // export default function AnalyticsPage() {
 //   const [orders, setOrders] = useState<Order[]>([]);
@@ -21,8 +22,9 @@
 //   const [chartData, setChartData] = useState<any[]>([]);
 //   const [isLoggedIn, setIsLoggedIn] = useState(false);
 //   const [loading, setLoading] = useState(true);
+//   const router = useRouter();
 
-
+//   // --- LOAD ORDERS ---
 //   useEffect(() => {
 //     const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
 //     setIsLoggedIn(loggedIn);
@@ -38,9 +40,12 @@
 //         return {
 //           id: doc.id,
 //           ...data,
-//           createdAt: data.createdAt?.toDate?.() || new Date(data.createdAt),
-//           dueDate: data.dueDate?.toDate?.() || new Date(data.dueDate),
-//           payments: data.payments?.map((p: any) => ({ ...p, date: p.date?.toDate?.() || new Date(p.date) })) || []
+//           createdAt: data.createdAt?.toDate?.() || (data.createdAt ? new Date(data.createdAt) : new Date()),
+//           dueDate: data.dueDate?.toDate?.() || (data.dueDate ? new Date(data.dueDate) : new Date()),
+//           payments: data.payments?.map((p: any) => ({
+//             ...p,
+//             date: p.date?.toDate?.() || (p.date ? new Date(p.date) : new Date())
+//           })) || []
 //         } as Order;
 //       });
 //       setOrders(ords);
@@ -50,10 +55,14 @@
 //     return () => unsubscribe();
 //   }, []);
 
+//   // --- UPDATE ANALYTICS BASED ON VIEW TYPE ---
 //   useEffect(() => {
+//     if (orders.length === 0) return;
+
 //     if (viewType === 'daily') {
 //       const data = getDailyAnalytics(orders, selectedDate);
 //       setAnalyticsData(data);
+
 //       const lastWeek = Array.from({ length: 7 }, (_, i) => {
 //         const d = new Date(selectedDate);
 //         d.setDate(d.getDate() - (6 - i));
@@ -63,28 +72,35 @@
 //     } else if (viewType === 'monthly') {
 //       const data = getMonthlyAnalytics(orders, selectedMonth, selectedYear);
 //       setAnalyticsData(data);
+
 //       const lastYear = Array.from({ length: 12 }, (_, i) => {
-//         const year = selectedYear - (selectedMonth + i <= 12 ? 0 : 1);
 //         const month = ((selectedMonth + i - 1) % 12) + 1;
+//         const year = selectedYear - (selectedMonth + i - 1 >= 12 ? 1 : 0);
 //         return getMonthlyAnalytics(orders, month, year);
 //       });
 //       setChartData(lastYear);
 //     } else {
 //       const data = getYearlyAnalytics(orders, selectedYear);
 //       setAnalyticsData(data);
-//       const lastDecade = Array.from({ length: 10 }, (_, i) => 
+
+//       const lastDecade = Array.from({ length: 10 }, (_, i) =>
 //         getYearlyAnalytics(orders, selectedYear - (9 - i))
 //       );
 //       setChartData(lastDecade);
 //     }
 //   }, [viewType, selectedDate, selectedMonth, selectedYear, orders]);
 
+//   // --- FORMATTER ---
+//   const formatMoney = (value: number) => Number(value).toLocaleString('ru-RU');
+
+//   // --- CSV DOWNLOADS ---
 //   const downloadCampaignAnalytics = () => {
-//     let csv = 'Дата,Кредит месяцев,Сумма,Статус,Доход\n';
+//     let csv = 'Sana,Kredit oylar,Summa,Holat,Foyda\n';
 //     orders.forEach(order => {
-//       csv += `${new Date(order.createdAt).toLocaleDateString('uz-UZ')},${order.creditMonths},${order.totalAmount},${order.paymentStatus},${order.totalAmount}\n`;
+//       const dateStr = order.createdAt instanceof Date ? order.createdAt.toLocaleDateString('uz-UZ') : '';
+//       csv += `${dateStr},${order.creditMonths},${formatMoney(order.totalAmount)},${order.paymentStatus},${formatMoney(order.totalAmount)}\n`;
 //     });
-    
+
 //     const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
 //     const url = window.URL.createObjectURL(blob);
 //     const a = document.createElement('a');
@@ -95,11 +111,12 @@
 
 //   const downloadMonthlyClientsAnalytics = () => {
 //     const monthlyClients = orders.filter(o => o.creditMonths === 1);
-//     let csv = 'Имя клиента,Телефон,Адрес,Сумма,Дата,Статус\n';
+//     let csv = 'Mijoz ismi,Telefon,Manzil,Summa,Sana,Holat\n';
 //     monthlyClients.forEach(order => {
-//       csv += `${order.clientName},${order.clientPhone},${order.clientAddress || 'N/A'},${order.totalAmount},${new Date(order.createdAt).toLocaleDateString('uz-UZ')},${order.paymentStatus}\n`;
+//       const dateStr = order.createdAt instanceof Date ? order.createdAt.toLocaleDateString('uz-UZ') : '';
+//       csv += `${order.clientName},${order.clientPhone},${order.clientAddress || 'N/A'},${formatMoney(order.totalAmount)},${dateStr},${order.paymentStatus}\n`;
 //     });
-    
+
 //     const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
 //     const url = window.URL.createObjectURL(blob);
 //     const a = document.createElement('a');
@@ -109,53 +126,42 @@
 //   };
 
 //   if (!isLoggedIn) {
-//     return <LoginModal onLoginSuccess={() => setIsLoggedIn(true)} />;
+//     return <LoginModal onLoginSuccess={() => setIsLoggedIn(true)} redirectPath="/analytics" />;
 //   }
+
+//   if (loading) return <p className="p-6">Yuklanmoqda…</p>;
 
 //   return (
 //     <main className="min-h-screen bg-gray-50 py-8">
 //       <div className="max-w-6xl mx-auto px-4">
+
+//         {/* HEADER */}
 //         <div className="flex justify-between items-center mb-8">
 //           <h1 className="text-3xl font-bold text-amber-900">Analitika</h1>
 //           <div className="flex gap-2">
-//             <Button
-//               onClick={downloadCampaignAnalytics}
-//               className="bg-blue-600 hover:bg-blue-700"
-//             >
-//               <Download className="mr-2" size={16} /> Kampaniyaga Kirgan Foyda Summasi (So'm)
+//             <Button onClick={downloadCampaignAnalytics} className="bg-blue-600 hover:bg-blue-700">
+//               <Download className="mr-2" size={16} /> Kampaniya Foydasi (So'm)
 //             </Button>
-//             <Button
-//               onClick={downloadMonthlyClientsAnalytics}
-//               className="bg-green-600 hover:bg-green-700"
-//             >
-//               <Download className="mr-2" size={16} /> Mijozlarning Oylik To'lov Summasi (So'm)
+//             <Button onClick={downloadMonthlyClientsAnalytics} className="bg-green-600 hover:bg-green-700">
+//               <Download className="mr-2" size={16} /> Oylik To'lovlar (So'm)
 //             </Button>
 //           </div>
 //         </div>
 
-//         {/* View Type Selection */}
+//         {/* VIEW TYPE */}
 //         <div className="flex gap-2 mb-6">
-//           <button
-//             onClick={() => setViewType('daily')}
-//             className={`px-4 py-2 rounded-lg font-medium ${viewType === 'daily' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}
-//           >
+//           <button onClick={() => setViewType('daily')} className={`px-4 py-2 rounded-lg font-medium ${viewType === 'daily' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}>
 //             Kunlik
 //           </button>
-//           <button
-//             onClick={() => setViewType('monthly')}
-//             className={`px-4 py-2 rounded-lg font-medium ${viewType === 'monthly' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}
-//           >
+//           <button onClick={() => setViewType('monthly')} className={`px-4 py-2 rounded-lg font-medium ${viewType === 'monthly' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}>
 //             Oylik
 //           </button>
-//           <button
-//             onClick={() => setViewType('yearly')}
-//             className={`px-4 py-2 rounded-lg font-medium ${viewType === 'yearly' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}
-//           >
+//           <button onClick={() => setViewType('yearly')} className={`px-4 py-2 rounded-lg font-medium ${viewType === 'yearly' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}>
 //             Yillik
 //           </button>
 //         </div>
 
-//         {/* Date Selection */}
+//         {/* DATE PICKERS */}
 //         {viewType === 'daily' && (
 //           <div className="mb-6">
 //             <input
@@ -175,9 +181,12 @@
 //               className="px-4 py-2 border rounded-lg"
 //             >
 //               {Array.from({ length: 12 }, (_, i) => (
-//                 <option key={i} value={i + 1}>{new Date(2024, i).toLocaleDateString('ru-RU', { month: 'long' })}</option>
+//                 <option key={i} value={i + 1}>
+//                   {new Date(2024, i).toLocaleDateString('uz-UZ', { month: 'long' })}
+//                 </option>
 //               ))}
 //             </select>
+
 //             <input
 //               type="number"
 //               value={selectedYear}
@@ -198,15 +207,18 @@
 //           </div>
 //         )}
 
-//         {/* Stats Cards */}
+//         {/* STATS CARDS */}
 //         {analyticsData && (
 //           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+
 //             <Card className="bg-white border-amber-200">
 //               <CardHeader className="pb-2">
 //                 <CardTitle className="text-[20px] font-medium text-gray-600">Foyda</CardTitle>
 //               </CardHeader>
 //               <CardContent>
-//                 <div className="text-3xl font-bold text-amber-900">{analyticsData.revenue.toLocaleString()} So'm</div>
+//                 <div className="text-3xl font-bold text-amber-900">
+//                   {formatMoney(analyticsData.revenue)} So'm
+//                 </div>
 //               </CardContent>
 //             </Card>
 
@@ -215,7 +227,9 @@
 //                 <CardTitle className="text-[20px] font-medium text-gray-600">Buyurmalar</CardTitle>
 //               </CardHeader>
 //               <CardContent>
-//                 <div className="text-3xl font-bold text-amber-900">{analyticsData.orders} ta</div>
+//                 <div className="text-3xl font-bold text-amber-900">
+//                   {analyticsData.orders} ta
+//                 </div>
 //               </CardContent>
 //             </Card>
 
@@ -224,13 +238,16 @@
 //                 <CardTitle className="text-[20px] font-medium text-gray-600">Soni</CardTitle>
 //               </CardHeader>
 //               <CardContent>
-//                 <div className="text-3xl font-bold text-amber-900">{analyticsData.units} ta</div>
+//                 <div className="text-3xl font-bold text-amber-900">
+//                   {analyticsData.units} ta
+//                 </div>
 //               </CardContent>
 //             </Card>
+
 //           </div>
 //         )}
 
-//         {/* Chart */}
+//         {/* CHART */}
 //         <Card className="bg-white">
 //           <CardContent className="pt-6">
 //             <ResponsiveContainer width="100%" height={300}>
@@ -246,19 +263,11 @@
 //             </ResponsiveContainer>
 //           </CardContent>
 //         </Card>
+
 //       </div>
 //     </main>
 //   );
 // }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -300,6 +309,7 @@ export default function AnalyticsPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  // --- LOAD ORDERS ---
   useEffect(() => {
     const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
     setIsLoggedIn(loggedIn);
@@ -315,9 +325,12 @@ export default function AnalyticsPage() {
         return {
           id: doc.id,
           ...data,
-          createdAt: data.createdAt?.toDate?.() || new Date(data.createdAt),
-          dueDate: data.dueDate?.toDate?.() || new Date(data.dueDate),
-          payments: data.payments?.map((p: any) => ({ ...p, date: p.date?.toDate?.() || new Date(p.date) })) || []
+          createdAt: data.createdAt?.toDate?.() || (data.createdAt ? new Date(data.createdAt) : new Date()),
+          dueDate: data.dueDate?.toDate?.() || (data.dueDate ? new Date(data.dueDate) : new Date()),
+          payments: data.payments?.map((p: any) => ({
+            ...p,
+            date: p.date?.toDate?.() || (p.date ? new Date(p.date) : new Date())
+          })) || []
         } as Order;
       });
       setOrders(ords);
@@ -327,10 +340,14 @@ export default function AnalyticsPage() {
     return () => unsubscribe();
   }, []);
 
+  // --- UPDATE ANALYTICS BASED ON VIEW TYPE ---
   useEffect(() => {
+    if (orders.length === 0) return;
+
     if (viewType === 'daily') {
       const data = getDailyAnalytics(orders, selectedDate);
       setAnalyticsData(data);
+
       const lastWeek = Array.from({ length: 7 }, (_, i) => {
         const d = new Date(selectedDate);
         d.setDate(d.getDate() - (6 - i));
@@ -340,15 +357,20 @@ export default function AnalyticsPage() {
     } else if (viewType === 'monthly') {
       const data = getMonthlyAnalytics(orders, selectedMonth, selectedYear);
       setAnalyticsData(data);
+
       const lastYear = Array.from({ length: 12 }, (_, i) => {
-        const year = selectedYear - (selectedMonth + i <= 12 ? 0 : 1);
         const month = ((selectedMonth + i - 1) % 12) + 1;
+        const year = selectedYear - (selectedMonth + i - 1 >= 12 ? 1 : 0);
         return getMonthlyAnalytics(orders, month, year);
-      });
+      }).map((d, i) => ({
+        ...d,
+        date: new Date(selectedYear, i, 1).toLocaleDateString('uz-UZ', { month: 'long' }),
+      }));
       setChartData(lastYear);
     } else {
       const data = getYearlyAnalytics(orders, selectedYear);
       setAnalyticsData(data);
+
       const lastDecade = Array.from({ length: 10 }, (_, i) =>
         getYearlyAnalytics(orders, selectedYear - (9 - i))
       );
@@ -359,38 +381,35 @@ export default function AnalyticsPage() {
   // --- FORMATTER ---
   const formatMoney = (value: number) => Number(value).toLocaleString('ru-RU');
 
-  const downloadCampaignAnalytics = () => {
-    let csv = 'Дата,Кредит месяцев,Сумма,Статус,Доход\n';
-    orders.forEach(order => {
-      csv += `${new Date(order.createdAt).toLocaleDateString('uz-UZ')},${order.creditMonths},${formatMoney(order.totalAmount)},${order.paymentStatus},${formatMoney(order.totalAmount)}\n`;
+  // --- CSV DOWNLOAD ---
+  const downloadCSV = () => {
+    let csv = '';
+    orders.forEach((order, index) => {
+      const dateStr = order.createdAt instanceof Date ? order.createdAt.toLocaleDateString('uz-UZ') : '';
+      const partial = order.paymentStatus === 'partial';
+      if (!partial) {
+        csv += `${index + 1},${order.clientName},${order.clientPhone},${order.productName || 'N/A'},${order.productQuantity || 1},${formatMoney(order.totalAmount)},${order.paymentStatus}\n`;
+      } else {
+        const nextPayment = order.dueDate instanceof Date ? order.dueDate.toLocaleDateString('uz-UZ') : '';
+        const paidDates = order.payments.map(p => p.date instanceof Date ? p.date.toLocaleDateString('uz-UZ') : '').join('; ');
+        csv += `${index + 1},${order.clientName},${order.clientPhone},${order.productName || 'N/A'},${order.productQuantity || 1},${formatMoney(order.totalAmount)},${nextPayment},${paidDates},${order.paymentStatus}\n`;
+      }
     });
 
+    // Add BOM for Excel
     const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `Campaign-Analytics-${new Date().toISOString().split('T')[0]}.csv`;
-    a.click();
-  };
-
-  const downloadMonthlyClientsAnalytics = () => {
-    const monthlyClients = orders.filter(o => o.creditMonths === 1);
-    let csv = 'Имя клиента,Телефон,Адрес,Сумма,Дата,Статус\n';
-    monthlyClients.forEach(order => {
-      csv += `${order.clientName},${order.clientPhone},${order.clientAddress || 'N/A'},${formatMoney(order.totalAmount)},${new Date(order.createdAt).toLocaleDateString('uz-UZ')},${order.paymentStatus}\n`;
-    });
-
-    const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `Monthly-Clients-Analytics-${new Date().toISOString().split('T')[0]}.csv`;
+    a.download = `Analytics-${new Date().toISOString().split('T')[0]}.csv`;
     a.click();
   };
 
   if (!isLoggedIn) {
-    return <LoginModal onLoginSuccess={() => setIsLoggedIn(true)} />;
+    return <LoginModal onLoginSuccess={() => setIsLoggedIn(true)} redirectPath="/analytics" />;
   }
+
+  if (loading) return <p className="p-6">Yuklanmoqda…</p>;
 
   return (
     <main className="min-h-screen bg-gray-50 py-8">
@@ -399,14 +418,9 @@ export default function AnalyticsPage() {
         {/* HEADER */}
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-amber-900">Analitika</h1>
-          <div className="flex gap-2">
-            <Button onClick={downloadCampaignAnalytics} className="bg-blue-600 hover:bg-blue-700">
-              <Download className="mr-2" size={16} /> Kampaniya Foydasi (So'm)
-            </Button>
-            <Button onClick={downloadMonthlyClientsAnalytics} className="bg-green-600 hover:bg-green-700">
-              <Download className="mr-2" size={16} /> Oylik To'lovlar (So'm)
-            </Button>
-          </div>
+          {/* <Button onClick={downloadCSV} className="bg-blue-600 hover:bg-blue-700 flex items-center gap-2">
+            <Download size={16} /> CSV Yuklab Olish
+          </Button> */}
         </div>
 
         {/* VIEW TYPE */}
@@ -425,7 +439,12 @@ export default function AnalyticsPage() {
         {/* DATE PICKERS */}
         {viewType === 'daily' && (
           <div className="mb-6">
-            <input type="date" value={selectedDate.toISOString().split('T')[0]} onChange={(e) => setSelectedDate(new Date(e.target.value))} className="px-4 py-2 border rounded-lg" />
+            <input
+              type="date"
+              value={selectedDate.toISOString().split('T')[0]}
+              onChange={(e) => setSelectedDate(new Date(e.target.value))}
+              className="px-4 py-2 border rounded-lg"
+            />
           </div>
         )}
 
@@ -438,7 +457,7 @@ export default function AnalyticsPage() {
             >
               {Array.from({ length: 12 }, (_, i) => (
                 <option key={i} value={i + 1}>
-                  {new Date(2024, i).toLocaleDateString('ru-RU', { month: 'long' })}
+                  {new Date(2024, i).toLocaleDateString('uz-UZ', { month: 'long' })}
                 </option>
               ))}
             </select>
@@ -466,8 +485,6 @@ export default function AnalyticsPage() {
         {/* STATS CARDS */}
         {analyticsData && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            
-            {/* REVENUE */}
             <Card className="bg-white border-amber-200">
               <CardHeader className="pb-2">
                 <CardTitle className="text-[20px] font-medium text-gray-600">Foyda</CardTitle>
@@ -479,7 +496,6 @@ export default function AnalyticsPage() {
               </CardContent>
             </Card>
 
-            {/* ORDERS */}
             <Card className="bg-white border-amber-200">
               <CardHeader className="pb-2">
                 <CardTitle className="text-[20px] font-medium text-gray-600">Buyurmalar</CardTitle>
@@ -491,7 +507,6 @@ export default function AnalyticsPage() {
               </CardContent>
             </Card>
 
-            {/* UNITS */}
             <Card className="bg-white border-amber-200">
               <CardHeader className="pb-2">
                 <CardTitle className="text-[20px] font-medium text-gray-600">Soni</CardTitle>
@@ -502,7 +517,6 @@ export default function AnalyticsPage() {
                 </div>
               </CardContent>
             </Card>
-
           </div>
         )}
 

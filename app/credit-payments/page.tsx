@@ -620,9 +620,9 @@ export default function CreditPaymentsPage() {
           <section className="mb-14">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-2xl font-bold text-green-700">To'liq To'langanlar</h2>
-              <Button onClick={() => downloadCSV(fullyPaid, 'Fully-Paid')} className="bg-green-700 text-white">
+              {/* <Button onClick={() => downloadCSV(fullyPaid, 'Fully-Paid')} className="bg-green-700 text-white">
                 <Download size={16} className="mr-2" />CSV Yuklab Olish
-              </Button>
+              </Button> */}
             </div>
 
             {fullyPaid.length === 0 ? (
@@ -661,9 +661,9 @@ export default function CreditPaymentsPage() {
           <section>
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-2xl font-bold text-amber-900">Bo‘lib To‘lash Mijozlar</h2>
-              <Button onClick={() => downloadCSV(partiallyPaid, 'Partially-Paid')} className="bg-amber-700 text-white">
+              {/* <Button onClick={() => downloadCSV(partiallyPaid, 'Partially-Paid')} className="bg-amber-700 text-white">
                 <Download size={16} className="mr-2" />CSV Yuklab Olish
-              </Button>
+              </Button> */}
             </div>
 
             {partiallyPaid.length === 0 ? (
