@@ -1303,7 +1303,7 @@ function ProductPage() {
         columnNumber: 5
     }, this);
 }
-_s(ProductPage, "fxP81Cecu2qdpNiXkGxHoSkh8XI=", false, function() {
+_s(ProductPage, "qCjVJ1b+HI2TRzwa7YDTERuH/ig=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useParams"]
     ];
