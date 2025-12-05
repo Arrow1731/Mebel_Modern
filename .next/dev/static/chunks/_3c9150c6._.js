@@ -35,12 +35,68 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 "[project]/lib/types.ts [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
+// export interface Product {
+//   id: string;
+//   name: string;
+//   category: string;
+//   price: number;
+//   quantity: number;
+//   description: string;
+//   images: string[];
+//   createdAt: Date;
+// }
+// export interface Order {
+//   id: string;
+//   clientName: string;
+//   clientPhone: string;
+//   clientAddress: string;
+//   clientEmail: string;
+//   products: OrderItem[];
+//   totalAmount: number;
+//   agreedAmount: number;
+//   creditMonths: number;
+//   monthlyPayment: number;
+//   paymentStatus: 'fully-paid' | 'partial' | 'pending';
+//   paidAmount: number;
+//   dueDate: Date;
+//   createdAt: Date;
+//   payments: Payment[];
+// }
+// export interface OrderItem {
+//   productId: string;
+//   productName: string;
+//   quantity: number;
+//   price: number;
+// }
+// export interface Payment {
+//   amount: number;
+//   date: Date;
+//   month: number;
+// }
+// export interface Analytics {
+//   date: string;
+//   revenue: number;
+//   orders: number;
+//   units: number;
+// }
+// export const FURNITURE_CATEGORIES = [
+//   // 'Барчаси',
+//   'Spalniy Komplekt',
+//   'Shikaflar',
+//   'Trimolar',
+//   'Sandiklar',
+//   'Stol - Stullar',
+//   'Tapchanlar',
+//   'Servant va Panellar',
+//   'Prixojkalar',
+//   'Oshxona Mebellari',
+//   'Bolalar Mebellari'
+// ];
 __turbopack_context__.s([
     "FURNITURE_CATEGORIES",
     ()=>FURNITURE_CATEGORIES
 ]);
 const FURNITURE_CATEGORIES = [
-    // 'Барчаси',
     'Spalniy Komplekt',
     'Shikaflar',
     'Trimolar',

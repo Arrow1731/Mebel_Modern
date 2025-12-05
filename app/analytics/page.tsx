@@ -10,7 +10,6 @@
 // import LoginModal from '@/components/login-modal';
 // import { Download } from 'lucide-react';
 // import { Button } from '@/components/ui/button';
-// import { useRouter } from 'next/navigation';
 
 // export default function AnalyticsPage() {
 //   const [orders, setOrders] = useState<Order[]>([]);
@@ -22,7 +21,6 @@
 //   const [chartData, setChartData] = useState<any[]>([]);
 //   const [isLoggedIn, setIsLoggedIn] = useState(false);
 //   const [loading, setLoading] = useState(true);
-//   const router = useRouter();
 
 //   // --- LOAD ORDERS ---
 //   useEffect(() => {
@@ -77,7 +75,10 @@
 //         const month = ((selectedMonth + i - 1) % 12) + 1;
 //         const year = selectedYear - (selectedMonth + i - 1 >= 12 ? 1 : 0);
 //         return getMonthlyAnalytics(orders, month, year);
-//       });
+//       }).map((d, i) => ({
+//         ...d,
+//         date: new Date(selectedYear, i, 1).toLocaleDateString('uz-UZ', { month: 'long' }),
+//       }));
 //       setChartData(lastYear);
 //     } else {
 //       const data = getYearlyAnalytics(orders, selectedYear);
@@ -93,35 +94,27 @@
 //   // --- FORMATTER ---
 //   const formatMoney = (value: number) => Number(value).toLocaleString('ru-RU');
 
-//   // --- CSV DOWNLOADS ---
-//   const downloadCampaignAnalytics = () => {
-//     let csv = 'Sana,Kredit oylar,Summa,Holat,Foyda\n';
-//     orders.forEach(order => {
+//   // --- CSV DOWNLOAD ---
+//   const downloadCSV = () => {
+//     let csv = '';
+//     orders.forEach((order, index) => {
 //       const dateStr = order.createdAt instanceof Date ? order.createdAt.toLocaleDateString('uz-UZ') : '';
-//       csv += `${dateStr},${order.creditMonths},${formatMoney(order.totalAmount)},${order.paymentStatus},${formatMoney(order.totalAmount)}\n`;
+//       const partial = order.paymentStatus === 'partial';
+//       if (!partial) {
+//         csv += `${index + 1},${order.clientName},${order.clientPhone},${order.productName || 'N/A'},${order.productQuantity || 1},${formatMoney(order.totalAmount)},${order.paymentStatus}\n`;
+//       } else {
+//         const nextPayment = order.dueDate instanceof Date ? order.dueDate.toLocaleDateString('uz-UZ') : '';
+//         const paidDates = order.payments.map(p => p.date instanceof Date ? p.date.toLocaleDateString('uz-UZ') : '').join('; ');
+//         csv += `${index + 1},${order.clientName},${order.clientPhone},${order.productName || 'N/A'},${order.productQuantity || 1},${formatMoney(order.totalAmount)},${nextPayment},${paidDates},${order.paymentStatus}\n`;
+//       }
 //     });
 
+//     // Add BOM for Excel
 //     const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
 //     const url = window.URL.createObjectURL(blob);
 //     const a = document.createElement('a');
 //     a.href = url;
-//     a.download = `Campaign-Analytics-${new Date().toISOString().split('T')[0]}.csv`;
-//     a.click();
-//   };
-
-//   const downloadMonthlyClientsAnalytics = () => {
-//     const monthlyClients = orders.filter(o => o.creditMonths === 1);
-//     let csv = 'Mijoz ismi,Telefon,Manzil,Summa,Sana,Holat\n';
-//     monthlyClients.forEach(order => {
-//       const dateStr = order.createdAt instanceof Date ? order.createdAt.toLocaleDateString('uz-UZ') : '';
-//       csv += `${order.clientName},${order.clientPhone},${order.clientAddress || 'N/A'},${formatMoney(order.totalAmount)},${dateStr},${order.paymentStatus}\n`;
-//     });
-
-//     const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
-//     const url = window.URL.createObjectURL(blob);
-//     const a = document.createElement('a');
-//     a.href = url;
-//     a.download = `Monthly-Clients-Analytics-${new Date().toISOString().split('T')[0]}.csv`;
+//     a.download = `Analytics-${new Date().toISOString().split('T')[0]}.csv`;
 //     a.click();
 //   };
 
@@ -138,14 +131,9 @@
 //         {/* HEADER */}
 //         <div className="flex justify-between items-center mb-8">
 //           <h1 className="text-3xl font-bold text-amber-900">Analitika</h1>
-//           <div className="flex gap-2">
-//             <Button onClick={downloadCampaignAnalytics} className="bg-blue-600 hover:bg-blue-700">
-//               <Download className="mr-2" size={16} /> Kampaniya Foydasi (So'm)
-//             </Button>
-//             <Button onClick={downloadMonthlyClientsAnalytics} className="bg-green-600 hover:bg-green-700">
-//               <Download className="mr-2" size={16} /> Oylik To'lovlar (So'm)
-//             </Button>
-//           </div>
+//           {/* <Button onClick={downloadCSV} className="bg-blue-600 hover:bg-blue-700 flex items-center gap-2">
+//             <Download size={16} /> CSV Yuklab Olish
+//           </Button> */}
 //         </div>
 
 //         {/* VIEW TYPE */}
@@ -210,7 +198,6 @@
 //         {/* STATS CARDS */}
 //         {analyticsData && (
 //           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-
 //             <Card className="bg-white border-amber-200">
 //               <CardHeader className="pb-2">
 //                 <CardTitle className="text-[20px] font-medium text-gray-600">Foyda</CardTitle>
@@ -243,7 +230,6 @@
 //                 </div>
 //               </CardContent>
 //             </Card>
-
 //           </div>
 //         )}
 
@@ -285,6 +271,9 @@
 
 
 
+
+
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -306,10 +295,10 @@ export default function AnalyticsPage() {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [analyticsData, setAnalyticsData] = useState<any>(null);
   const [chartData, setChartData] = useState<any[]>([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // login state
   const [loading, setLoading] = useState(true);
 
-  // --- LOAD ORDERS ---
+  // --- CHECK LOGIN ---
   useEffect(() => {
     const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
     setIsLoggedIn(loggedIn);
@@ -319,6 +308,7 @@ export default function AnalyticsPage() {
       return;
     }
 
+    // --- LOAD ORDERS ---
     const unsubscribe = onSnapshot(collection(db, 'orders'), (snapshot) => {
       const ords = snapshot.docs.map(doc => {
         const data = doc.data();
@@ -396,7 +386,6 @@ export default function AnalyticsPage() {
       }
     });
 
-    // Add BOM for Excel
     const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -405,6 +394,7 @@ export default function AnalyticsPage() {
     a.click();
   };
 
+  // --- IF NOT LOGGED IN SHOW LOGIN MODAL ---
   if (!isLoggedIn) {
     return <LoginModal onLoginSuccess={() => setIsLoggedIn(true)} redirectPath="/analytics" />;
   }
@@ -418,9 +408,12 @@ export default function AnalyticsPage() {
         {/* HEADER */}
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-amber-900">Analitika</h1>
-          {/* <Button onClick={downloadCSV} className="bg-blue-600 hover:bg-blue-700 flex items-center gap-2">
-            <Download size={16} /> CSV Yuklab Olish
-          </Button> */}
+          <Button
+            onClick={() => { localStorage.removeItem('isLoggedIn'); setIsLoggedIn(false); }}
+            className="bg-red-600 hover:bg-red-700"
+          >
+            Chiqish
+          </Button>
         </div>
 
         {/* VIEW TYPE */}

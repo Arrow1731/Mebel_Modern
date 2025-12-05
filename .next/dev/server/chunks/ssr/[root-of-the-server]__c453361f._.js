@@ -33,7 +33,14 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //   const [customerPhone, setCustomerPhone] = useState('');
 //   const [customerAddress, setCustomerAddress] = useState('');
 //   const [manualProductSum, setManualProductSum] = useState<number | ''>('');
+//   const [initialPayment, setInitialPayment] = useState<number>(0);
 //   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+//   const [customerPhone2, setCustomerPhone2] = useState('');
+//   // Bu yerda mijoz buyurtma qilgan sanani default qilamiz
+//   const [nextPaymentDateInput, setNextPaymentDateInput] = useState<string>(() => {
+//     const today = new Date();
+//     return today.toISOString().split('T')[0]; // yyyy-mm-dd format
+//   });
 //   useEffect(() => {
 //     if (!productId) return;
 //     const getProduct = async () => {
@@ -47,19 +54,25 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //   }, [productId]);
 //   if (loading) return <div className="min-h-screen flex items-center justify-center">Yuklanmoqda...</div>;
 //   if (!product) return <div className="min-h-screen flex items-center justify-center">Mahsulot Topilmadi</div>;
+//   // Kalkulyatsiyalar
 //   const fixedSubtotal = product.price * quantity;
 //   const agreedSum = manualProductSum !== '' ? manualProductSum : fixedSubtotal;
-//   const creditFee = creditMonths > 1 ? (agreedSum * 0.05) : 0;
-//   const total = agreedSum + creditFee;
-//   const monthlyPayment = creditMonths > 1 ? total / creditMonths : total;
+//   const remainingAmount = Math.max(0, agreedSum - initialPayment);
+//   const creditFee = creditMonths > 1 ? remainingAmount * 0.05 : 0;
+//   const totalToFinance = remainingAmount + creditFee;
+//   const monthlyPayment = creditMonths > 1 ? totalToFinance / creditMonths : totalToFinance;
 //   const handleCheckout = async () => {
 //     if (!customerName || !customerPhone || !customerAddress) {
-//       alert("Iltimos Bosh Qolgan Kataklarni To'ldiring");
+//       alert("Iltimos barcha maydonlarni to'ldiring!");
+//       return;
+//     }
+//     if (initialPayment > agreedSum) {
+//       alert("Oldindan to'lov mahsulot narxidan katta bo'lishi mumkin emas!");
 //       return;
 //     }
 //     setOrderStatus('loading');
 //     try {
-//       const dueDate = new Date();
+//       const dueDate = new Date(nextPaymentDateInput);
 //       dueDate.setMonth(dueDate.getMonth() + creditMonths);
 //       await addDoc(collection(db, 'orders'), {
 //         clientName: customerName,
@@ -70,16 +83,17 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //           productId: product.id,
 //           productName: product.name,
 //           quantity: quantity,
-//           price: agreedSum / quantity  // Store agreed unit price
+//           price: agreedSum / quantity
 //         }],
-//         totalAmount: total,
-//         agreedAmount: agreedSum,  // Store the agreed sum separately
+//         totalAmount: totalToFinance + initialPayment,
+//         agreedAmount: agreedSum,
+//         initialPayment: initialPayment,
+//         remainingAmount: remainingAmount,
 //         creditMonths: creditMonths,
 //         monthlyPayment: monthlyPayment,
 //         paymentStatus: creditMonths > 1 ? 'pending' : 'fully-paid',
-//         paidAmount: 0,
+//         paidAmount: initialPayment,
 //         dueDate: dueDate,
-//         createdAt: new Date(),
 //         payments: []
 //       });
 //       setOrderStatus('success');
@@ -90,6 +104,7 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //         setCustomerPhone('');
 //         setCustomerAddress('');
 //         setManualProductSum('');
+//         setInitialPayment(0);
 //       }, 2000);
 //     } catch (error) {
 //       console.error('Error creating order:', error);
@@ -166,12 +181,13 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //         </div>
 //         {/* Checkout Modal */}
 //         {showCheckout && (
-//           <div className="fixed inset-0 bg-[#808080] flex justify-center z-50 p-[30px]">
-//             <Card className="w-full max-w-[1000px] max-h-[900px] overflow-y-auto">
+//           <div className="fixed inset-0 bg-[#808080]/80 flex justify-center z-80 p-[20px]">
+//             <Card className="w-full max-w-[1000px] max-h-[1500px] overflow-y-auto">
 //               <CardHeader>
 //                 <CardTitle className='text-center text-[45px]'>Buyurtmani Rasmiylashtirish</CardTitle>
 //               </CardHeader>
 //               <CardContent className="space-y-6">
+//                 {/* Customer Info */}
 //                 <div className="border-b pb-[10px]">
 //                   <h3 className="font-semibold text-gray-900 mb-3">Mijoz Haqida Ma'lumot</h3>
 //                   <div className="space-y-3">
@@ -185,15 +201,40 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //                         placeholder="FIO Mijoz"
 //                       />
 //                     </div>
-//                     <div>
-//                       <label className="block text-sm font-medium mb-1">Telefon Raqami</label>
-//                       <input
-//                         type="tel"
-//                         value={customerPhone}
-//                         onChange={(e) => setCustomerPhone(e.target.value)}
-//                         className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-//                         placeholder="+998 XX XXX XX XX"
-//                       />
+//                     <div className="space-y-3">
+//                       <div>
+//                         <label className="block text-sm font-medium mb-1">Telefon Raqami (Majburiy)</label>
+//                         <input
+//                           type="tel"
+//                           value={customerPhone}
+//                           onChange={(e) => {
+//                             let val = e.target.value;
+//                             if (!val.startsWith('+998')) {
+//                               val = '+998' + val.replace(/\D/g, '');
+//                             }
+//                             setCustomerPhone(val);
+//                           }}
+//                           className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+//                           placeholder="+998 XX XXX XX XX"
+//                           required
+//                         />
+//                       </div>
+//                       <div>
+//                         <label className="block text-sm font-medium mb-1">Qo'shimcha Telefon Raqami (Ixtiyoriy)</label>
+//                         <input
+//                           type="tel"
+//                           value={customerPhone2}
+//                           onChange={(e) => {
+//                             let val = e.target.value;
+//                             if (!val.startsWith('+998') && val !== '') {
+//                               val = '+998' + val.replace(/\D/g, '');
+//                             }
+//                             setCustomerPhone2(val);
+//                           }}
+//                           className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+//                           placeholder="+998 XX XXX XX XX"
+//                         />
+//                       </div>
 //                     </div>
 //                     <div>
 //                       <label className="block text-sm font-medium mb-1">Yashash Manzili</label>
@@ -207,27 +248,26 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //                     </div>
 //                   </div>
 //                 </div>
-//                 <div className="border-b pb-4">
-//                   <div className="flex justify-between mb-2">
-//                     <span className="text-gray-700">{product.name}</span>
-//                     <span className="font-semibold">{fixedSubtotal.toLocaleString()} So'm</span>
-//                   </div>
-//                   <div className="flex justify-between text-sm text-gray-600">
-//                     <span>Soni: {quantity}</span>
-//                     <span>{product.price.toLocaleString()} x {quantity}</span>
-//                   </div>
-//                 </div>
-//                 <div className="border-b pb-4">
-//                   <label className="block text-sm font-medium mb-2">Mijoz Bilan Kelishilgan Narx</label>
+//                 {/* Product + Payments */}
+//                 <div className="border-b pb-4 space-y-2">
+//                   <label className="block text-sm font-medium mb-1">Mijoz Bilan Kelishilgan Narx</label>
 //                   <input
 //                     type="number"
 //                     value={manualProductSum}
 //                     onChange={(e) => setManualProductSum(e.target.value ? parseFloat(e.target.value) : '')}
 //                     className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-//                     placeholder="Mahsulot Asil Narxida Sotilgan Bo'lsa Ochiq Qoldiring"
+//                     placeholder="Kelishilgan Narx"
 //                   />
-//                   {/* <p className="text-xs text-gray-500 mt-1">Bu Narx Mahsulotni Kelishilgan Narxi Xisoblanadi</p> */}
+//                   <label className="block text-sm font-medium mb-1">Oldindan To'lov (Deposit)</label>
+//                   <input
+//                     type="number"
+//                     value={initialPayment}
+//                     onChange={(e) => setInitialPayment(Math.min(Number(e.target.value), agreedSum))}
+//                     className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+//                     placeholder="Masalan: 3 000 000"
+//                   />
 //                 </div>
+//                 {/* Credit */}
 //                 <div className="space-y-2">
 //                   <label className="block text-sm font-medium text-gray-700">Kredit Muddati (Oy):</label>
 //                   <select
@@ -243,12 +283,45 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //                   {creditMonths > 1 && (
 //                     <p className="text-sm text-amber-700">+5% Komissiya = {creditFee.toLocaleString()} So'm</p>
 //                   )}
+//                   {creditMonths > 1 && (
+//                     <div className="pt-2">
+//                       <label className="block text-sm font-medium text-gray-700 mb-1">Birinchi To'lov Sanasi:</label>
+//                       <input
+//                         type="date"
+//                         value={nextPaymentDateInput}
+//                         onChange={(e) => setNextPaymentDateInput(e.target.value)}
+//                         className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+//                       />
+//                     </div>
+//                   )}
+//                   {/* Payment Schedule */}
+//                   {creditMonths > 1 && (
+//                     <div className="border-t pt-4">
+//                       <h4 className="font-semibold text-gray-700 mb-2">To'lov Jadvali:</h4>
+//                       <ul className="list-disc list-inside space-y-1">
+//                         {Array.from({ length: creditMonths }, (_, i) => {
+//                           const startDate = nextPaymentDateInput ? new Date(nextPaymentDateInput) : new Date();
+//                           const monthDate = new Date(startDate);
+//                           monthDate.setMonth(startDate.getMonth() + i);
+//                           const monthName = monthDate.toLocaleString('default', { month: 'short' });
+//                           const formattedDate = monthDate.toLocaleDateString();
+//                           return (
+//                             <li key={i} className="text-sm text-gray-600 flex justify-between">
+//                               <span>{monthName} ({i + 1} oy): {monthlyPayment.toLocaleString()} So'm</span>
+//                               <span className="text-gray-500">To'lov Sanasi: {formattedDate}</span>
+//                             </li>
+//                           );
+//                         })}
+//                       </ul>
+//                     </div>
+//                   )}
 //                 </div>
+//                 {/* Summary + Buttons */}
 //                 <div className="space-y-1 border-t pt-4">
-//                   {/* <div className="flex justify-between text-sm">
-//                     <span>Подитог:</span>
-//                     <span>{agreedSum.toLocaleString()} сум</span>
-//                   </div> */}
+//                   <div className="flex justify-between text-sm text-gray-600">
+//                     <span>Qolgan To'lov:</span>
+//                     <span>{remainingAmount.toLocaleString()} So'm</span>
+//                   </div>
 //                   {creditMonths > 1 && (
 //                     <div className="flex justify-between text-sm text-amber-700">
 //                       <span>Kredit Komissiyasi (5%):</span>
@@ -256,13 +329,25 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //                     </div>
 //                   )}
 //                   <div className="flex justify-between font-bold text-lg text-amber-900 pt-2">
-//                     <span>Jami:</span>
-//                     <span>{total.toLocaleString()} So'm</span>
+//                     <span>Jami To'lov:</span>
+//                     <span>{totalToFinance.toLocaleString()} So'm</span>
 //                   </div>
 //                   {creditMonths > 1 && (
 //                     <div className="flex justify-between text-sm text-gray-600 pt-2 border-t">
-//                       <span>Oylik To'lov Summasi:</span>
+//                       <span>Oylik To'lov:</span>
 //                       <span>{monthlyPayment.toLocaleString()} So'm</span>
+//                     </div>
+//                   )}
+//                   {creditMonths > 1 && (
+//                     <div className="flex justify-between text-sm text-gray-600 pt-1">
+//                       <span>Keyingi To'lov Sanasi:</span>
+//                       <span>{new Date(nextPaymentDateInput).toLocaleDateString()}</span>
+//                     </div>
+//                   )}
+//                   {initialPayment > 0 && (
+//                     <div className="flex justify-between text-sm text-gray-600 pt-1">
+//                       <span>Oldindan To'lov:</span>
+//                       <span>{initialPayment.toLocaleString()} So'm</span>
 //                     </div>
 //                   )}
 //                 </div>

@@ -298,6 +298,374 @@ function CardFooter({ className, ...props }) {
 "[project]/app/product/[id]/page.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
+// 'use client';
+// import { useState, useEffect } from 'react';
+// import { doc, getDoc, collection, addDoc } from 'firebase/firestore';
+// import { db } from '@/lib/firebase';
+// import { Product } from '@/lib/types';
+// import { Button } from '@/components/ui/button';
+// import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+// import Image from 'next/image';
+// import { ShoppingCart } from 'lucide-react';
+// import { useParams } from 'next/navigation';
+// export default function ProductPage() {
+//   const params = useParams();
+//   const productId = params.id as string;
+//   const [product, setProduct] = useState<Product | null>(null);
+//   const [loading, setLoading] = useState(true);
+//   const [quantity, setQuantity] = useState(1);
+//   const [showCheckout, setShowCheckout] = useState(false);
+//   const [creditMonths, setCreditMonths] = useState(1);
+//   const [customerName, setCustomerName] = useState('');
+//   const [customerPhone, setCustomerPhone] = useState('');
+//   const [customerAddress, setCustomerAddress] = useState('');
+//   const [manualProductSum, setManualProductSum] = useState<number | ''>('');
+//   const [initialPayment, setInitialPayment] = useState<number>(0);
+//   const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+//   const [customerPhone2, setCustomerPhone2] = useState('');
+//   // Bu yerda mijoz buyurtma qilgan sanani default qilamiz
+//   const [nextPaymentDateInput, setNextPaymentDateInput] = useState<string>(() => {
+//     const today = new Date();
+//     return today.toISOString().split('T')[0]; // yyyy-mm-dd format
+//   });
+//   useEffect(() => {
+//     if (!productId) return;
+//     const getProduct = async () => {
+//       const docSnap = await getDoc(doc(db, 'products', productId));
+//       if (docSnap.exists()) {
+//         setProduct({ id: docSnap.id, ...docSnap.data() } as Product);
+//       }
+//       setLoading(false);
+//     };
+//     getProduct();
+//   }, [productId]);
+//   if (loading) return <div className="min-h-screen flex items-center justify-center">Yuklanmoqda...</div>;
+//   if (!product) return <div className="min-h-screen flex items-center justify-center">Mahsulot Topilmadi</div>;
+//   // Kalkulyatsiyalar
+//   const fixedSubtotal = product.price * quantity;
+//   const agreedSum = manualProductSum !== '' ? manualProductSum : fixedSubtotal;
+//   const remainingAmount = Math.max(0, agreedSum - initialPayment);
+//   const creditFee = creditMonths > 1 ? remainingAmount * 0.05 : 0;
+//   const totalToFinance = remainingAmount + creditFee;
+//   const monthlyPayment = creditMonths > 1 ? totalToFinance / creditMonths : totalToFinance;
+//   const handleCheckout = async () => {
+//     if (!customerName || !customerPhone || !customerAddress) {
+//       alert("Iltimos barcha maydonlarni to'ldiring!");
+//       return;
+//     }
+//     if (initialPayment > agreedSum) {
+//       alert("Oldindan to'lov mahsulot narxidan katta bo'lishi mumkin emas!");
+//       return;
+//     }
+//     setOrderStatus('loading');
+//     try {
+//       const dueDate = new Date(nextPaymentDateInput);
+//       dueDate.setMonth(dueDate.getMonth() + creditMonths);
+//       await addDoc(collection(db, 'orders'), {
+//         clientName: customerName,
+//         clientPhone: customerPhone,
+//         clientAddress: customerAddress,
+//         clientEmail: '',
+//         products: [{
+//           productId: product.id,
+//           productName: product.name,
+//           quantity: quantity,
+//           price: agreedSum / quantity
+//         }],
+//         totalAmount: totalToFinance + initialPayment,
+//         agreedAmount: agreedSum,
+//         initialPayment: initialPayment,
+//         remainingAmount: remainingAmount,
+//         creditMonths: creditMonths,
+//         monthlyPayment: monthlyPayment,
+//         paymentStatus: creditMonths > 1 ? 'pending' : 'fully-paid',
+//         paidAmount: initialPayment,
+//         dueDate: dueDate,
+//         payments: []
+//       });
+//       setOrderStatus('success');
+//       setTimeout(() => {
+//         setShowCheckout(false);
+//         setOrderStatus('idle');
+//         setCustomerName('');
+//         setCustomerPhone('');
+//         setCustomerAddress('');
+//         setManualProductSum('');
+//         setInitialPayment(0);
+//       }, 2000);
+//     } catch (error) {
+//       console.error('Error creating order:', error);
+//       setOrderStatus('error');
+//     }
+//   };
+//   return (
+//     <main className="min-h-screen bg-gray-50 py-8">
+//       <div className="max-w-[1600px] mx-auto px-4">
+//         <h2 className='text-amber-900 font-bold text-[35px]'>Mahsulot Haqida Ma'lumot</h2> <br />
+//         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+//           {/* Images */}
+//           <div className="space-y-4">
+//             <div className="relative w-full h-96 bg-gray-200 rounded-lg overflow-hidden">
+//               {product.images && product.images.length > 0 ? (
+//                 <Image
+//                   src={product.images[0] || "/placeholder.svg"}
+//                   alt={product.name}
+//                   fill
+//                   className="object-cover"
+//                 />
+//               ) : (
+//                 <div className="flex items-center justify-center h-full text-gray-400">Mahsulot Surati Mavjud Emas!</div>
+//               )}
+//             </div>
+//           </div>
+//           {/* Product Info */}
+//           <div className="space-y-[45px]">
+//             <div>
+//               <h1 className="text-3xl text-amber-900 mb-2">Mahsulot Nomi: <b>{product.name}</b></h1>
+//               <p className="text-gray-600 text-lg mb-4">Mahsulot Kategoriyasi: <b>{product.category}</b></p>
+//               <p className="text-gray-700 text-base leading-relaxed mb-4">Mahsulot Haqida Ma'lumot: <b>{product.description}</b></p>
+//               <div className="flex items-baseline gap-2 mb-4">
+//                 <span className="text-4xl text-amber-700">
+//                   Mahsulot Narxi: <b>{Number(product.price).toLocaleString('ru-RU')} So'm</b>
+//                 </span>
+//                 <span className={`text-sm px-3 py-1 rounded-full text-center ${product.quantity > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+//                   <b>{product.quantity > 0 ? 'Sotuvda Mavjud' : 'Sotuvda Mavjud Emas'}</b>
+//                 </span>
+//               </div>
+//             </div>
+//             {/* Quantity Selector */}
+//             <div className="space-y-2">
+//               <label className="block text-[30px] font-medium text-gray-700">Soni:</label>
+//               <div className="flex items-center gap-2">
+//                 <button
+//                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
+//                   className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg"
+//                 >
+//                   −
+//                 </button>
+//                 <input
+//                   type="number"
+//                   value={quantity}
+//                   onChange={(e) => setQuantity(Math.min(product.quantity, Math.max(1, parseInt(e.target.value) || quantity)))}
+//                   className="max-w-[35px] w-full text-center border border-gray-300 rounded-sm "
+//                 />
+//                 <button
+//                   onClick={() => setQuantity(Math.min(product.quantity, quantity + 1))}
+//                   className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg"
+//                 >
+//                   +
+//                 </button>
+//               </div>
+//             </div>
+//             <Button
+//               onClick={() => setShowCheckout(true)}
+//               disabled={product.quantity === 0}
+//               className="w-full bg-amber-600 hover:bg-amber-700 disabled:opacity-50 text-white py-3 text-lg"
+//             >
+//               <ShoppingCart className="mr-2" /> Sotish
+//             </Button>
+//           </div>
+//         </div>
+//         {/* Checkout Modal */}
+//         {showCheckout && (
+//           <div className="fixed inset-0 bg-[#808080]/80 flex justify-center z-80 p-[20px]">
+//             <Card className="w-full max-w-[1000px] max-h-[1500px] overflow-y-auto">
+//               <CardHeader>
+//                 <CardTitle className='text-center text-[45px]'>Buyurtmani Rasmiylashtirish</CardTitle>
+//               </CardHeader>
+//               <CardContent className="space-y-6">
+//                 {/* Customer Info */}
+//                 <div className="border-b pb-[10px]">
+//                   <h3 className="font-semibold text-gray-900 mb-3">Mijoz Haqida Ma'lumot</h3>
+//                   <div className="space-y-3">
+//                     <div>
+//                       <label className="block text-sm font-medium mb-1">Ismi</label>
+//                       <input
+//                         type="text"
+//                         value={customerName}
+//                         onChange={(e) => setCustomerName(e.target.value)}
+//                         className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+//                         placeholder="FIO Mijoz"
+//                       />
+//                     </div>
+//                     <div className="space-y-3">
+//                       <div>
+//                         <label className="block text-sm font-medium mb-1">Telefon Raqami (Majburiy)</label>
+//                         <input
+//                           type="tel"
+//                           value={customerPhone}
+//                           onChange={(e) => {
+//                             let val = e.target.value;
+//                             if (!val.startsWith('+998')) {
+//                               val = '+998' + val.replace(/\D/g, '');
+//                             }
+//                             setCustomerPhone(val);
+//                           }}
+//                           className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+//                           placeholder="+998 XX XXX XX XX"
+//                           required
+//                         />
+//                       </div>
+//                       <div>
+//                         <label className="block text-sm font-medium mb-1">Qo'shimcha Telefon Raqami (Ixtiyoriy)</label>
+//                         <input
+//                           type="tel"
+//                           value={customerPhone2}
+//                           onChange={(e) => {
+//                             let val = e.target.value;
+//                             if (!val.startsWith('+998') && val !== '') {
+//                               val = '+998' + val.replace(/\D/g, '');
+//                             }
+//                             setCustomerPhone2(val);
+//                           }}
+//                           className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+//                           placeholder="+998 XX XXX XX XX"
+//                         />
+//                       </div>
+//                     </div>
+//                     <div>
+//                       <label className="block text-sm font-medium mb-1">Yashash Manzili</label>
+//                       <input
+//                         type="text"
+//                         value={customerAddress}
+//                         onChange={(e) => setCustomerAddress(e.target.value)}
+//                         className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+//                         placeholder="Manzil"
+//                       />
+//                     </div>
+//                   </div>
+//                 </div>
+//                 {/* Product + Payments */}
+//                 <div className="border-b pb-4 space-y-2">
+//                   <label className="block text-sm font-medium mb-1">Mijoz Bilan Kelishilgan Narx</label>
+//                   <input
+//                     type="number"
+//                     value={manualProductSum}
+//                     onChange={(e) => setManualProductSum(e.target.value ? parseFloat(e.target.value) : '')}
+//                     className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+//                     placeholder="Kelishilgan Narx"
+//                   />
+//                   <label className="block text-sm font-medium mb-1">Oldindan To'lov (Deposit)</label>
+//                   <input
+//                     type="number"
+//                     value={initialPayment}
+//                     onChange={(e) => setInitialPayment(Math.min(Number(e.target.value), agreedSum))}
+//                     className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+//                     placeholder="Masalan: 3 000 000"
+//                   />
+//                 </div>
+//                 {/* Credit */}
+//                 <div className="space-y-2">
+//                   <label className="block text-sm font-medium text-gray-700">Kredit Muddati (Oy):</label>
+//                   <select
+//                     value={creditMonths}
+//                     onChange={(e) => setCreditMonths(parseInt(e.target.value))}
+//                     className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+//                   >
+//                     <option value="1">Kredit To'lovsiz (To'liq Narx)</option>
+//                     {Array.from({ length: 12 }, (_, i) => i + 1).map(m => (
+//                       <option key={m} value={m}>{m} Oylik</option>
+//                     ))}
+//                   </select>
+//                   {creditMonths > 1 && (
+//                     <p className="text-sm text-amber-700">+5% Komissiya = {creditFee.toLocaleString()} So'm</p>
+//                   )}
+//                   {creditMonths > 1 && (
+//                     <div className="pt-2">
+//                       <label className="block text-sm font-medium text-gray-700 mb-1">Birinchi To'lov Sanasi:</label>
+//                       <input
+//                         type="date"
+//                         value={nextPaymentDateInput}
+//                         onChange={(e) => setNextPaymentDateInput(e.target.value)}
+//                         className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+//                       />
+//                     </div>
+//                   )}
+//                   {/* Payment Schedule */}
+//                   {creditMonths > 1 && (
+//                     <div className="border-t pt-4">
+//                       <h4 className="font-semibold text-gray-700 mb-2">To'lov Jadvali:</h4>
+//                       <ul className="list-disc list-inside space-y-1">
+//                         {Array.from({ length: creditMonths }, (_, i) => {
+//                           const startDate = nextPaymentDateInput ? new Date(nextPaymentDateInput) : new Date();
+//                           const monthDate = new Date(startDate);
+//                           monthDate.setMonth(startDate.getMonth() + i);
+//                           const monthName = monthDate.toLocaleString('default', { month: 'short' });
+//                           const formattedDate = monthDate.toLocaleDateString();
+//                           return (
+//                             <li key={i} className="text-sm text-gray-600 flex justify-between">
+//                               <span>{monthName} ({i + 1} oy): {monthlyPayment.toLocaleString()} So'm</span>
+//                               <span className="text-gray-500">To'lov Sanasi: {formattedDate}</span>
+//                             </li>
+//                           );
+//                         })}
+//                       </ul>
+//                     </div>
+//                   )}
+//                 </div>
+//                 {/* Summary + Buttons */}
+//                 <div className="space-y-1 border-t pt-4">
+//                   <div className="flex justify-between text-sm text-gray-600">
+//                     <span>Qolgan To'lov:</span>
+//                     <span>{remainingAmount.toLocaleString()} So'm</span>
+//                   </div>
+//                   {creditMonths > 1 && (
+//                     <div className="flex justify-between text-sm text-amber-700">
+//                       <span>Kredit Komissiyasi (5%):</span>
+//                       <span>{creditFee.toLocaleString()} So'm</span>
+//                     </div>
+//                   )}
+//                   <div className="flex justify-between font-bold text-lg text-amber-900 pt-2">
+//                     <span>Jami To'lov:</span>
+//                     <span>{totalToFinance.toLocaleString()} So'm</span>
+//                   </div>
+//                   {creditMonths > 1 && (
+//                     <div className="flex justify-between text-sm text-gray-600 pt-2 border-t">
+//                       <span>Oylik To'lov:</span>
+//                       <span>{monthlyPayment.toLocaleString()} So'm</span>
+//                     </div>
+//                   )}
+//                   {creditMonths > 1 && (
+//                     <div className="flex justify-between text-sm text-gray-600 pt-1">
+//                       <span>Keyingi To'lov Sanasi:</span>
+//                       <span>{new Date(nextPaymentDateInput).toLocaleDateString()}</span>
+//                     </div>
+//                   )}
+//                   {initialPayment > 0 && (
+//                     <div className="flex justify-between text-sm text-gray-600 pt-1">
+//                       <span>Oldindan To'lov:</span>
+//                       <span>{initialPayment.toLocaleString()} So'm</span>
+//                     </div>
+//                   )}
+//                 </div>
+//                 <div className="flex gap-3">
+//                   <Button
+//                     onClick={() => setShowCheckout(false)}
+//                     variant="outline"
+//                     className="flex-1"
+//                     disabled={orderStatus === 'loading'}
+//                   >
+//                     Bekor Qilish
+//                   </Button>
+//                   <Button
+//                     onClick={handleCheckout}
+//                     className="flex-1 bg-amber-600 hover:bg-amber-700"
+//                     disabled={orderStatus === 'loading'}
+//                   >
+//                     {orderStatus === 'loading' && 'Yuklanmoqda...'}
+//                     {orderStatus === 'success' && 'Buyurtma Yaratildi!'}
+//                     {orderStatus === 'error' && 'Xatolik Yuz Berdi'}
+//                     {orderStatus === 'idle' && 'Buyurtma Berish'}
+//                   </Button>
+//                 </div>
+//               </CardContent>
+//             </Card>
+//           </div>
+//         )}
+//       </div>
+//     </main>
+//   );
+// }
 __turbopack_context__.s([
     "default",
     ()=>ProductPage
@@ -332,17 +700,16 @@ function ProductPage() {
     const [creditMonths, setCreditMonths] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(1);
     const [customerName, setCustomerName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
     const [customerPhone, setCustomerPhone] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
+    const [customerPhone2, setCustomerPhone2] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
     const [customerAddress, setCustomerAddress] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
     const [manualProductSum, setManualProductSum] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
-    const [initialPayment, setInitialPayment] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(0); // NEW
+    const [initialPayment, setInitialPayment] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(0);
     const [orderStatus, setOrderStatus] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('idle');
-    const [customerPhone2, setCustomerPhone2] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
+    // DEFAULT DATE (today)
     const [nextPaymentDateInput, setNextPaymentDateInput] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(()=>{
         const today = new Date();
-        return today.toISOString().split('T')[0]; // default to today
+        return today.toISOString().split('T')[0];
     });
-    const dueDate = new Date(nextPaymentDateInput);
-    dueDate.setMonth(dueDate.getMonth() + creditMonths);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         if (!productId) return;
         const getProduct = async ()=>{
@@ -364,7 +731,7 @@ function ProductPage() {
         children: "Yuklanmoqda..."
     }, void 0, false, {
         fileName: "[project]/app/product/[id]/page.tsx",
-        lineNumber: 50,
+        lineNumber: 464,
         columnNumber: 23
     }, this);
     if (!product) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -372,39 +739,36 @@ function ProductPage() {
         children: "Mahsulot Topilmadi"
     }, void 0, false, {
         fileName: "[project]/app/product/[id]/page.tsx",
-        lineNumber: 51,
+        lineNumber: 465,
         columnNumber: 24
     }, this);
-    // Calculations
+    // PRICE CALCS
     const fixedSubtotal = product.price * quantity;
     const agreedSum = manualProductSum !== '' ? manualProductSum : fixedSubtotal;
-    // Remaining after deposit
     const remainingAmount = Math.max(0, agreedSum - initialPayment);
-    // Credit fee (5%) applies if creditMonths > 1
     const creditFee = creditMonths > 1 ? remainingAmount * 0.05 : 0;
     const totalToFinance = remainingAmount + creditFee;
     const monthlyPayment = creditMonths > 1 ? totalToFinance / creditMonths : totalToFinance;
-    // Next payment date (1 month after today)
-    const nextPaymentDate = new Date();
-    nextPaymentDate.setMonth(nextPaymentDate.getMonth() + 1);
     const handleCheckout = async ()=>{
         if (!customerName || !customerPhone || !customerAddress) {
-            alert("Iltimos Bosh Qolgan Kataklarni To'ldiring");
+            alert("Iltimos barcha maydonlarni to'ldiring!");
             return;
         }
         if (initialPayment > agreedSum) {
-            alert("Oldindan to'lov Mahsulot narxidan katta bo'lishi mumkin emas!");
+            alert("Oldindan to'lov mahsulot narxidan katta bo'lishi mumkin emas!");
             return;
         }
         setOrderStatus('loading');
         try {
-            const dueDate = new Date();
-            dueDate.setMonth(dueDate.getMonth() + creditMonths);
+            const startDate = new Date(nextPaymentDateInput);
+            // oxirgi to‘lov sanasi
+            const finalDueDate = new Date(startDate);
+            finalDueDate.setMonth(finalDueDate.getMonth() + creditMonths - 1);
             await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["addDoc"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["db"], 'orders'), {
                 clientName: customerName,
                 clientPhone: customerPhone,
+                clientPhone2: customerPhone2,
                 clientAddress: customerAddress,
-                clientEmail: '',
                 products: [
                     {
                         productId: product.id,
@@ -419,20 +783,16 @@ function ProductPage() {
                 remainingAmount: remainingAmount,
                 creditMonths: creditMonths,
                 monthlyPayment: monthlyPayment,
-                paymentStatus: creditMonths > 1 ? 'pending' : 'fully-paid',
                 paidAmount: initialPayment,
-                dueDate: dueDate,
+                paymentStatus: creditMonths > 1 ? 'pending' : 'fully-paid',
+                firstPaymentDate: startDate,
+                dueDate: finalDueDate,
                 payments: []
             });
             setOrderStatus('success');
             setTimeout(()=>{
                 setShowCheckout(false);
                 setOrderStatus('idle');
-                setCustomerName('');
-                setCustomerPhone('');
-                setCustomerAddress('');
-                setManualProductSum('');
-                setInitialPayment(0);
             }, 2000);
         } catch (error) {
             console.error('Error creating order:', error);
@@ -449,13 +809,13 @@ function ProductPage() {
                     children: "Mahsulot Haqida Ma'lumot"
                 }, void 0, false, {
                     fileName: "[project]/app/product/[id]/page.tsx",
-                    lineNumber: 127,
+                    lineNumber: 535,
                     columnNumber: 9
                 }, this),
                 " ",
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                     fileName: "[project]/app/product/[id]/page.tsx",
-                    lineNumber: 127,
+                    lineNumber: 535,
                     columnNumber: 92
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -465,31 +825,31 @@ function ProductPage() {
                             className: "space-y-4",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "relative w-full h-96 bg-gray-200 rounded-lg overflow-hidden",
-                                children: product.images && product.images.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                    src: product.images[0] || "/placeholder.svg",
+                                children: product.images?.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                    src: product.images[0],
                                     alt: product.name,
                                     fill: true,
                                     className: "object-cover"
                                 }, void 0, false, {
                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                    lineNumber: 133,
+                                    lineNumber: 543,
                                     columnNumber: 17
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "flex items-center justify-center h-full text-gray-400",
                                     children: "Mahsulot Surati Mavjud Emas!"
                                 }, void 0, false, {
                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                    lineNumber: 140,
+                                    lineNumber: 545,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                lineNumber: 131,
+                                lineNumber: 541,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/product/[id]/page.tsx",
-                            lineNumber: 130,
+                            lineNumber: 540,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -505,47 +865,30 @@ function ProductPage() {
                                                     children: product.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                                    lineNumber: 148,
+                                                    lineNumber: 555,
                                                     columnNumber: 75
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                            lineNumber: 148,
+                                            lineNumber: 555,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-gray-600 text-lg mb-4",
                                             children: [
-                                                "Mahsulot Kategoriyasi: ",
+                                                "Kategoriya: ",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("b", {
                                                     children: product.category
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                                    lineNumber: 149,
-                                                    columnNumber: 80
+                                                    lineNumber: 556,
+                                                    columnNumber: 69
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                            lineNumber: 149,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-gray-700 text-base leading-relaxed mb-4",
-                                            children: [
-                                                "Mahsulot Haqida Ma'lumot: ",
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("b", {
-                                                    children: product.description
-                                                }, void 0, false, {
-                                                    fileName: "[project]/app/product/[id]/page.tsx",
-                                                    lineNumber: 150,
-                                                    columnNumber: 101
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/app/product/[id]/page.tsx",
-                                            lineNumber: 150,
+                                            lineNumber: 556,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -554,7 +897,7 @@ function ProductPage() {
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "text-4xl text-amber-700",
                                                     children: [
-                                                        "Mahsulot Narxi: ",
+                                                        "Narxi: ",
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("b", {
                                                             children: [
                                                                 Number(product.price).toLocaleString('ru-RU'),
@@ -562,39 +905,39 @@ function ProductPage() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                                            lineNumber: 154,
-                                                            columnNumber: 35
+                                                            lineNumber: 560,
+                                                            columnNumber: 26
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                                    lineNumber: 153,
+                                                    lineNumber: 559,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: `text-sm px-3 py-1 rounded-full text-center ${product.quantity > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`,
+                                                    className: `text-sm px-3 py-1 rounded-full ${product.quantity > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`,
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("b", {
-                                                        children: product.quantity > 0 ? 'Sotuvda Mavjud' : 'Sotuvda Mavjud Emas'
+                                                        children: product.quantity > 0 ? 'Bor' : 'Yo‘q'
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 157,
+                                                        lineNumber: 563,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                                    lineNumber: 156,
+                                                    lineNumber: 562,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                            lineNumber: 152,
+                                            lineNumber: 558,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                    lineNumber: 147,
+                                    lineNumber: 554,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -605,7 +948,7 @@ function ProductPage() {
                                             children: "Soni:"
                                         }, void 0, false, {
                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                            lineNumber: 164,
+                                            lineNumber: 570,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -613,77 +956,77 @@ function ProductPage() {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                     onClick: ()=>setQuantity(Math.max(1, quantity - 1)),
-                                                    className: "px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg",
+                                                    className: "px-4 py-2 bg-gray-200",
                                                     children: "−"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                                    lineNumber: 166,
+                                                    lineNumber: 572,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                                     type: "number",
                                                     value: quantity,
-                                                    onChange: (e)=>setQuantity(Math.min(product.quantity, Math.max(1, parseInt(e.target.value) || quantity))),
-                                                    className: "max-w-[35px] w-full text-center border border-gray-300 rounded-sm "
+                                                    onChange: (e)=>setQuantity(Math.min(product.quantity, Math.max(1, parseInt(e.target.value)))),
+                                                    className: "max-w-[40px] w-full text-center border border-gray-300 rounded-sm"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                                    lineNumber: 172,
+                                                    lineNumber: 573,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                     onClick: ()=>setQuantity(Math.min(product.quantity, quantity + 1)),
-                                                    className: "px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg",
+                                                    className: "px-4 py-2 bg-gray-200",
                                                     children: "+"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                                    lineNumber: 178,
+                                                    lineNumber: 579,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                            lineNumber: 165,
+                                            lineNumber: 571,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                    lineNumber: 163,
+                                    lineNumber: 569,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
                                     onClick: ()=>setShowCheckout(true),
                                     disabled: product.quantity === 0,
-                                    className: "w-full bg-amber-600 hover:bg-amber-700 disabled:opacity-50 text-white py-3 text-lg",
+                                    className: "w-full bg-amber-600 hover:bg-amber-700 text-white py-3 text-lg",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$cart$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingCart$3e$__["ShoppingCart"], {
                                             className: "mr-2"
                                         }, void 0, false, {
                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                            lineNumber: 192,
+                                            lineNumber: 589,
                                             columnNumber: 15
                                         }, this),
                                         " Sotish"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                    lineNumber: 187,
+                                    lineNumber: 584,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/product/[id]/page.tsx",
-                            lineNumber: 146,
+                            lineNumber: 553,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/product/[id]/page.tsx",
-                    lineNumber: 128,
+                    lineNumber: 537,
                     columnNumber: 9
                 }, this),
                 showCheckout && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "fixed inset-0 bg-[#808080]/80 flex justify-center z-80 p-[20px]",
+                    className: "fixed inset-0 bg-[#808080]/80 flex justify-center z-80 p-5",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
                         className: "w-full max-w-[1000px] max-h-[1500px] overflow-y-auto",
                         children: [
@@ -693,26 +1036,26 @@ function ProductPage() {
                                     children: "Buyurtmani Rasmiylashtirish"
                                 }, void 0, false, {
                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                    lineNumber: 202,
+                                    lineNumber: 599,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                lineNumber: 201,
+                                lineNumber: 598,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardContent"], {
                                 className: "space-y-6",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "border-b pb-[10px]",
+                                        className: "border-b pb-4",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                                 className: "font-semibold text-gray-900 mb-3",
-                                                children: "Mijoz Haqida Ma'lumot"
+                                                children: "Mijoz Maʼlumotlari"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 208,
+                                                lineNumber: 606,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -725,570 +1068,381 @@ function ProductPage() {
                                                                 children: "Ismi"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                                lineNumber: 211,
+                                                                lineNumber: 610,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                                                 type: "text",
                                                                 value: customerName,
                                                                 onChange: (e)=>setCustomerName(e.target.value),
-                                                                className: "w-full px-3 py-2 border border-gray-300 rounded-lg",
-                                                                placeholder: "FIO Mijoz"
+                                                                className: "w-full px-3 py-2 border rounded-lg"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                                lineNumber: 212,
+                                                                lineNumber: 611,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 210,
-                                                        columnNumber: 21
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "space-y-3",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                                        className: "block text-sm font-medium mb-1",
-                                                                        children: "Telefon Raqami (Majburiy)"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                                                        lineNumber: 223,
-                                                                        columnNumber: 25
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                                        type: "tel",
-                                                                        value: customerPhone,
-                                                                        onChange: (e)=>{
-                                                                            let val = e.target.value;
-                                                                            // Force +998 prefix
-                                                                            if (!val.startsWith('+998')) {
-                                                                                val = '+998' + val.replace(/\D/g, '');
-                                                                            }
-                                                                            setCustomerPhone(val);
-                                                                        },
-                                                                        className: "w-full px-3 py-2 border border-gray-300 rounded-lg",
-                                                                        placeholder: "+998 XX XXX XX XX",
-                                                                        required: true
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                                                        lineNumber: 224,
-                                                                        columnNumber: 25
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/app/product/[id]/page.tsx",
-                                                                lineNumber: 222,
-                                                                columnNumber: 23
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                                        className: "block text-sm font-medium mb-1",
-                                                                        children: "Qo'shimcha Telefon Raqami (Ixtiyoriy)"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                                                        lineNumber: 243,
-                                                                        columnNumber: 25
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                                        type: "tel",
-                                                                        value: customerPhone2,
-                                                                        onChange: (e)=>{
-                                                                            let val = e.target.value;
-                                                                            if (!val.startsWith('+998') && val !== '') {
-                                                                                val = '+998' + val.replace(/\D/g, '');
-                                                                            }
-                                                                            setCustomerPhone2(val);
-                                                                        },
-                                                                        className: "w-full px-3 py-2 border border-gray-300 rounded-lg",
-                                                                        placeholder: "+998 XX XXX XX XX"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                                                        lineNumber: 244,
-                                                                        columnNumber: 25
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/app/product/[id]/page.tsx",
-                                                                lineNumber: 242,
-                                                                columnNumber: 23
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 220,
+                                                        lineNumber: 609,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                                 className: "block text-sm font-medium mb-1",
-                                                                children: "Yashash Manzili"
+                                                                children: "Telefon Raqami"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                                lineNumber: 261,
+                                                                lineNumber: 615,
+                                                                columnNumber: 23
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                                type: "tel",
+                                                                value: customerPhone,
+                                                                onChange: (e)=>{
+                                                                    let val = e.target.value.replace(/\D/g, '');
+                                                                    setCustomerPhone('+998' + val.slice(0, 9));
+                                                                },
+                                                                className: "w-full px-3 py-2 border rounded-lg",
+                                                                placeholder: "+998901234567"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/product/[id]/page.tsx",
+                                                                lineNumber: 616,
+                                                                columnNumber: 23
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/app/product/[id]/page.tsx",
+                                                        lineNumber: 614,
+                                                        columnNumber: 21
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                                className: "block text-sm font-medium mb-1",
+                                                                children: "Qo‘shimcha Telefon"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/product/[id]/page.tsx",
+                                                                lineNumber: 629,
+                                                                columnNumber: 23
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                                type: "tel",
+                                                                value: customerPhone2,
+                                                                onChange: (e)=>{
+                                                                    let val = e.target.value.replace(/\D/g, '');
+                                                                    setCustomerPhone2(val ? '+998' + val.slice(0, 9) : '');
+                                                                },
+                                                                className: "w-full px-3 py-2 border rounded-lg"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/product/[id]/page.tsx",
+                                                                lineNumber: 630,
+                                                                columnNumber: 23
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/app/product/[id]/page.tsx",
+                                                        lineNumber: 628,
+                                                        columnNumber: 21
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                                className: "block text-sm font-medium mb-1",
+                                                                children: "Manzil"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/product/[id]/page.tsx",
+                                                                lineNumber: 642,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                                                 type: "text",
                                                                 value: customerAddress,
                                                                 onChange: (e)=>setCustomerAddress(e.target.value),
-                                                                className: "w-full px-3 py-2 border border-gray-300 rounded-lg",
-                                                                placeholder: "Manzil"
+                                                                className: "w-full px-3 py-2 border rounded-lg"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                                lineNumber: 262,
+                                                                lineNumber: 643,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 260,
+                                                        lineNumber: 641,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 209,
+                                                lineNumber: 608,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                        lineNumber: 207,
+                                        lineNumber: 605,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "border-b pb-4",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex justify-between mb-2",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "font-semibold",
-                                                        children: product.name
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 276,
-                                                        columnNumber: 21
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "font-semibold",
-                                                        children: [
-                                                            fixedSubtotal.toLocaleString(),
-                                                            " So'm"
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 277,
-                                                        columnNumber: 21
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 275,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex justify-between text-sm text-gray-600",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        children: [
-                                                            "Soni: ",
-                                                            quantity
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 280,
-                                                        columnNumber: 21
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        children: [
-                                                            product.price.toLocaleString(),
-                                                            " x ",
-                                                            quantity
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 281,
-                                                        columnNumber: 21
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 279,
-                                                columnNumber: 19
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                        lineNumber: 274,
-                                        columnNumber: 17
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "border-b pb-4 space-y-2",
+                                        className: "space-y-3 border-b pb-4",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                className: "block text-sm font-medium mb-1",
-                                                children: "Mijoz Bilan Kelishilgan Narx"
+                                                className: "block text-sm font-medium",
+                                                children: "Kelishilgan narx"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 287,
+                                                lineNumber: 650,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                                 type: "number",
                                                 value: manualProductSum,
                                                 onChange: (e)=>setManualProductSum(e.target.value ? parseFloat(e.target.value) : ''),
-                                                className: "w-full px-3 py-2 border border-gray-300 rounded-lg",
-                                                placeholder: "Kelishilgan Narx"
+                                                className: "w-full px-3 py-2 border rounded-lg"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 288,
+                                                lineNumber: 651,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                className: "block text-sm font-medium mb-1",
-                                                children: "Oldindan To'lov (Deposit)"
+                                                className: "block text-sm font-medium",
+                                                children: "Oldindan To‘lov"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 295,
+                                                lineNumber: 658,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                                 type: "number",
                                                 value: initialPayment,
                                                 onChange: (e)=>setInitialPayment(Math.min(Number(e.target.value), agreedSum)),
-                                                className: "w-full px-3 py-2 border border-gray-300 rounded-lg",
-                                                placeholder: "Masalan: 3 000 000"
+                                                className: "w-full px-3 py-2 border rounded-lg"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 296,
+                                                lineNumber: 659,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                        lineNumber: 286,
+                                        lineNumber: 649,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "space-y-2",
+                                        className: "space-y-4",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                className: "block text-sm font-medium text-gray-700",
-                                                children: "Kredit Muddati (Oy):"
+                                                className: "block text-sm font-medium",
+                                                children: "Kredit muddati (oy)"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 307,
+                                                lineNumber: 669,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
                                                 value: creditMonths,
-                                                onChange: (e)=>setCreditMonths(parseInt(e.target.value)),
-                                                className: "w-full px-3 py-2 border border-gray-300 rounded-lg",
+                                                onChange: (e)=>setCreditMonths(Number(e.target.value)),
+                                                className: "w-full px-3 py-2 border rounded-lg",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                         value: "1",
-                                                        children: "Kredit To'lovsiz (To'liq Narx)"
+                                                        children: "To‘liq narx"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 313,
+                                                        lineNumber: 676,
                                                         columnNumber: 21
                                                     }, this),
                                                     Array.from({
                                                         length: 12
-                                                    }, (_, i)=>i + 1).map((m)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                    }, (_, i)=>i + 2).map((m)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                             value: m,
                                                             children: [
                                                                 m,
-                                                                " Oylik"
+                                                                " oy"
                                                             ]
                                                         }, m, true, {
                                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                                            lineNumber: 315,
+                                                            lineNumber: 678,
                                                             columnNumber: 23
                                                         }, this))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 308,
+                                                lineNumber: 671,
                                                 columnNumber: 19
                                             }, this),
-                                            creditMonths > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-sm text-amber-700",
+                                            creditMonths > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                                                 children: [
-                                                    "+5% Komissiya = ",
-                                                    creditFee.toLocaleString(),
-                                                    " So'm"
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 319,
-                                                columnNumber: 21
-                                            }, this),
-                                            creditMonths > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "pt-2",
-                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "text-sm text-amber-700",
+                                                        children: [
+                                                            "Kredit komissiyasi (5%): ",
+                                                            creditFee.toLocaleString(),
+                                                            " so‘m"
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/app/product/[id]/page.tsx",
+                                                        lineNumber: 684,
+                                                        columnNumber: 23
+                                                    }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                        className: "block text-sm font-medium text-gray-700 mb-1",
-                                                        children: "Birinchi To'lov Sanasi:"
+                                                        className: "block text-sm font-medium",
+                                                        children: "Birinchi to‘lov sanasi"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 325,
+                                                        lineNumber: 686,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                                         type: "date",
                                                         value: nextPaymentDateInput,
                                                         onChange: (e)=>setNextPaymentDateInput(e.target.value),
-                                                        className: "w-full px-3 py-2 border border-gray-300 rounded-lg"
+                                                        className: "w-full px-3 py-2 border rounded-lg"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 326,
-                                                        columnNumber: 23
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 324,
-                                                columnNumber: 21
-                                            }, this),
-                                            creditMonths > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "border-t pt-4",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                                        className: "font-semibold text-gray-700 mb-2",
-                                                        children: "To'lov Jadvali:"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 338,
+                                                        lineNumber: 687,
                                                         columnNumber: 23
                                                     }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                                                        className: "list-disc list-inside space-y-1",
-                                                        children: Array.from({
-                                                            length: creditMonths
-                                                        }, (_, i)=>{
-                                                            const monthDate = new Date(nextPaymentDateInput || new Date());
-                                                            monthDate.setMonth(monthDate.getMonth() + i);
-                                                            const monthName = monthDate.toLocaleString('default', {
-                                                                month: 'short'
-                                                            });
-                                                            const formattedDate = monthDate.toLocaleDateString();
-                                                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                                                className: "text-sm text-gray-600 flex justify-between",
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        children: [
-                                                                            monthName,
-                                                                            ": ",
-                                                                            monthlyPayment.toLocaleString(),
-                                                                            " So'm"
-                                                                        ]
-                                                                    }, void 0, true, {
-                                                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                                                        lineNumber: 348,
-                                                                        columnNumber: 31
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "text-gray-500",
-                                                                        children: [
-                                                                            "To'lov Sanasi: ",
-                                                                            formattedDate
-                                                                        ]
-                                                                    }, void 0, true, {
-                                                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                                                        lineNumber: 349,
-                                                                        columnNumber: 31
-                                                                    }, this)
-                                                                ]
-                                                            }, i, true, {
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "border-t pt-4",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
+                                                                className: "font-semibold mb-2",
+                                                                children: "To‘lov jadvali:"
+                                                            }, void 0, false, {
                                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                                lineNumber: 347,
-                                                                columnNumber: 29
-                                                            }, this);
-                                                        })
-                                                    }, void 0, false, {
+                                                                lineNumber: 696,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
+                                                                className: "space-y-1",
+                                                                children: Array.from({
+                                                                    length: creditMonths
+                                                                }).map((_, i)=>{
+                                                                    const start = new Date(nextPaymentDateInput);
+                                                                    start.setMonth(start.getMonth() + i);
+                                                                    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                                                        className: "text-sm flex justify-between",
+                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                            children: [
+                                                                                start.toLocaleDateString(),
+                                                                                " — ",
+                                                                                monthlyPayment.toLocaleString(),
+                                                                                " so‘m"
+                                                                            ]
+                                                                        }, void 0, true, {
+                                                                            fileName: "[project]/app/product/[id]/page.tsx",
+                                                                            lineNumber: 705,
+                                                                            columnNumber: 33
+                                                                        }, this)
+                                                                    }, i, false, {
+                                                                        fileName: "[project]/app/product/[id]/page.tsx",
+                                                                        lineNumber: 704,
+                                                                        columnNumber: 31
+                                                                    }, this);
+                                                                })
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/product/[id]/page.tsx",
+                                                                lineNumber: 698,
+                                                                columnNumber: 25
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
                                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 339,
+                                                        lineNumber: 695,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 337,
-                                                columnNumber: 21
-                                            }, this)
+                                            }, void 0, true)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                        lineNumber: 306,
+                                        lineNumber: 668,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "space-y-1 border-t pt-4",
+                                        className: "border-t pt-4 space-y-2",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex justify-between text-sm text-gray-600",
+                                                className: "flex justify-between",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        children: "Qolgan To'lov:"
+                                                        children: "Qolgan to‘lov:"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 362,
+                                                        lineNumber: 718,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: [
                                                             remainingAmount.toLocaleString(),
-                                                            " So'm"
+                                                            " so‘m"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 363,
+                                                        lineNumber: 719,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 361,
+                                                lineNumber: 717,
                                                 columnNumber: 19
                                             }, this),
                                             creditMonths > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex justify-between text-sm text-amber-700",
+                                                className: "flex justify-between",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        children: "Kredit Komissiyasi (5%):"
+                                                        children: "Oylik to‘lov:"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 367,
-                                                        columnNumber: 23
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        children: [
-                                                            creditFee.toLocaleString(),
-                                                            " So'm"
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 368,
-                                                        columnNumber: 23
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 366,
-                                                columnNumber: 21
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex justify-between font-bold text-lg text-amber-900 pt-2",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        children: "Jami To'lov:"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 372,
-                                                        columnNumber: 21
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        children: [
-                                                            totalToFinance.toLocaleString(),
-                                                            " So'm"
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 373,
-                                                        columnNumber: 21
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 371,
-                                                columnNumber: 19
-                                            }, this),
-                                            creditMonths > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex justify-between text-sm text-gray-600 pt-2 border-t",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        children: "Oylik To'lov:"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 377,
+                                                        lineNumber: 724,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: [
                                                             monthlyPayment.toLocaleString(),
-                                                            " So'm"
+                                                            " so‘m"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 378,
+                                                        lineNumber: 725,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 376,
+                                                lineNumber: 723,
                                                 columnNumber: 21
                                             }, this),
                                             creditMonths > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex justify-between text-sm text-gray-600 pt-1",
+                                                className: "flex justify-between",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        children: "Keyingi To'lov Sanasi:"
+                                                        children: "Birinchi to‘lov sanasi:"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 383,
+                                                        lineNumber: 731,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        children: nextPaymentDate.toLocaleDateString()
+                                                        children: new Date(nextPaymentDateInput).toLocaleDateString()
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 384,
+                                                        lineNumber: 732,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 382,
-                                                columnNumber: 21
-                                            }, this),
-                                            initialPayment > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex justify-between text-sm text-gray-600 pt-1",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        children: "Oldindan To'lov:"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 389,
-                                                        columnNumber: 23
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        children: [
-                                                            initialPayment.toLocaleString(),
-                                                            " So'm"
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 390,
-                                                        columnNumber: 23
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 388,
+                                                lineNumber: 730,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                        lineNumber: 360,
+                                        lineNumber: 716,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1298,60 +1452,58 @@ function ProductPage() {
                                                 onClick: ()=>setShowCheckout(false),
                                                 variant: "outline",
                                                 className: "flex-1",
-                                                disabled: orderStatus === 'loading',
-                                                children: "Bekor Qilish"
+                                                children: "Bekor qilish"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 397,
+                                                lineNumber: 739,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
                                                 onClick: handleCheckout,
                                                 className: "flex-1 bg-amber-600 hover:bg-amber-700",
-                                                disabled: orderStatus === 'loading',
                                                 children: [
                                                     orderStatus === 'loading' && 'Yuklanmoqda...',
-                                                    orderStatus === 'success' && 'Buyurtma Yaratildi!',
-                                                    orderStatus === 'error' && 'Xatolik Yuz Berdi',
-                                                    orderStatus === 'idle' && 'Buyurtma Berish'
+                                                    orderStatus === 'success' && 'Yaratildi!',
+                                                    orderStatus === 'error' && 'Xatolik!',
+                                                    orderStatus === 'idle' && 'Buyurtma berish'
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 405,
+                                                lineNumber: 743,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                        lineNumber: 396,
+                                        lineNumber: 738,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                lineNumber: 204,
+                                lineNumber: 602,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/product/[id]/page.tsx",
-                        lineNumber: 200,
+                        lineNumber: 597,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/product/[id]/page.tsx",
-                    lineNumber: 199,
+                    lineNumber: 596,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/product/[id]/page.tsx",
-            lineNumber: 126,
+            lineNumber: 533,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/product/[id]/page.tsx",
-        lineNumber: 125,
+        lineNumber: 532,
         columnNumber: 5
     }, this);
 }
