@@ -4,8 +4,8 @@
   "static/chunks/node_modules_next_ef8ae6f1._.js",
   "static/chunks/node_modules_@firebase_firestore_dist_index_esm_af799df8.js",
   "static/chunks/node_modules_@firebase_storage_dist_index_esm_00d833a2.js",
-  "static/chunks/node_modules_b2d72cf3._.js",
-  "static/chunks/_3c9150c6._.js"
+  "static/chunks/node_modules_65d74b92._.js",
+  "static/chunks/_a33112f5._.js"
 ],
     source: "dynamic"
 });

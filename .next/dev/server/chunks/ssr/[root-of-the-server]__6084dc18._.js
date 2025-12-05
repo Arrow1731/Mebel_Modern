@@ -208,102 +208,124 @@ function Button({ className, variant, size, asChild = false, ...props }) {
 //   'Iyul', 'Avgust', 'Sentabr', 'Oktabr', 'Noyabr', 'Dekabr'
 // ];
 // export default function OrderDetailPage() {
-//   const params = useParams();
-//   const orderId = params.id;
+//   const { id } = useParams();
 //   const [order, setOrder] = useState<Order | null>(null);
 //   const [loading, setLoading] = useState(true);
-//   // === REAL-TIME OLISH ===
+//   // === REALTIME ORDER OLISh ===
 //   useEffect(() => {
-//     const unsubscribe = onSnapshot(doc(db, 'orders', orderId), (docSnap) => {
-//       if (!docSnap.exists()) return;
-//       const data = docSnap.data();
+//     const unsub = onSnapshot(doc(db, 'orders', id as string), snap => {
+//       if (!snap.exists()) return;
+//       const data = snap.data();
 //       setOrder({
-//         id: docSnap.id,
+//         id: snap.id,
 //         ...data,
-//         payments: data.payments?.map((p: any) => ({
-//           ...p,
-//           date: p.date?.toDate?.() || new Date(),
-//         })) || [],
+//         payments:
+//           data.payments?.map((p: any) => ({
+//             ...p,
+//             date: p.date?.toDate?.() || new Date(),
+//           })) || [],
 //         createdAt: data.createdAt?.toDate?.() || new Date(),
 //         firstPaymentDate:
-//           data.firstPaymentDate?.toDate?.() || data.createdAt?.toDate?.() || new Date(),
+//           data.firstPaymentDate?.toDate?.() ||
+//           data.createdAt?.toDate?.() ||
+//           new Date(),
 //       });
 //       setLoading(false);
 //     });
-//     return () => unsubscribe();
-//   }, [orderId]);
-//   if (loading || !order) return <p>Yuklanmoqda…</p>;
+//     return () => unsub();
+//   }, [id]);
+//   if (loading || !order) return <p>Yuklanmoqda...</p>;
+//   // === OYLIK TO‘LOV MIQDORI ===
 //   const monthlyAmount = Math.round(
 //     (Number(order.totalAmount) - Number(order.paidAmount || 0)) /
-//       ((order.creditMonths || 1) - (order.payments?.length || 0))
+//     ((order.creditMonths || 1) - (order.payments?.length || 0))
 //   );
-//   // === OYNI TO‘LANGAN DEB YOZISH ===
+//   // === TO‘LOVNI YOZIB QO‘YISh ===
 //   const markAsPaid = async (monthIndex: number) => {
-//     const pay = {
+//     const newPayment = {
 //       monthIndex,
 //       amount: monthlyAmount,
 //       date: new Date(),
 //     };
-//     await updateDoc(doc(db, 'orders', orderId), {
-//       payments: arrayUnion(pay),
+//     await updateDoc(doc(db, 'orders', id as string), {
+//       payments: arrayUnion(newPayment),
 //       paidAmount: Number(order.paidAmount || 0) + monthlyAmount,
 //     });
 //   };
 //   // === KEYINGI TO‘LOV SANASI ===
 //   const getNextPaymentDate = (monthIndex: number) => {
-//     const baseDate = new Date(order.firstPaymentDate);
-//     baseDate.setMonth(baseDate.getMonth() + monthIndex);
-//     return baseDate.toLocaleDateString();
+//     const date = new Date(order.firstPaymentDate);
+//     date.setMonth(date.getMonth() + monthIndex);
+//     return date.toLocaleDateString();
 //   };
+//   // === SORT: TO‘LANMAGAN OYLAR BOSHIDA ===
+//   const rows = Array.from({ length: order.creditMonths || 0 }).map((_, i) => {
+//     const payment = order.payments?.find(p => p.monthIndex === i);
+//     return { index: i, paid: Boolean(payment), payment };
+//   });
+//   rows.sort((a, b) => Number(a.paid) - Number(b.paid));
 //   return (
-//     <main className="p-6">
+//     <main className="oontainer p-4 md:p-6">
 //       <h1 className="text-2xl font-bold mb-3">{order.clientName} — To‘lov tafsiloti</h1>
-//       <p>📞 Telefon: {order.clientPhone}</p>
-//       <p>📍 Manzil: {order.clientAddress}</p>
-//       <table className="w-full mt-6 border text-sm">
-//         <thead className="bg-gray-100">
-//           <tr>
-//             <th className="px-3 py-2">Oy</th>
-//             <th className="px-3 py-2">To‘lov miqdori</th>
-//             <th className="px-3 py-2">Holat</th>
-//             <th className="px-3 py-2">Keyingi to‘lov sanasi</th>
-//             <th className="px-3 py-2">Amal</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {Array.from({ length: order.creditMonths || 0 }).map((_, i) => {
-//             const monthLabel = FIXED_MONTHS[i % 12];
-//             const payment = order.payments?.find((p) => p.monthIndex === i);
-//             return (
-//               <tr
-//                 key={i}
-//                 className={`border-b ${
-//                   payment ? 'bg-green-50' : 'bg-yellow-50'
-//                 }`}
-//               >
-//                 <td className="px-3 py-2">{monthLabel}</td>
-//                 <td className="px-3 py-2">{monthlyAmount.toLocaleString()} so‘m</td>
-//                 <td className="px-3 py-2">
-//                   {payment ? 'To‘langan ✓' : 'Kutilmoqda'}
-//                 </td>
-//                 <td className="px-3 py-2">
-//                   {!payment ? getNextPaymentDate(i) : ''}
-//                 </td>
-//                 <td className="px-3 py-2">
-//                   {!payment && (
-//                     <Button
-//                       className="bg-green-600 hover:bg-green-700 text-white"
-//                       onClick={() => markAsPaid(i)}
-//                     >
-//                       To‘landi
-//                     </Button>
-//                   )}
-//                 </td>
-//               </tr>
-//             );
-//           })}
-//         </tbody>
-//       </table>
+//       <div className="text-sm mb-4">
+//         <p>📞 Telefon: <b>{order.clientPhone}</b></p>
+//         <p>📍 Manzil: {order.clientAddress}</p>
+//       </div>
+//       <div className="overflow-auto rounded border">
+//         <table className="w-full text-sm min-w-[800px]">
+//           <thead className="bg-gray-100">
+//             <tr>
+//               <th className="px-3 py-2 text-left">Oy</th>
+//               <th className="px-3 py-2 text-left">To‘lov miqdori</th>
+//               <th className="px-3 py-2 text-left">Holat</th>
+//               <th className="px-3 py-2 text-left">To‘lov sanasi</th>
+//               <th className="px-3 py-2 text-left">Keyingi to‘lov sanasi</th>
+//               <th className="px-3 py-2 text-left">Amal</th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {rows.map(({ index, paid, payment }) => {
+//               const monthLabel = FIXED_MONTHS[index % 12];
+//               return (
+//                 <tr
+//                   key={index}
+//                   className={`border-b ${paid ? 'bg-green-50' : 'bg-yellow-50'}`}
+//                 >
+//                   {/* === 1. Oy === */}
+//                   <td className="px-3 py-2">{monthLabel}</td>
+//                   {/* === 2. To‘lov miqdori === */}
+//                   <td className="px-3 py-2">
+//                     {monthlyAmount.toLocaleString()} so‘m
+//                   </td>
+//                   {/* === 3. Holat === */}
+//                   <td className="px-3 py-2">
+//                     {paid ? 'To‘langan ✓' : 'Kutilmoqda'}
+//                   </td>
+//                   {/* === 4. To‘lov sanasi === */}
+//                   <td className="px-3 py-2">
+//                     {paid ? payment?.date?.toLocaleDateString() : '-'}
+//                   </td>
+//                   {/* === 5. Keyingi to‘lov sanasi === */}
+//                   <td className="px-3 py-2">
+//                     {!paid ? getNextPaymentDate(index) : ''}
+//                   </td>
+//                   {/* === 6. Amal === */}
+//                   <td className="px-3 py-2">
+//                     {!paid && (
+//                       <Button
+//                         className="bg-green-600 hover:bg-green-700 text-white"
+//                         onClick={() => markAsPaid(index)}
+//                       >
+//                         To‘landi
+//                       </Button>
+//                     )}
+//                   </td>
+//                 </tr>
+//               );
+//             })}
+//           </tbody>
+//         </table>
+//       </div>
 //     </main>
 //   );
 // }
@@ -343,7 +365,7 @@ function OrderDetailPage() {
     const { id } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useParams"])();
     const [order, setOrder] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
-    // === REALTIME ORDER OLISh ===
+    // realtime yuklash
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const unsub = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["onSnapshot"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["db"], 'orders', id), (snap)=>{
             if (!snap.exists()) return;
@@ -368,30 +390,35 @@ function OrderDetailPage() {
         children: "Yuklanmoqda..."
     }, void 0, false, {
         fileName: "[project]/app/orders/[id]/page.tsx",
-        lineNumber: 200,
+        lineNumber: 227,
         columnNumber: 33
     }, this);
-    // === OYLIK TO‘LOV MIQDORI ===
+    // To‘liq to‘landi deb tekshirish
+    const fullyPaid = Number(order.paidAmount || 0) >= Number(order.totalAmount);
+    // Bitta oylik to‘lov
     const monthlyAmount = Math.round((Number(order.totalAmount) - Number(order.paidAmount || 0)) / ((order.creditMonths || 1) - (order.payments?.length || 0)));
-    // === TO‘LOVNI YOZIB QO‘YISh ===
+    // To‘lash tugmasi
     const markAsPaid = async (monthIndex)=>{
         const newPayment = {
             monthIndex,
             amount: monthlyAmount,
             date: new Date()
         };
+        const totalPaid = Number(order.paidAmount || 0) + monthlyAmount;
+        const isFully = totalPaid >= Number(order.totalAmount);
         await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["updateDoc"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["db"], 'orders', id), {
             payments: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["arrayUnion"])(newPayment),
-            paidAmount: Number(order.paidAmount || 0) + monthlyAmount
+            paidAmount: totalPaid,
+            paymentStatus: isFully ? 'paid' : order.paymentStatus
         });
     };
-    // === KEYINGI TO‘LOV SANASI ===
+    // Keyingi to‘lov sanasi
     const getNextPaymentDate = (monthIndex)=>{
         const date = new Date(order.firstPaymentDate);
         date.setMonth(date.getMonth() + monthIndex);
         return date.toLocaleDateString();
     };
-    // === SORT: TO‘LANMAGAN OYLAR BOSHIDA ===
+    // Barcha oylar ro‘yxati
     const rows = Array.from({
         length: order.creditMonths || 0
     }).map((_, i)=>{
@@ -403,8 +430,36 @@ function OrderDetailPage() {
         };
     });
     rows.sort((a, b)=>Number(a.paid) - Number(b.paid));
+    // === AGAR TO‘LIQ TO‘LANGAN BO‘LSA — JADVAL KO‘RINMAYDI ===
+    if (order.paymentStatus === 'paid' || fullyPaid) {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
+            className: "p-6",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                    className: "text-2xl font-bold mb-3",
+                    children: order.clientName
+                }, void 0, false, {
+                    fileName: "[project]/app/orders/[id]/page.tsx",
+                    lineNumber: 275,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                    className: "p-4 bg-green-100 border border-green-400 text-green-800 rounded",
+                    children: "✅ Ushbu mijoz barcha bo‘lib-to‘lovlarni to‘liq to‘ladi."
+                }, void 0, false, {
+                    fileName: "[project]/app/orders/[id]/page.tsx",
+                    lineNumber: 277,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/app/orders/[id]/page.tsx",
+            lineNumber: 274,
+            columnNumber: 7
+        }, this);
+    }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
-        className: "oontainer p-4 md:p-6",
+        className: "p-4 md:p-6",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                 className: "text-2xl font-bold mb-3",
@@ -414,7 +469,7 @@ function OrderDetailPage() {
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/orders/[id]/page.tsx",
-                lineNumber: 239,
+                lineNumber: 286,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -427,13 +482,13 @@ function OrderDetailPage() {
                                 children: order.clientPhone
                             }, void 0, false, {
                                 fileName: "[project]/app/orders/[id]/page.tsx",
-                                lineNumber: 242,
+                                lineNumber: 291,
                                 columnNumber: 24
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/orders/[id]/page.tsx",
-                        lineNumber: 242,
+                        lineNumber: 291,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -443,13 +498,13 @@ function OrderDetailPage() {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/orders/[id]/page.tsx",
-                        lineNumber: 243,
+                        lineNumber: 292,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/orders/[id]/page.tsx",
-                lineNumber: 241,
+                lineNumber: 290,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -466,7 +521,7 @@ function OrderDetailPage() {
                                         children: "Oy"
                                     }, void 0, false, {
                                         fileName: "[project]/app/orders/[id]/page.tsx",
-                                        lineNumber: 250,
+                                        lineNumber: 299,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -474,7 +529,7 @@ function OrderDetailPage() {
                                         children: "To‘lov miqdori"
                                     }, void 0, false, {
                                         fileName: "[project]/app/orders/[id]/page.tsx",
-                                        lineNumber: 251,
+                                        lineNumber: 300,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -482,7 +537,7 @@ function OrderDetailPage() {
                                         children: "Holat"
                                     }, void 0, false, {
                                         fileName: "[project]/app/orders/[id]/page.tsx",
-                                        lineNumber: 252,
+                                        lineNumber: 301,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -490,15 +545,15 @@ function OrderDetailPage() {
                                         children: "To‘lov sanasi"
                                     }, void 0, false, {
                                         fileName: "[project]/app/orders/[id]/page.tsx",
-                                        lineNumber: 253,
+                                        lineNumber: 302,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                         className: "px-3 py-2 text-left",
-                                        children: "Keyingi to‘lov sanasi"
+                                        children: "Keyingi to‘lov"
                                     }, void 0, false, {
                                         fileName: "[project]/app/orders/[id]/page.tsx",
-                                        lineNumber: 254,
+                                        lineNumber: 303,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -506,18 +561,18 @@ function OrderDetailPage() {
                                         children: "Amal"
                                     }, void 0, false, {
                                         fileName: "[project]/app/orders/[id]/page.tsx",
-                                        lineNumber: 255,
+                                        lineNumber: 304,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/orders/[id]/page.tsx",
-                                lineNumber: 249,
+                                lineNumber: 298,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/orders/[id]/page.tsx",
-                            lineNumber: 248,
+                            lineNumber: 297,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -531,7 +586,7 @@ function OrderDetailPage() {
                                             children: monthLabel
                                         }, void 0, false, {
                                             fileName: "[project]/app/orders/[id]/page.tsx",
-                                            lineNumber: 269,
+                                            lineNumber: 317,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -542,7 +597,7 @@ function OrderDetailPage() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/orders/[id]/page.tsx",
-                                            lineNumber: 272,
+                                            lineNumber: 319,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -550,7 +605,7 @@ function OrderDetailPage() {
                                             children: paid ? 'To‘langan ✓' : 'Kutilmoqda'
                                         }, void 0, false, {
                                             fileName: "[project]/app/orders/[id]/page.tsx",
-                                            lineNumber: 277,
+                                            lineNumber: 323,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -558,7 +613,7 @@ function OrderDetailPage() {
                                             children: paid ? payment?.date?.toLocaleDateString() : '-'
                                         }, void 0, false, {
                                             fileName: "[project]/app/orders/[id]/page.tsx",
-                                            lineNumber: 282,
+                                            lineNumber: 327,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -566,7 +621,7 @@ function OrderDetailPage() {
                                             children: !paid ? getNextPaymentDate(index) : ''
                                         }, void 0, false, {
                                             fileName: "[project]/app/orders/[id]/page.tsx",
-                                            lineNumber: 287,
+                                            lineNumber: 331,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -577,41 +632,41 @@ function OrderDetailPage() {
                                                 children: "To‘landi"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/orders/[id]/page.tsx",
-                                                lineNumber: 294,
+                                                lineNumber: 337,
                                                 columnNumber: 23
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/orders/[id]/page.tsx",
-                                            lineNumber: 292,
+                                            lineNumber: 335,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, index, true, {
                                     fileName: "[project]/app/orders/[id]/page.tsx",
-                                    lineNumber: 264,
+                                    lineNumber: 313,
                                     columnNumber: 17
                                 }, this);
                             })
                         }, void 0, false, {
                             fileName: "[project]/app/orders/[id]/page.tsx",
-                            lineNumber: 259,
+                            lineNumber: 308,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/orders/[id]/page.tsx",
-                    lineNumber: 247,
+                    lineNumber: 296,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/orders/[id]/page.tsx",
-                lineNumber: 246,
+                lineNumber: 295,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/orders/[id]/page.tsx",
-        lineNumber: 238,
+        lineNumber: 285,
         columnNumber: 5
     }, this);
 }

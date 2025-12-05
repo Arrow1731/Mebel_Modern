@@ -16,7 +16,6 @@ export function NavBar() {
           </Link>
 
           <div className="hidden md:flex gap-6">
-            {/* <Link href="/" className="hover:text-amber-200 transition">Ombor</Link> */}
             <Link href="/catalog" className="hover:text-amber-200 transition">Ombor</Link>
             <Link href="/products" className="hover:text-amber-200 transition">Mahsulotlar</Link>
             <Link href="/analytics" className="hover:text-amber-200 transition">Analitika</Link>
@@ -32,7 +31,6 @@ export function NavBar() {
         {isOpen && (
           <div className="md:hidden flex flex-col gap-2 pb-4">
             <Link href="/catalog" className="hover:text-amber-200 transition block">Ombor</Link>
-            {/* <Link href="/catalog" className="hover:text-amber-200 transition block">Katalog</Link> */}
             <Link href="/products" className="hover:text-amber-200 transition block">Mahsulotlar</Link>
             <Link href="/analytics" className="hover:text-amber-200 transition block">Analitika</Link>
             <Link href="/credit-payments" className="hover:text-amber-200 transition block">Kredit</Link>

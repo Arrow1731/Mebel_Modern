@@ -41,8 +41,12 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 // import { db } from '@/lib/firebase';
 // import { Order } from '@/lib/types';
 // import { useRouter } from 'next/navigation';
-// const OYLAR = ['Yan', 'Fev', 'Mar', 'Apr', 'May', 'Iyun', 'Iyul', 'Avg', 'Sen', 'Okt', 'Noy', 'Dek'];
-// export default function KreditMijozlar() {
+// // 12 OYLIK TARTIB
+// const FIXED_MONTHS = [
+//   'Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun',
+//   'Iyul', 'Avgust', 'Sentabr', 'Oktabr', 'Noyabr', 'Dekabr'
+// ];
+// export default function CreditCustomersPage() {
 //   const [orders, setOrders] = useState<Order[]>([]);
 //   const [loading, setLoading] = useState(true);
 //   const router = useRouter();
@@ -54,42 +58,52 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 //           id: d.id,
 //           ...data,
 //           createdAt: data.createdAt?.toDate?.() || new Date(),
-//           dueDate: data.dueDate?.toDate?.() || new Date(),
 //           payments: data.payments?.map((p: any) => ({
 //             ...p,
 //             date: p.date?.toDate?.() || new Date(),
 //           })) || [],
 //         } as Order;
 //       });
-//       // Faqat bo‘lib to‘layotgan mijozlar
-//       const partials = ords.filter(
-//         (o) => o.paymentStatus === 'partial' || o.paymentStatus === 'pending'
+//       // Faqat bo‘lib to‘layotganlar
+//       const partials = ords.filter(o =>
+//         o.paymentStatus === 'partial' ||
+//         o.paymentStatus === 'pending'
 //       );
-//       // Keyingi to‘lov sanasiga qarab tartiblash (yaqin bo‘lganlar yuqoriga)
-//       partials.sort((a, b) => {
-//         const daysA = kunQolgani(a);
-//         const daysB = kunQolgani(b);
-//         return daysA - daysB;
-//       });
 //       setOrders(partials);
 //       setLoading(false);
 //     });
 //     return () => unsubscribe();
 //   }, []);
-//   const kunQolgani = (order: Order) => {
-//     const paidOylar = order.payments?.map((p) => p.monthIndex) || [];
-//     const nextMonthIndex = Math.min(order.creditMonths || 0, paidOylar.length);
-//     const nextPaymentDate = new Date(order.createdAt);
-//     nextPaymentDate.setMonth(nextPaymentDate.getMonth() + nextMonthIndex);
+//   // === KEYINGI TO‘LOV SANASINI HISOBLASH (CUSTOMER FIRST PAYMENT DATE BO‘YICHA) ===
+//   const getDaysUntilNextPayment = (order: Order) => {
+//     const paidMonthsCount = order.payments?.length || 0;
+//     // Mijoz tanlagan boshlanish sanasi — AGAR YO‘Q BO‘LSA createdAt OLADI
+//     const baseDate = order.firstPaymentDate
+//       ? order.firstPaymentDate.toDate?.() || new Date(order.firstPaymentDate)
+//       : order.createdAt;
+//     const nextPaymentDate = new Date(baseDate);
+//     nextPaymentDate.setMonth(nextPaymentDate.getMonth() + paidMonthsCount);
 //     const diff = nextPaymentDate.getTime() - new Date().getTime();
 //     return Math.ceil(diff / (1000 * 3600 * 24));
 //   };
+//   // === QIZIL BELGI — YAQIN TO‘LOV (3 KUNDAN KAM QOLGAN) ===
+//   const sortedOrders = [...orders].sort((a, b) => {
+//     const A = getDaysUntilNextPayment(a);
+//     const B = getDaysUntilNextPayment(b);
+//     // ATIGI 3–0 KUN QOLGANLAR BIRINCHI BO‘LIB CHIQADI
+//     const Aurgent = A <= 3 ? 1 : 0;
+//     const Burgent = B <= 3 ? 1 : 0;
+//     if (Aurgent !== Burgent) return Burgent - Aurgent;
+//     return A - B;
+//   });
 //   if (loading) return <p>Yuklanmoqda…</p>;
 //   return (
 //     <main className="p-6 min-h-screen bg-gray-50">
-//       <h1 className="text-3xl font-bold mb-6 text-amber-900">Bo‘lib to‘layotgan mijozlar</h1>
+//       <h1 className="text-3xl font-bold mb-6 text-amber-900">
+//         Bo‘lib To‘lovdagi Mijozlar
+//       </h1>
 //       <div className="overflow-auto bg-white shadow rounded-lg">
-//         <table className="w-full text-sm border">
+//         <table className="w-full text-sm">
 //           <thead className="bg-gray-100 border-b">
 //             <tr>
 //               <th className="px-4 py-3 text-left">Mijoz</th>
@@ -98,48 +112,41 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 //               <th className="px-4 py-3 text-left">Jami</th>
 //               <th className="px-4 py-3 text-left">To‘langan</th>
 //               <th className="px-4 py-3 text-left">Keyingi to‘lov</th>
-//               <th className="px-4 py-3 text-left">Oylar</th>
 //             </tr>
 //           </thead>
 //           <tbody>
-//             {orders.map((o) => {
-//               const daysLeft = kunQolgani(o);
+//             {sortedOrders.map((o) => {
+//               const daysLeft = getDaysUntilNextPayment(o);
 //               const urgent = daysLeft <= 3 && daysLeft >= 0;
 //               return (
 //                 <tr
 //                   key={o.id}
-//                   className={`border-b cursor-pointer ${urgent ? 'bg-red-100' : ''} hover:bg-gray-50`}
+//                   className={`border-b cursor-pointer ${
+//                     urgent ? 'bg-red-200' : ''
+//                   } hover:bg-gray-50`}
 //                   onClick={() => router.push(`/orders/${o.id}`)}
 //                 >
-//                   <td className="px-4 py-3 font-semibold">{o.clientName}</td>
+//                   <td className="px-4 py-3 font-medium">{o.clientName}</td>
 //                   <td className="px-4 py-3">{o.clientPhone}</td>
 //                   <td className="px-4 py-3">
-//                     {o.products?.map((p: any) => `${p.productName} (${p.quantity})`).join(', ')}
+//                     {o.products
+//                       ?.map((p: any) => `${p.productName} (${p.quantity} dona)`)
+//                       .join(', ')}
 //                   </td>
-//                   <td className="px-4 py-3">{Number(o.totalAmount).toLocaleString()} so‘m</td>
-//                   <td className="px-4 py-3">{Number(o.paidAmount || 0).toLocaleString()} so‘m</td>
+//                   <td className="px-4 py-3">
+//                     {Number(o.totalAmount).toLocaleString()} so‘m
+//                   </td>
+//                   <td className="px-4 py-3">
+//                     {Number(o.paidAmount || 0).toLocaleString()} so‘m
+//                   </td>
 //                   <td className="px-4 py-3">
 //                     {urgent ? (
-//                       <span className="text-red-700 font-semibold">{daysLeft} kun qoldi</span>
+//                       <span className="text-red-800 font-bold">
+//                         {daysLeft} kun qoldi
+//                       </span>
 //                     ) : (
 //                       <span className="text-gray-700">{daysLeft} kun</span>
 //                     )}
-//                   </td>
-//                   <td className="px-4 py-3 flex flex-wrap gap-1">
-//                     {Array.from({ length: o.creditMonths || 0 }).map((_, i) => {
-//                       const oyLabel = OYLAR[i] || `M${i + 1}`;
-//                       const paid = o.payments?.some((p) => p.monthIndex === i);
-//                       return (
-//                         <span
-//                           key={i}
-//                           className={`px-2 py-1 text-xs rounded ${
-//                             paid ? 'bg-green-200 text-green-800' : 'bg-yellow-100 text-yellow-800'
-//                           }`}
-//                         >
-//                           {oyLabel}
-//                         </span>
-//                       );
-//                     })}
 //                   </td>
 //                 </tr>
 //               );
@@ -167,7 +174,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-// 12 OYLIK TARTIB
+// 12 oy nomlari
 const FIXED_MONTHS = [
     'Yanvar',
     'Fevral',
@@ -207,9 +214,9 @@ function CreditCustomersPage() {
                             };
                         }
                     }["CreditCustomersPage.useEffect.unsubscribe.ords"]);
-                    // Faqat bo‘lib to‘layotganlar
+                    // faqat hali tugamagan kreditlar
                     const partials = ords.filter({
-                        "CreditCustomersPage.useEffect.unsubscribe.partials": (o)=>o.paymentStatus === 'partial' || o.paymentStatus === 'pending'
+                        "CreditCustomersPage.useEffect.unsubscribe.partials": (o)=>(o.paymentStatus === 'partial' || o.paymentStatus === 'pending') && o.paymentStatus !== 'paid'
                     }["CreditCustomersPage.useEffect.unsubscribe.partials"]);
                     setOrders(partials);
                     setLoading(false);
@@ -220,23 +227,23 @@ function CreditCustomersPage() {
             })["CreditCustomersPage.useEffect"];
         }
     }["CreditCustomersPage.useEffect"], []);
-    // === KEYINGI TO‘LOV SANASINI HISOBLASH (CUSTOMER FIRST PAYMENT DATE BO‘YICHA) ===
+    // Keyingi to‘lov sanasi
     const getDaysUntilNextPayment = (order)=>{
+        if (order.paymentStatus === 'paid') return 0;
         const paidMonthsCount = order.payments?.length || 0;
-        // Mijoz tanlagan boshlanish sanasi — AGAR YO‘Q BO‘LSA createdAt OLADI
+        // Boshlanish sanasi firstPaymentDate yoki createdAt
         const baseDate = order.firstPaymentDate ? order.firstPaymentDate.toDate?.() || new Date(order.firstPaymentDate) : order.createdAt;
         const nextPaymentDate = new Date(baseDate);
         nextPaymentDate.setMonth(nextPaymentDate.getMonth() + paidMonthsCount);
         const diff = nextPaymentDate.getTime() - new Date().getTime();
         return Math.ceil(diff / (1000 * 3600 * 24));
     };
-    // === QIZIL BELGI — YAQIN TO‘LOV (3 KUNDAN KAM QOLGAN) ===
+    // Saralash — 3 kundan kam qolganlar yuqorida
     const sortedOrders = [
         ...orders
     ].sort((a, b)=>{
         const A = getDaysUntilNextPayment(a);
         const B = getDaysUntilNextPayment(b);
-        // ATIGI 3–0 KUN QOLGANLAR BIRINCHI BO‘LIB CHIQADI
         const Aurgent = A <= 3 ? 1 : 0;
         const Burgent = B <= 3 ? 1 : 0;
         if (Aurgent !== Burgent) return Burgent - Aurgent;
@@ -246,7 +253,7 @@ function CreditCustomersPage() {
         children: "Yuklanmoqda…"
     }, void 0, false, {
         fileName: "[project]/app/credit-customers/page.tsx",
-        lineNumber: 232,
+        lineNumber: 246,
         columnNumber: 23
     }, this);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -257,7 +264,7 @@ function CreditCustomersPage() {
                 children: "Bo‘lib To‘lovdagi Mijozlar"
             }, void 0, false, {
                 fileName: "[project]/app/credit-customers/page.tsx",
-                lineNumber: 236,
+                lineNumber: 250,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -274,7 +281,7 @@ function CreditCustomersPage() {
                                         children: "Mijoz"
                                     }, void 0, false, {
                                         fileName: "[project]/app/credit-customers/page.tsx",
-                                        lineNumber: 244,
+                                        lineNumber: 258,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -282,7 +289,7 @@ function CreditCustomersPage() {
                                         children: "Telefon"
                                     }, void 0, false, {
                                         fileName: "[project]/app/credit-customers/page.tsx",
-                                        lineNumber: 245,
+                                        lineNumber: 259,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -290,7 +297,7 @@ function CreditCustomersPage() {
                                         children: "Mahsulotlar"
                                     }, void 0, false, {
                                         fileName: "[project]/app/credit-customers/page.tsx",
-                                        lineNumber: 246,
+                                        lineNumber: 260,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -298,7 +305,7 @@ function CreditCustomersPage() {
                                         children: "Jami"
                                     }, void 0, false, {
                                         fileName: "[project]/app/credit-customers/page.tsx",
-                                        lineNumber: 247,
+                                        lineNumber: 261,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -306,7 +313,7 @@ function CreditCustomersPage() {
                                         children: "To‘langan"
                                     }, void 0, false, {
                                         fileName: "[project]/app/credit-customers/page.tsx",
-                                        lineNumber: 248,
+                                        lineNumber: 262,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -314,18 +321,18 @@ function CreditCustomersPage() {
                                         children: "Keyingi to‘lov"
                                     }, void 0, false, {
                                         fileName: "[project]/app/credit-customers/page.tsx",
-                                        lineNumber: 249,
+                                        lineNumber: 263,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/credit-customers/page.tsx",
-                                lineNumber: 243,
+                                lineNumber: 257,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/credit-customers/page.tsx",
-                            lineNumber: 242,
+                            lineNumber: 256,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -341,7 +348,7 @@ function CreditCustomersPage() {
                                             children: o.clientName
                                         }, void 0, false, {
                                             fileName: "[project]/app/credit-customers/page.tsx",
-                                            lineNumber: 266,
+                                            lineNumber: 280,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -349,7 +356,7 @@ function CreditCustomersPage() {
                                             children: o.clientPhone
                                         }, void 0, false, {
                                             fileName: "[project]/app/credit-customers/page.tsx",
-                                            lineNumber: 267,
+                                            lineNumber: 281,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -357,7 +364,7 @@ function CreditCustomersPage() {
                                             children: o.products?.map((p)=>`${p.productName} (${p.quantity} dona)`).join(', ')
                                         }, void 0, false, {
                                             fileName: "[project]/app/credit-customers/page.tsx",
-                                            lineNumber: 269,
+                                            lineNumber: 283,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -368,7 +375,7 @@ function CreditCustomersPage() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/credit-customers/page.tsx",
-                                            lineNumber: 275,
+                                            lineNumber: 289,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -379,7 +386,7 @@ function CreditCustomersPage() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/credit-customers/page.tsx",
-                                            lineNumber: 279,
+                                            lineNumber: 293,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -392,7 +399,7 @@ function CreditCustomersPage() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/credit-customers/page.tsx",
-                                                lineNumber: 285,
+                                                lineNumber: 299,
                                                 columnNumber: 23
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 className: "text-gray-700",
@@ -402,41 +409,41 @@ function CreditCustomersPage() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/credit-customers/page.tsx",
-                                                lineNumber: 289,
+                                                lineNumber: 303,
                                                 columnNumber: 23
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/credit-customers/page.tsx",
-                                            lineNumber: 283,
+                                            lineNumber: 297,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, o.id, true, {
                                     fileName: "[project]/app/credit-customers/page.tsx",
-                                    lineNumber: 259,
+                                    lineNumber: 273,
                                     columnNumber: 17
                                 }, this);
                             })
                         }, void 0, false, {
                             fileName: "[project]/app/credit-customers/page.tsx",
-                            lineNumber: 253,
+                            lineNumber: 267,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/credit-customers/page.tsx",
-                    lineNumber: 241,
+                    lineNumber: 255,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/credit-customers/page.tsx",
-                lineNumber: 240,
+                lineNumber: 254,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/credit-customers/page.tsx",
-        lineNumber: 235,
+        lineNumber: 249,
         columnNumber: 5
     }, this);
 }
