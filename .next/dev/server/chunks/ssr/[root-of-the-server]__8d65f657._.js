@@ -114,13 +114,17 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //         <div className="flex justify-between items-center mb-8">
 //           <h1 className="text-3xl font-bold text-amber-900">Mahsulotlar Boshqaruv Paneli</h1>
 //           <Button
-//             onClick={() => { setShowForm(true); setEditingId(null); setFormData({ name: '', category: FURNITURE_CATEGORIES[0], price: 0, quantity: 0, description: '' }); setImageUrl(''); }}
+//             onClick={() => {
+//               setShowForm(true);
+//               setEditingId(null);
+//               setFormData({ name: '', category: FURNITURE_CATEGORIES[0], price: 0, quantity: 0, description: '' });
+//               setImageUrl('');
+//             }}
 //             className="bg-amber-600 hover:bg-amber-700"
 //           >
 //             <Plus className="mr-2" /> Mahsulot Qo'shish
 //           </Button>
 //         </div>
-//         {/* Search */}
 //         <div className="mb-6">
 //           <input
 //             type="text"
@@ -130,7 +134,6 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //             className="w-full px-4 py-2 border border-gray-300 rounded-lg"
 //           />
 //         </div>
-//         {/* Form Modal */}
 //         {showForm && (
 //           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
 //             <Card className="w-full max-w-2xl max-h-96 overflow-y-auto">
@@ -221,7 +224,6 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //             </Card>
 //           </div>
 //         )}
-//         {/* Products Table */}
 //         {loading ? (
 //           <div>Yuklanmoqda...</div>
 //         ) : (
@@ -233,7 +235,7 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //                   <th className="px-4 py-3 text-left font-semibold text-gray-700">Kategoriyasi</th>
 //                   <th className="px-4 py-3 text-left font-semibold text-gray-700">Narxi (So'm)</th>
 //                   <th className="px-4 py-3 text-left font-semibold text-gray-700">Soni</th>
-//                   <th className="px-4 py-3 text-left font-semibold text-gray-700">Holati </th>
+//                   <th className="px-4 py-3 text-left font-semibold text-gray-700">Holati</th>
 //                 </tr>
 //               </thead>
 //               <tbody>
@@ -241,7 +243,10 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //                   <tr key={product.id} className="border-b hover:bg-gray-50">
 //                     <td className="px-4 py-3">{product.name}</td>
 //                     <td className="px-4 py-3">{product.category}</td>
-//                     <td className="px-4 py-3 font-semibold text-amber-700">{product.price} So'm</td>
+//                     {/* ✅ FORMATTED PRICE HERE */}
+//                     <td className="px-4 py-3 font-semibold text-amber-700">
+//                       {Number(product.price).toLocaleString('ru-RU')} So'm
+//                     </td>
 //                     <td className="px-4 py-3">{product.quantity}</td>
 //                     <td className="px-4 py-3 flex gap-2">
 //                       <Button
@@ -271,6 +276,32 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //     </main>
 //   );
 // }
+// // 'use client';
+// // import { useState, useEffect } from 'react';
+// // import LoginModal from '@/components/LoginModal';
+// // import { Button } from '@/components/ui/button';
+// // export default function ProductsPage() {
+// //   const [isLoggedIn, setIsLoggedIn] = useState(false);
+// //   useEffect(() => {
+// //     const logged = localStorage.getItem('isLoggedIn') === 'true';
+// //     setIsLoggedIn(logged);
+// //   }, []);
+// //   if (!isLoggedIn) return <LoginModal onLoginSuccess={() => setIsLoggedIn(true)} />;
+// //   return (
+// //     <main className="min-h-screen p-6 bg-gray-50">
+// //       <div className="flex justify-between mb-6">
+// //         <h1 className="text-3xl font-bold text-amber-900">Mahsulotlar</h1>
+// //         <Button
+// //           onClick={() => { localStorage.removeItem('isLoggedIn'); setIsLoggedIn(false); }}
+// //           className="bg-red-600 hover:bg-red-700"
+// //         >
+// //           Chiqish
+// //         </Button>
+// //       </div>
+// //       <p>Products boshqaruv paneli ishlayapti...</p>
+// //     </main>
+// //   );
+// // }
 }),
 "[project]/app/products/page.tsx [app-rsc] (ecmascript, Next.js Server Component)", ((__turbopack_context__) => {
 

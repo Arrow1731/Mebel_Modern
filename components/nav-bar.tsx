@@ -12,7 +12,7 @@ export function NavBar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/catalog" className="font-bold text-xl">
-            MEBEL WEB SAYT
+              BOG'OT - SHIMANAY Mebel
           </Link>
 
           <div className="hidden md:flex gap-6">
@@ -31,8 +31,8 @@ export function NavBar() {
 
         {isOpen && (
           <div className="md:hidden flex flex-col gap-2 pb-4">
-            <Link href="/" className="hover:text-amber-200 transition block">Ombor</Link>
-            <Link href="/catalog" className="hover:text-amber-200 transition block">Katalog</Link>
+            <Link href="/catalog" className="hover:text-amber-200 transition block">Ombor</Link>
+            {/* <Link href="/catalog" className="hover:text-amber-200 transition block">Katalog</Link> */}
             <Link href="/products" className="hover:text-amber-200 transition block">Mahsulotlar</Link>
             <Link href="/analytics" className="hover:text-amber-200 transition block">Analitika</Link>
             <Link href="/credit-payments" className="hover:text-amber-200 transition block">Kredit</Link>

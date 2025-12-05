@@ -984,12 +984,24 @@
     height: 1.15rem;
   }
 
+  .h-\[200px\] {
+    height: 200px;
+  }
+
   .h-\[250px\] {
     height: 250px;
   }
 
   .h-\[350px\] {
     height: 350px;
+  }
+
+  .h-\[420px\] {
+    height: 420px;
+  }
+
+  .h-\[600px\] {
+    height: 600px;
   }
 
   .h-\[calc\(100\%-1px\)\] {
@@ -1036,8 +1048,36 @@
     max-height: calc(var(--spacing) * 96);
   }
 
+  .max-h-\[00px\] {
+    max-height: 0;
+  }
+
   .max-h-\[300px\] {
     max-height: 300px;
+  }
+
+  .max-h-\[600px\] {
+    max-height: 600px;
+  }
+
+  .max-h-\[700px\] {
+    max-height: 700px;
+  }
+
+  .max-h-\[800px\] {
+    max-height: 800px;
+  }
+
+  .max-h-\[900px\] {
+    max-height: 900px;
+  }
+
+  .max-h-\[1000px\] {
+    max-height: 1000px;
+  }
+
+  .max-h-\[1200px\] {
+    max-height: 1200px;
   }
 
   .max-h-\[1500px\] {
@@ -1136,6 +1176,22 @@
     width: 100px;
   }
 
+  .w-\[120px\] {
+    width: 120px;
+  }
+
+  .w-\[220px\] {
+    width: 220px;
+  }
+
+  .w-\[320px\] {
+    width: 320px;
+  }
+
+  .w-\[520px\] {
+    width: 520px;
+  }
+
   .w-auto {
     width: auto;
   }
@@ -1180,8 +1236,20 @@
     max-width: 40px;
   }
 
+  .max-w-\[320px\] {
+    max-width: 320px;
+  }
+
   .max-w-\[500px\] {
     max-width: 500px;
+  }
+
+  .max-w-\[650px\] {
+    max-width: 650px;
+  }
+
+  .max-w-\[800px\] {
+    max-width: 800px;
   }
 
   .max-w-\[1000px\] {
@@ -1797,6 +1865,18 @@
     background-color: #000;
   }
 
+  .bg-\[\#088080\] {
+    background-color: #088080;
+  }
+
+  .bg-\[\#88080\] {
+    background-color: #88080;
+  }
+
+  .bg-\[\#808080\] {
+    background-color: gray;
+  }
+
   .bg-\[\#808080\]\/80 {
     background-color: #808080cc;
     background-color: lab(53.585% 0 .0000119209 / .8);
@@ -2030,6 +2110,10 @@
     padding: 3px;
   }
 
+  .p-\[6\], .p-\[6px\] {
+    padding: 6px;
+  }
+
   .p-\[20px\] {
     padding: 20px;
   }
@@ -2074,6 +2158,14 @@
     padding-inline: calc(var(--spacing) * 6);
   }
 
+  .px-\[25px\] {
+    padding-inline: 25px;
+  }
+
+  .px-\[35px\] {
+    padding-inline: 35px;
+  }
+
   .py-0\.5 {
     padding-block: calc(var(--spacing) * .5);
   }
@@ -2108,6 +2200,18 @@
 
   .py-10 {
     padding-block: calc(var(--spacing) * 10);
+  }
+
+  .py-\[40px\] {
+    padding-block: 40px;
+  }
+
+  .py-\[60px\] {
+    padding-block: 60px;
+  }
+
+  .py-\[90px\] {
+    padding-block: 90px;
   }
 
   .pt-0 {
@@ -2261,6 +2365,10 @@
 
   .text-\[20px\] {
     font-size: 20px;
+  }
+
+  .text-\[24px\] {
+    font-size: 24px;
   }
 
   .text-\[25px\] {
