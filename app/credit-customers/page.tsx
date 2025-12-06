@@ -308,7 +308,7 @@ export default function CreditCustomersPage() {
 
   // ---------- Page UI ----------
   return (
-    <main className="p-6 min-h-screen bg-gray-50">
+    <main className="p-6 min-h-screen bg-gray-50 px-[150px]">
       {/* Logout button */}
       <div className="flex justify-end mb-4">
         <Button

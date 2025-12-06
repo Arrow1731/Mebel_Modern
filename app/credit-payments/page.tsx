@@ -400,7 +400,7 @@ export default function CreditPaymentsPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 py-10 px-6">
+    <main className="min-h-screen bg-gray-50 py-10 px-[150px]">
 
       {/* ---------- LOGIN OVERLAY (NO HOOKS INSIDE RETURN) ---------- */}
       {!isLoggedIn && (
@@ -415,7 +415,9 @@ export default function CreditPaymentsPage() {
         <>
           {/* Logout */}
           <div className="flex justify-between items-center mb-8">
-            <h1 className="text-3xl font-bold text-amber-900">Kredit To'lovlari</h1>
+            {/* <h1 className="text-3xl font-bold text-amber-900">Kredit To'lovlari</h1> */}
+            <h2 className="text-2xl font-bold text-green-700 mb-4">To‘liq To‘langanlar</h2>
+
 
             <Button
               className="bg-red-600 hover:bg-red-700 text-white"
@@ -442,8 +444,6 @@ export default function CreditPaymentsPage() {
             <>
               {/* FULLY PAID */}
               <section className="mb-14">
-                <h2 className="text-2xl font-bold text-green-700 mb-4">To‘liq To‘langanlar</h2>
-
                 {fullyPaid.length === 0 ? (
                   <p className="text-gray-500">Hozircha to‘liq to‘lov qilganlar yoʻq.</p>
                 ) : (
