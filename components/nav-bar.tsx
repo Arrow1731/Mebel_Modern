@@ -17,8 +17,8 @@ export function NavBar() {
 
           <div className="hidden md:flex gap-6">
             <Link href="/catalog" className="hover:text-amber-200 transition">Ombor</Link>
-            <Link href="/products" className="hover:text-amber-200 transition">Mahsulotlar</Link>
-            <Link href="/analytics" className="hover:text-amber-200 transition">Analitika</Link>
+            {/* <Link href="/products" className="hover:text-amber-200 transition">Mahsulotlar</Link> */}
+            {/* <Link href="/analytics" className="hover:text-amber-200 transition">Analitika</Link> */}
             <Link href="/credit-payments" className="hover:text-amber-200 transition">Kredit</Link>
             <Link href="/credit-customers" className="hover:text-amber-200 transition">To'lovlar</Link>
           </div>
@@ -31,8 +31,8 @@ export function NavBar() {
         {isOpen && (
           <div className="md:hidden flex flex-col gap-2 pb-4">
             <Link href="/catalog" className="hover:text-amber-200 transition block">Ombor</Link>
-            <Link href="/products" className="hover:text-amber-200 transition block">Mahsulotlar</Link>
-            <Link href="/analytics" className="hover:text-amber-200 transition block">Analitika</Link>
+            {/* <Link href="/products" className="hover:text-amber-200 transition block">Mahsulotlar</Link> */}
+            {/* <Link href="/analytics" className="hover:text-amber-200 transition block">Analitika</Link> */}
             <Link href="/credit-payments" className="hover:text-amber-200 transition block">Kredit</Link>
             <Link href="/credit-customers" className="hover:text-amber-200 transition">To'lovlar</Link>
           </div>

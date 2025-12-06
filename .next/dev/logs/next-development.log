@@ -47,3 +47,444 @@
 [01:06:30.843] Server  LOG      ✓ Compiled in 54ms
 [01:06:32.296] Server  LOG      ✓ Compiled in 44ms
 [01:06:36.968] Server  LOG      ✓ Compiled in 114ms
+[04:58:05.603] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765015813148}
+[04:59:16.280] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/products color: rgb(120, 120, 120) color: inherit {"dp":"/products","o":"http://localhost:3000/products","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765015883825}
+[04:59:21.047] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/credit-payments color: rgb(120, 120, 120) color: inherit {"dp":"/credit-payments","o":"http://localhost:3000/credit-payments","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765015888585}
+[04:59:26.945] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/credit-customers color: rgb(120, 120, 120) color: inherit {"dp":"/credit-customers","o":"http://localhost:3000/credit-customers","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765015894485}
+[04:59:32.050] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/credit-payments color: rgb(120, 120, 120) color: inherit {"dp":"/credit-payments","o":"http://localhost:3000/credit-payments","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765015899589}
+[04:59:38.733] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/credit-customers color: rgb(120, 120, 120) color: inherit {"dp":"/credit-customers","o":"http://localhost:3000/credit-customers","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765015906274}
+[04:59:51.324] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/orders/jHzlXRK2dYFoqxEwMwXa color: rgb(120, 120, 120) color: inherit {"dp":"/orders/[id]","o":"http://localhost:3000/orders/jHzlXRK2dYFoqxEwMwXa","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765015918862}
+[05:00:04.066] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/credit-customers color: rgb(120, 120, 120) color: inherit {"dp":"/credit-customers","o":"http://localhost:3000/credit-customers","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765015931613}
+[05:00:16.850] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/credit-payments color: rgb(120, 120, 120) color: inherit {"dp":"/credit-payments","o":"http://localhost:3000/credit-payments","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765015944390}
+[05:00:17.657] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/products color: rgb(120, 120, 120) color: inherit {"dp":"/products","o":"http://localhost:3000/products","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765015945201}
+[05:00:20.230] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765015947776}
+[05:09:39.245] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:09:39.608] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[05:09:39.608] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/catalog","route":"/catalog"}
+[05:09:39.608] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765016506936}
+[05:10:02.093] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:10:02.386] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[05:10:02.386] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[05:10:02.386] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765016529923}
+[05:12:32.683] Server  LOG      ✓ Compiled in 75ms
+[05:12:32.871] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.882] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\.next\dev\server\chunks\ssr\node_modules_next_dist_c05d54d8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.884] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.886] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.887] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.887] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.888] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.889] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.891] Server  ERROR    ⨯ Error: The default export is not a React Component in "/analytics/page"
+[05:12:32.893] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.893] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\.next\dev\server\chunks\ssr\node_modules_next_dist_c05d54d8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.894] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.894] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.894] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.895] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.895] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.895] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.896] Server  ERROR    ⨯ Error: The default export is not a React Component in "/analytics/page"
+[05:12:32.923] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.923] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\.next\dev\server\chunks\ssr\node_modules_next_dist_c05d54d8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.924] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.924] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.924] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.924] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.925] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.925] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.925] Server  ERROR    ⨯ Error: The default export is not a React Component in "/analytics/page"
+[05:12:32.928] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.928] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\.next\dev\server\chunks\ssr\node_modules_next_dist_c05d54d8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.929] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.930] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.930] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.931] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.931] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.931] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:32.932] Server  ERROR    ⨯ Error: The default export is not a React Component in "/analytics/page"
+[05:12:35.778] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:35.778] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\.next\dev\server\chunks\ssr\node_modules_next_dist_c05d54d8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:35.779] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:35.779] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:35.780] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:35.780] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:35.780] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:35.781] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:35.781] Server  ERROR    ⨯ Error: The default export is not a React Component in "/analytics/page"
+[05:12:35.783] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:35.784] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\.next\dev\server\chunks\ssr\node_modules_next_dist_c05d54d8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:35.784] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:35.784] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:35.785] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:35.785] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:35.785] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:35.785] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:12:35.786] Server  ERROR    ⨯ Error: The default export is not a React Component in "/analytics/page"
+[05:12:35.957] Browser ERROR   uncaughtError: Error: The default export is not a React Component in "/analytics/page"
+[05:12:36.528] Server  LOG      ✓ Compiled in 220ms
+[05:12:37.608] Browser ERROR   ./app/analytics/page.tsx:475:58
+Parsing ecmascript source code failed
+  473 |         </div>
+  474 |
+> 475 |         {/* REST OF YOUR ORIGINAL CODE WITHOUT CHANGE */}
+      |                                                          ^
+
+Expected '</', got '<eof>'
+[05:12:37.609] Browser ERROR   ./app/analytics/page.tsx:475:58
+Parsing ecmascript source code failed
+  473 |         </div>
+  474 |
+> 475 |         {/* REST OF YOUR ORIGINAL CODE WITHOUT CHANGE */}
+      |                                                          ^
+
+Expected '</', got '<eof>'
+[05:12:37.609] Browser ERROR   ./app/analytics/page.tsx:475:58
+Parsing ecmascript source code failed
+  473 |         </div>
+  474 |
+> 475 |         {/* REST OF YOUR ORIGINAL CODE WITHOUT CHANGE */}
+      |                                                          ^
+
+Expected '</', got '<eof>'
+[05:12:37.609] Browser ERROR   ./app/analytics/page.tsx:475:58
+Parsing ecmascript source code failed
+  473 |         </div>
+  474 |
+> 475 |         {/* REST OF YOUR ORIGINAL CODE WITHOUT CHANGE */}
+      |                                                          ^
+
+Expected '</', got '<eof>'
+[05:12:37.610] Browser ERROR   ./app/analytics/page.tsx:475:58
+Parsing ecmascript source code failed
+  473 |         </div>
+  474 |
+> 475 |         {/* REST OF YOUR ORIGINAL CODE WITHOUT CHANGE */}
+      |                                                          ^
+
+Expected '</', got '<eof>'
+[05:26:15.610] Browser ERROR   ./app/analytics/page.tsx:475:59
+Parsing ecmascript source code failed
+  473 |         </div>
+  474 |
+> 475 |         {/* REST OF YOUR ORIGINAL CODE WITHOUT CHANGE */}l
+      |                                                           ^
+
+Expected '</', got '<eof>'
+[05:26:15.610] Browser ERROR   ./app/analytics/page.tsx:475:59
+Parsing ecmascript source code failed
+  473 |         </div>
+  474 |
+> 475 |         {/* REST OF YOUR ORIGINAL CODE WITHOUT CHANGE */}l
+      |                                                           ^
+
+Expected '</', got '<eof>'
+[05:26:15.610] Browser ERROR   ./app/analytics/page.tsx:475:59
+Parsing ecmascript source code failed
+  473 |         </div>
+  474 |
+> 475 |         {/* REST OF YOUR ORIGINAL CODE WITHOUT CHANGE */}l
+      |                                                           ^
+
+Expected '</', got '<eof>'
+[05:26:15.610] Browser ERROR   ./app/analytics/page.tsx:475:59
+Parsing ecmascript source code failed
+  473 |         </div>
+  474 |
+> 475 |         {/* REST OF YOUR ORIGINAL CODE WITHOUT CHANGE */}l
+      |                                                           ^
+
+Expected '</', got '<eof>'
+[05:26:15.610] Browser ERROR   ./app/analytics/page.tsx:475:59
+Parsing ecmascript source code failed
+  473 |         </div>
+  474 |
+> 475 |         {/* REST OF YOUR ORIGINAL CODE WITHOUT CHANGE */}l
+      |                                                           ^
+
+Expected '</', got '<eof>'
+[05:26:16.607] Browser ERROR   ./app/analytics/page.tsx:475:58
+Parsing ecmascript source code failed
+  473 |         </div>
+  474 |
+> 475 |         {/* REST OF YOUR ORIGINAL CODE WITHOUT CHANGE */}
+      |                                                          ^
+
+Expected '</', got '<eof>'
+[05:26:16.607] Browser ERROR   ./app/analytics/page.tsx:475:58
+Parsing ecmascript source code failed
+  473 |         </div>
+  474 |
+> 475 |         {/* REST OF YOUR ORIGINAL CODE WITHOUT CHANGE */}
+      |                                                          ^
+
+Expected '</', got '<eof>'
+[05:26:16.607] Browser ERROR   ./app/analytics/page.tsx:475:58
+Parsing ecmascript source code failed
+  473 |         </div>
+  474 |
+> 475 |         {/* REST OF YOUR ORIGINAL CODE WITHOUT CHANGE */}
+      |                                                          ^
+
+Expected '</', got '<eof>'
+[05:26:16.607] Browser ERROR   ./app/analytics/page.tsx:475:58
+Parsing ecmascript source code failed
+  473 |         </div>
+  474 |
+> 475 |         {/* REST OF YOUR ORIGINAL CODE WITHOUT CHANGE */}
+      |                                                          ^
+
+Expected '</', got '<eof>'
+[05:26:16.607] Browser ERROR   ./app/analytics/page.tsx:475:58
+Parsing ecmascript source code failed
+  473 |         </div>
+  474 |
+> 475 |         {/* REST OF YOUR ORIGINAL CODE WITHOUT CHANGE */}
+      |                                                          ^
+
+Expected '</', got '<eof>'
+[05:26:43.096] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[05:26:43.110] Server  LOG      ✓ Compiled in 65ms
+[05:26:43.180] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:26:43.181] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\.next\dev\server\chunks\ssr\node_modules_next_dist_c05d54d8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:26:43.182] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:26:43.182] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:26:43.183] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:26:43.183] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:26:43.183] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:26:43.183] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:26:43.184] Server  ERROR    ⨯ Error: The default export is not a React Component in "/analytics/page"
+[05:26:43.186] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:26:43.187] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\.next\dev\server\chunks\ssr\node_modules_next_dist_c05d54d8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:26:43.187] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:26:43.188] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:26:43.188] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:26:43.188] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:26:43.189] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:26:43.189] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[05:26:43.189] Server  ERROR    ⨯ Error: The default export is not a React Component in "/analytics/page"
+[05:26:43.369] Browser ERROR   uncaughtError: Error: The default export is not a React Component in "/analytics/page"
+[05:26:45.550] Server  LOG      ✓ Compiled in 254ms
+[05:26:54.357] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:26:54.530] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndFocusHandler segmentPath={[...]}>
+        <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="analytics/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+                <RedirectBoundary>
+                  <RedirectErrorBoundary router={{...}}>
+                    <InnerLayoutRouter url="/analytics" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} ...>
+                      <SegmentViewNode type="page" pagePath="analytics/...">
+                        <SegmentTrieNode>
+                        <ClientPageRoot Component={function AnalyticsPage} serverProvidedParams={{...}}>
+                          <AnalyticsPage params={Promise} searchParams={Promise}>
++                           <p className="p-6">
+-                           <main className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
+                      ...
+                    ...
+          ...
+
+[05:26:54.530] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[05:26:54.530] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[05:26:54.530] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[05:26:54.530] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765017542074}
+[05:26:54.530] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765017542074}
+[05:28:02.761] Server  LOG      ✓ Compiled in 66ms
+[05:28:07.207] Server  LOG      ✓ Compiled in 59ms
+[05:28:11.132] Server  LOG      ✓ Compiled in 121ms
+[05:28:13.950] Server  LOG      ✓ Compiled in 116ms
+[05:28:37.950] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:28:38.108] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[05:28:38.108] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/catalog","route":"/catalog"}
+[05:28:38.108] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765017645650}
+[05:29:02.667] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:29:02.825] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[05:29:02.825] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/catalog","route":"/catalog"}
+[05:29:02.825] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765017670371}
+[05:29:09.995] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:29:10.161] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndFocusHandler segmentPath={[...]}>
+        <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="analytics/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+                <RedirectBoundary>
+                  <RedirectErrorBoundary router={{...}}>
+                    <InnerLayoutRouter url="/analytics" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} ...>
+                      <SegmentViewNode type="page" pagePath="analytics/...">
+                        <SegmentTrieNode>
+                        <ClientPageRoot Component={function AnalyticsPage} serverProvidedParams={{...}}>
+                          <AnalyticsPage params={Promise} searchParams={Promise}>
++                           <p className="p-6">
+-                           <main className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
+                      ...
+                    ...
+          ...
+
+[05:29:10.161] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[05:29:10.161] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[05:29:10.161] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[05:29:10.161] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765017677708}
+[05:29:10.161] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765017677708}
+[05:30:00.821] Server  LOG      ✓ Compiled in 122ms
+[05:30:20.572] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:30:20.721] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[05:30:20.721] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/catalog","route":"/catalog"}
+[05:30:20.721] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765017748258}
+[05:30:33.223] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:30:33.381] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[05:30:33.381] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[05:30:33.381] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765017760923}
+[05:30:38.050] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:30:38.197] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[05:30:38.197] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[05:30:38.197] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765017765744}
+[05:30:38.856] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:30:38.947] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[05:30:38.947] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[05:30:38.947] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765017766582}
+[05:30:39.091] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:30:39.211] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[05:30:39.211] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[05:30:39.211] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765017766781}
+[05:30:39.363] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:30:39.493] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[05:30:39.493] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[05:30:39.493] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765017767058}
+[05:30:39.643] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:30:39.790] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[05:30:39.790] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[05:30:39.790] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765017767336}
+[05:30:44.042] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:30:44.184] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[05:30:44.184] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/catalog","route":"/catalog"}
+[05:30:44.184] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/catalog color: rgb(120, 120, 120) color: inherit {"dp":"/catalog","o":"http://localhost:3000/catalog","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765017771730}
+[05:30:55.333] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:30:55.501] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndFocusHandler segmentPath={[...]}>
+        <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="analytics/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+                <RedirectBoundary>
+                  <RedirectErrorBoundary router={{...}}>
+                    <InnerLayoutRouter url="/analytics" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} ...>
+                      <SegmentViewNode type="page" pagePath="analytics/...">
+                        <SegmentTrieNode>
+                        <ClientPageRoot Component={function AnalyticsPage} serverProvidedParams={{...}}>
+                          <AnalyticsPage params={Promise} searchParams={Promise}>
++                           <p className="p-6">
+-                           <main className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
+                      ...
+                    ...
+          ...
+
+[05:30:55.501] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[05:30:55.501] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[05:30:55.501] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/analytics","route":"/analytics"}
+[05:30:55.501] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765017783042}
+[05:30:55.501] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/analytics color: rgb(120, 120, 120) color: inherit {"dp":"/analytics","o":"http://localhost:3000/analytics","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1765017783043}
+[05:33:01.155] Server  LOG      ✓ Compiled in 78ms
+[06:48:08.810] Server  LOG      ✓ Compiled in 56ms
+[06:48:10.376] Server  LOG      ✓ Compiled in 55ms
+[06:48:12.559] Server  LOG      ✓ Compiled in 47ms
+[06:48:14.230] Server  LOG      ✓ Compiled in 45ms
+[06:48:27.363] Server  LOG      ✓ Compiled in 63ms
+[06:48:29.771] Server  LOG      ✓ Compiled in 53ms
+[06:48:31.397] Server  LOG      ✓ Compiled in 65ms
+[06:48:31.699] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.708] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\.next\dev\server\chunks\ssr\node_modules_next_dist_c05d54d8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.708] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.709] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.709] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.709] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.710] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.710] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.710] Server  ERROR    ⨯ Error: The default export is not a React Component in "/analytics/page"
+[06:48:31.712] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.712] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\.next\dev\server\chunks\ssr\node_modules_next_dist_c05d54d8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.713] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.713] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.713] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.714] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.714] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.714] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.714] Server  ERROR    ⨯ Error: The default export is not a React Component in "/analytics/page"
+[06:48:31.725] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.725] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\.next\dev\server\chunks\ssr\node_modules_next_dist_c05d54d8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.725] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.725] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.726] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.726] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.726] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.726] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.726] Server  ERROR    ⨯ Error: The default export is not a React Component in "/analytics/page"
+[06:48:31.729] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.730] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\.next\dev\server\chunks\ssr\node_modules_next_dist_c05d54d8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.730] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.730] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.730] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.731] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.731] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.731] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.731] Server  ERROR    ⨯ Error: The default export is not a React Component in "/analytics/page"
+[06:48:31.785] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.785] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\.next\dev\server\chunks\ssr\node_modules_next_dist_c05d54d8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.786] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.786] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.787] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.787] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.788] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.788] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.788] Server  ERROR    ⨯ Error: The default export is not a React Component in "/analytics/page"
+[06:48:31.790] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.791] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\.next\dev\server\chunks\ssr\node_modules_next_dist_c05d54d8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.791] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.791] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.791] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.792] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.792] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.792] Server  ERROR   D:\Nebel_WebSite\2025_DEC_MEbel\Mebel_Modern\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:48:31.792] Server  ERROR    ⨯ Error: The default export is not a React Component in "/analytics/page"
+[06:48:31.983] Browser ERROR   uncaughtError: Error: The default export is not a React Component in "/analytics/page"
+[06:48:36.720] Server  LOG      ✓ Compiled in 152ms

@@ -1,7 +1,9 @@
 {
   "/analytics/page": "app/analytics/page.js",
+  "/catalog/page": "app/catalog/page.js",
   "/credit-customers/page": "app/credit-customers/page.js",
   "/credit-payments/page": "app/credit-payments/page.js",
+  "/orders/[id]/page": "app/orders/[id]/page.js",
   "/product/[id]/page": "app/product/[id]/page.js",
   "/products/page": "app/products/page.js"
 }
