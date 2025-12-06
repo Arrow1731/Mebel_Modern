@@ -426,6 +426,7 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 
 // 'use client';
 // import { useState, useEffect } from 'react';
+// import LoginModal from '@/components/login-user'; // ✅ LOGIN MODAL QO‘SHILDI
 // import { collection, onSnapshot } from 'firebase/firestore';
 // import { db } from '@/lib/firebase';
 // import { Product, FURNITURE_CATEGORIES } from '@/lib/types';
@@ -434,11 +435,19 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 // import Image from 'next/image';
 // import Link from 'next/link';
 // export default function CatalogPage() {
+//   const [isLoggedIn, setIsLoggedIn] = useState(false); // ✅ NEW
 //   const [products, setProducts] = useState<Product[]>([]);
 //   const [selectedCategory, setSelectedCategory] = useState('Barchasi');
 //   const [searchTerm, setSearchTerm] = useState('');
 //   const [loading, setLoading] = useState(true);
+//   // ✅ CHECK LOGIN
 //   useEffect(() => {
+//     const logged = localStorage.getItem('isLoggedIn') === 'true';
+//     setIsLoggedIn(logged);
+//     if (!logged) {
+//       setLoading(false);
+//       return;
+//     }
 //     const unsubscribe = onSnapshot(collection(db, 'products'), (snapshot) => {
 //       const prods = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Product));
 //       setProducts(prods);
@@ -446,6 +455,10 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 //     });
 //     return () => unsubscribe();
 //   }, []);
+//   // ❗ AGAR ADMIN KIRMAGAN BO'LSA — FAQAT LOGIN CHIQADI
+//   if (!isLoggedIn) {
+//     return <LoginModal onLoginSuccess={() => setIsLoggedIn(true)} />;
+//   }
 //   const filteredProducts = products.filter(p => {
 //     const matchCategory = selectedCategory === 'Barchasi' || p.category === selectedCategory;
 //     const matchSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -462,7 +475,7 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 //             placeholder="Mahsulotni Qidirish..."
 //             value={searchTerm}
 //             onChange={(e) => setSearchTerm(e.target.value)}
-//             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600"
+//             className="w-full px-4 py-2 border border-gray-300 rounded-lg"
 //           />
 //         </div>
 //         {/* Categories */}
@@ -498,14 +511,13 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 //           <div className='text-center'>
 //             <p className="text-gray-500 text-[40px] mt-[250px]">Mahsulotlar Topilmadi.</p>
 //             <span className='font-bold text-[32px] mt-[250px]'>
-//               Mahsulotlarni Ko'rish Uchun Yuqoridagi <span className='text-amber-800'>Kategoriyalardan</span> Birini Tanlang!
+//               Mahsulotlarni ko‘rish uchun yuqoridan <span className='text-amber-800'>kategoriyani</span> tanlang!
 //             </span>
 //           </div>
 //         ) : (
 //           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 //             {filteredProducts.map(product => (
 //               <Card key={product.id} className="overflow-hidden hover:shadow-lg transition group">
-//                 {/* Image */}
 //                 <div className="relative w-full h-[250px] bg-gray-200">
 //                   {product.images && product.images[0] ? (
 //                     <Image
@@ -525,12 +537,11 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 //                   <p className="text-sm text-gray-600 mb-2">{product.category}</p>
 //                   <p className="text-sm text-gray-700 mb-3 line-clamp-2">{product.description}</p>
 //                   <div className="flex justify-between items-center mb-3">
-//                     {/* ✅ PRICE FORMATTED */}
 //                     <span className="text-lg font-bold text-amber-700">
 //                       {Number(product.price).toLocaleString('ru-RU')} So'm
 //                     </span>
 //                     <span className={`text-sm text-center px-2 py-1 rounded ${product.quantity > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-//                       {product.quantity > 0 ? 'Sotuvda Mavjud' : 'Sotuvda Mavjud Emas'}
+//                       {product.quantity > 0 ? 'Sotuvda Mavjud' : 'Tugagan'}
 //                     </span>
 //                   </div>
 //                   <Button className="w-full bg-amber-600 hover:bg-amber-700">
@@ -609,7 +620,7 @@ function CatalogPage() {
             onLoginSuccess: ()=>setIsLoggedIn(true)
         }, void 0, false, {
             fileName: "[project]/app/catalog/page.tsx",
-            lineNumber: 210,
+            lineNumber: 212,
             columnNumber: 12
         }, this);
     }
@@ -623,12 +634,24 @@ function CatalogPage() {
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "max-w-7xl mx-auto px-4 py-8",
             children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                    onClick: ()=>{
+                        localStorage.removeItem('isLoggedIn');
+                        window.location.reload();
+                    },
+                    className: "mb-6 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700",
+                    children: "Chiqish"
+                }, void 0, false, {
+                    fileName: "[project]/app/catalog/page.tsx",
+                    lineNumber: 226,
+                    columnNumber: 9
+                }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                     className: "text-4xl font-bold text-amber-900 mb-8",
                     children: "Mahsulotlar Katalogi"
                 }, void 0, false, {
                     fileName: "[project]/app/catalog/page.tsx",
-                    lineNumber: 222,
+                    lineNumber: 237,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -641,12 +664,12 @@ function CatalogPage() {
                         className: "w-full px-4 py-2 border border-gray-300 rounded-lg"
                     }, void 0, false, {
                         fileName: "[project]/app/catalog/page.tsx",
-                        lineNumber: 226,
+                        lineNumber: 241,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/catalog/page.tsx",
-                    lineNumber: 225,
+                    lineNumber: 240,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -658,7 +681,7 @@ function CatalogPage() {
                             children: "Barchasi"
                         }, void 0, false, {
                             fileName: "[project]/app/catalog/page.tsx",
-                            lineNumber: 237,
+                            lineNumber: 252,
                             columnNumber: 11
                         }, this),
                         __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FURNITURE_CATEGORIES"].map((cat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -667,13 +690,13 @@ function CatalogPage() {
                                 children: cat
                             }, cat, false, {
                                 fileName: "[project]/app/catalog/page.tsx",
-                                lineNumber: 249,
+                                lineNumber: 264,
                                 columnNumber: 13
                             }, this))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/catalog/page.tsx",
-                    lineNumber: 236,
+                    lineNumber: 251,
                     columnNumber: 9
                 }, this),
                 loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -681,7 +704,7 @@ function CatalogPage() {
                     children: "Yuklanmoqda..."
                 }, void 0, false, {
                     fileName: "[project]/app/catalog/page.tsx",
-                    lineNumber: 265,
+                    lineNumber: 280,
                     columnNumber: 11
                 }, this) : filteredProducts.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "text-center",
@@ -691,7 +714,7 @@ function CatalogPage() {
                             children: "Mahsulotlar Topilmadi."
                         }, void 0, false, {
                             fileName: "[project]/app/catalog/page.tsx",
-                            lineNumber: 268,
+                            lineNumber: 283,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -700,23 +723,38 @@ function CatalogPage() {
                                 "Mahsulotlarni ko‘rish uchun yuqoridan ",
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     className: "text-amber-800",
-                                    children: "kategoriyani"
+                                    children: "Kategoriyani"
                                 }, void 0, false, {
                                     fileName: "[project]/app/catalog/page.tsx",
-                                    lineNumber: 270,
+                                    lineNumber: 285,
                                     columnNumber: 53
                                 }, this),
-                                " tanlang!"
+                                " tanlang! ",
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
+                                    fileName: "[project]/app/catalog/page.tsx",
+                                    lineNumber: 285,
+                                    columnNumber: 115
+                                }, this),
+                                " Yoki sahifaga ",
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("b", {
+                                    className: "text-amber-800",
+                                    children: "Yangilash"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/catalog/page.tsx",
+                                    lineNumber: 285,
+                                    columnNumber: 136
+                                }, this),
+                                " bering!"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/catalog/page.tsx",
-                            lineNumber: 269,
+                            lineNumber: 284,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/catalog/page.tsx",
-                    lineNumber: 267,
+                    lineNumber: 282,
                     columnNumber: 11
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6",
@@ -732,19 +770,19 @@ function CatalogPage() {
                                         className: "object-cover group-hover:scale-105 transition"
                                     }, void 0, false, {
                                         fileName: "[project]/app/catalog/page.tsx",
-                                        lineNumber: 280,
+                                        lineNumber: 295,
                                         columnNumber: 21
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "flex items-center justify-center h-full text-gray-400",
                                         children: "Mahsulot Surati Mavjud Emas!"
                                     }, void 0, false, {
                                         fileName: "[project]/app/catalog/page.tsx",
-                                        lineNumber: 287,
+                                        lineNumber: 302,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/catalog/page.tsx",
-                                    lineNumber: 278,
+                                    lineNumber: 293,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -755,7 +793,7 @@ function CatalogPage() {
                                             children: product.name
                                         }, void 0, false, {
                                             fileName: "[project]/app/catalog/page.tsx",
-                                            lineNumber: 294,
+                                            lineNumber: 309,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -763,7 +801,7 @@ function CatalogPage() {
                                             children: product.category
                                         }, void 0, false, {
                                             fileName: "[project]/app/catalog/page.tsx",
-                                            lineNumber: 295,
+                                            lineNumber: 310,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -771,7 +809,7 @@ function CatalogPage() {
                                             children: product.description
                                         }, void 0, false, {
                                             fileName: "[project]/app/catalog/page.tsx",
-                                            lineNumber: 296,
+                                            lineNumber: 311,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -785,7 +823,7 @@ function CatalogPage() {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/catalog/page.tsx",
-                                                    lineNumber: 300,
+                                                    lineNumber: 315,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -793,13 +831,13 @@ function CatalogPage() {
                                                     children: product.quantity > 0 ? 'Sotuvda Mavjud' : 'Tugagan'
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/catalog/page.tsx",
-                                                    lineNumber: 304,
+                                                    lineNumber: 319,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/catalog/page.tsx",
-                                            lineNumber: 298,
+                                            lineNumber: 313,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -809,40 +847,40 @@ function CatalogPage() {
                                                 children: "Mahsulot Haqida..."
                                             }, void 0, false, {
                                                 fileName: "[project]/app/catalog/page.tsx",
-                                                lineNumber: 311,
+                                                lineNumber: 326,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/catalog/page.tsx",
-                                            lineNumber: 310,
+                                            lineNumber: 325,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/catalog/page.tsx",
-                                    lineNumber: 293,
+                                    lineNumber: 308,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, product.id, true, {
                             fileName: "[project]/app/catalog/page.tsx",
-                            lineNumber: 276,
+                            lineNumber: 291,
                             columnNumber: 15
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/app/catalog/page.tsx",
-                    lineNumber: 274,
+                    lineNumber: 289,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/catalog/page.tsx",
-            lineNumber: 221,
+            lineNumber: 223,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/catalog/page.tsx",
-        lineNumber: 220,
+        lineNumber: 222,
         columnNumber: 5
     }, this);
 }

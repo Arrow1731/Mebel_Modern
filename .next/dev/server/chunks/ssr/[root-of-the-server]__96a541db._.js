@@ -19,7 +19,7 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 // import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 // import { getDailyAnalytics, getMonthlyAnalytics, getYearlyAnalytics } from '@/lib/analytics-utils';
 // import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-// import LoginModal from '@/components/login-modal';
+// import LoginModal from '@/components/LoginModal';
 // import { Download } from 'lucide-react';
 // import { Button } from '@/components/ui/button';
 // export default function AnalyticsPage() {
@@ -30,8 +30,9 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 //   const [analyticsData, setAnalyticsData] = useState<any>(null);
 //   const [chartData, setChartData] = useState<any[]>([]);
-//   const [isLoggedIn, setIsLoggedIn] = useState(false);
+//   const [isLoggedIn, setIsLoggedIn] = useState(false); // login state
 //   const [loading, setLoading] = useState(true);
+//   // --- CHECK LOGIN ---
 //   useEffect(() => {
 //     const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
 //     setIsLoggedIn(loggedIn);
@@ -39,15 +40,19 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //       setLoading(false);
 //       return;
 //     }
+//     // --- LOAD ORDERS ---
 //     const unsubscribe = onSnapshot(collection(db, 'orders'), (snapshot) => {
 //       const ords = snapshot.docs.map(doc => {
 //         const data = doc.data();
 //         return {
 //           id: doc.id,
 //           ...data,
-//           createdAt: data.createdAt?.toDate?.() || new Date(data.createdAt),
-//           dueDate: data.dueDate?.toDate?.() || new Date(data.dueDate),
-//           payments: data.payments?.map((p: any) => ({ ...p, date: p.date?.toDate?.() || new Date(p.date) })) || []
+//           createdAt: data.createdAt?.toDate?.() || (data.createdAt ? new Date(data.createdAt) : new Date()),
+//           dueDate: data.dueDate?.toDate?.() || (data.dueDate ? new Date(data.dueDate) : new Date()),
+//           payments: data.payments?.map((p: any) => ({
+//             ...p,
+//             date: p.date?.toDate?.() || (p.date ? new Date(p.date) : new Date())
+//           })) || []
 //         } as Order;
 //       });
 //       setOrders(ords);
@@ -55,7 +60,9 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //     });
 //     return () => unsubscribe();
 //   }, []);
+//   // --- UPDATE ANALYTICS BASED ON VIEW TYPE ---
 //   useEffect(() => {
+//     if (orders.length === 0) return;
 //     if (viewType === 'daily') {
 //       const data = getDailyAnalytics(orders, selectedDate);
 //       setAnalyticsData(data);
@@ -69,90 +76,77 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //       const data = getMonthlyAnalytics(orders, selectedMonth, selectedYear);
 //       setAnalyticsData(data);
 //       const lastYear = Array.from({ length: 12 }, (_, i) => {
-//         const year = selectedYear - (selectedMonth + i <= 12 ? 0 : 1);
 //         const month = ((selectedMonth + i - 1) % 12) + 1;
+//         const year = selectedYear - (selectedMonth + i - 1 >= 12 ? 1 : 0);
 //         return getMonthlyAnalytics(orders, month, year);
-//       });
+//       }).map((d, i) => ({
+//         ...d,
+//         date: new Date(selectedYear, i, 1).toLocaleDateString('uz-UZ', { month: 'long' }),
+//       }));
 //       setChartData(lastYear);
 //     } else {
 //       const data = getYearlyAnalytics(orders, selectedYear);
 //       setAnalyticsData(data);
-//       const lastDecade = Array.from({ length: 10 }, (_, i) => 
+//       const lastDecade = Array.from({ length: 10 }, (_, i) =>
 //         getYearlyAnalytics(orders, selectedYear - (9 - i))
 //       );
 //       setChartData(lastDecade);
 //     }
 //   }, [viewType, selectedDate, selectedMonth, selectedYear, orders]);
-//   const downloadCampaignAnalytics = () => {
-//     let csv = 'Дата,Кредит месяцев,Сумма,Статус,Доход\n';
-//     orders.forEach(order => {
-//       csv += `${new Date(order.createdAt).toLocaleDateString('uz-UZ')},${order.creditMonths},${order.totalAmount},${order.paymentStatus},${order.totalAmount}\n`;
+//   // --- FORMATTER ---
+//   const formatMoney = (value: number) => Number(value).toLocaleString('ru-RU');
+//   // --- CSV DOWNLOAD ---
+//   const downloadCSV = () => {
+//     let csv = '';
+//     orders.forEach((order, index) => {
+//       const dateStr = order.createdAt instanceof Date ? order.createdAt.toLocaleDateString('uz-UZ') : '';
+//       const partial = order.paymentStatus === 'partial';
+//       if (!partial) {
+//         csv += `${index + 1},${order.clientName},${order.clientPhone},${order.productName || 'N/A'},${order.productQuantity || 1},${formatMoney(order.totalAmount)},${order.paymentStatus}\n`;
+//       } else {
+//         const nextPayment = order.dueDate instanceof Date ? order.dueDate.toLocaleDateString('uz-UZ') : '';
+//         const paidDates = order.payments.map(p => p.date instanceof Date ? p.date.toLocaleDateString('uz-UZ') : '').join('; ');
+//         csv += `${index + 1},${order.clientName},${order.clientPhone},${order.productName || 'N/A'},${order.productQuantity || 1},${formatMoney(order.totalAmount)},${nextPayment},${paidDates},${order.paymentStatus}\n`;
+//       }
 //     });
 //     const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
 //     const url = window.URL.createObjectURL(blob);
 //     const a = document.createElement('a');
 //     a.href = url;
-//     a.download = `Campaign-Analytics-${new Date().toISOString().split('T')[0]}.csv`;
+//     a.download = `Analytics-${new Date().toISOString().split('T')[0]}.csv`;
 //     a.click();
 //   };
-//   const downloadMonthlyClientsAnalytics = () => {
-//     const monthlyClients = orders.filter(o => o.creditMonths === 1);
-//     let csv = 'Имя клиента,Телефон,Адрес,Сумма,Дата,Статус\n';
-//     monthlyClients.forEach(order => {
-//       csv += `${order.clientName},${order.clientPhone},${order.clientAddress || 'N/A'},${order.totalAmount},${new Date(order.createdAt).toLocaleDateString('uz-UZ')},${order.paymentStatus}\n`;
-//     });
-//     const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
-//     const url = window.URL.createObjectURL(blob);
-//     const a = document.createElement('a');
-//     a.href = url;
-//     a.download = `Monthly-Clients-Analytics-${new Date().toISOString().split('T')[0]}.csv`;
-//     a.click();
-//   };
+//   // --- IF NOT LOGGED IN SHOW LOGIN MODAL ---
 //   if (!isLoggedIn) {
-//     return <LoginModal onLoginSuccess={() => setIsLoggedIn(true)} />;
+//     return <LoginModal onLoginSuccess={() => setIsLoggedIn(true)} redirectPath="/analytics" />;
 //   }
+//   if (loading) return <p className="p-6">Yuklanmoqda…</p>;
 //   return (
 //     <main className="min-h-screen bg-gray-50 py-8">
 //       <div className="max-w-6xl mx-auto px-4">
+//         {/* HEADER */}
 //         <div className="flex justify-between items-center mb-8">
 //           <h1 className="text-3xl font-bold text-amber-900">Analitika</h1>
-//           <div className="flex gap-2">
-//             <Button
-//               onClick={downloadCampaignAnalytics}
-//               className="bg-blue-600 hover:bg-blue-700"
-//             >
-//               <Download className="mr-2" size={16} /> Kampaniyaga Kirgan Foyda Summasi (So'm)
-//             </Button>
-//             <Button
-//               onClick={downloadMonthlyClientsAnalytics}
-//               className="bg-green-600 hover:bg-green-700"
-//             >
-//               <Download className="mr-2" size={16} /> Mijozlarning Oylik To'lov Summasi (So'm)
-//             </Button>
-//           </div>
-//         </div>
-//         {/* View Type Selection */}
-//         <div className="flex gap-2 mb-6">
-//           <button
-//             onClick={() => setViewType('daily')}
-//             className={`px-4 py-2 rounded-lg font-medium ${viewType === 'daily' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}
+//           <Button
+//             onClick={() => { localStorage.removeItem('isLoggedIn'); setIsLoggedIn(false); }}
+//             className="bg-red-600 hover:bg-red-700"
 //           >
+//             Chiqish
+//           </Button>
+//         </div>
+//         {/* VIEW TYPE */}
+//         <div className="flex gap-2 mb-6">
+//           <button onClick={() => setViewType('daily')} className={`px-4 py-2 rounded-lg font-medium ${viewType === 'daily' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}>
 //             Kunlik
 //           </button>
-//           <button
-//             onClick={() => setViewType('monthly')}
-//             className={`px-4 py-2 rounded-lg font-medium ${viewType === 'monthly' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}
-//           >
+//           <button onClick={() => setViewType('monthly')} className={`px-4 py-2 rounded-lg font-medium ${viewType === 'monthly' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}>
 //             Oylik
 //           </button>
-//           <button
-//             onClick={() => setViewType('yearly')}
-//             className={`px-4 py-2 rounded-lg font-medium ${viewType === 'yearly' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}
-//           >
+//           <button onClick={() => setViewType('yearly')} className={`px-4 py-2 rounded-lg font-medium ${viewType === 'yearly' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}>
 //             Yillik
 //           </button>
 //         </div>
-//         {/* Date Selection */}
+//         {/* DATE PICKERS */}
 //         {viewType === 'daily' && (
 //           <div className="mb-6">
 //             <input
@@ -171,7 +165,9 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //               className="px-4 py-2 border rounded-lg"
 //             >
 //               {Array.from({ length: 12 }, (_, i) => (
-//                 <option key={i} value={i + 1}>{new Date(2024, i).toLocaleDateString('ru-RU', { month: 'long' })}</option>
+//                 <option key={i} value={i + 1}>
+//                   {new Date(2024, i).toLocaleDateString('uz-UZ', { month: 'long' })}
+//                 </option>
 //               ))}
 //             </select>
 //             <input
@@ -192,7 +188,7 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //             />
 //           </div>
 //         )}
-//         {/* Stats Cards */}
+//         {/* STATS CARDS */}
 //         {analyticsData && (
 //           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
 //             <Card className="bg-white border-amber-200">
@@ -200,7 +196,9 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //                 <CardTitle className="text-[20px] font-medium text-gray-600">Foyda</CardTitle>
 //               </CardHeader>
 //               <CardContent>
-//                 <div className="text-3xl font-bold text-amber-900">{analyticsData.revenue.toLocaleString()} So'm</div>
+//                 <div className="text-3xl font-bold text-amber-900">
+//                   {formatMoney(analyticsData.revenue)} So'm
+//                 </div>
 //               </CardContent>
 //             </Card>
 //             <Card className="bg-white border-amber-200">
@@ -208,7 +206,9 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //                 <CardTitle className="text-[20px] font-medium text-gray-600">Buyurmalar</CardTitle>
 //               </CardHeader>
 //               <CardContent>
-//                 <div className="text-3xl font-bold text-amber-900">{analyticsData.orders} ta</div>
+//                 <div className="text-3xl font-bold text-amber-900">
+//                   {analyticsData.orders} ta
+//                 </div>
 //               </CardContent>
 //             </Card>
 //             <Card className="bg-white border-amber-200">
@@ -216,12 +216,14 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 //                 <CardTitle className="text-[20px] font-medium text-gray-600">Soni</CardTitle>
 //               </CardHeader>
 //               <CardContent>
-//                 <div className="text-3xl font-bold text-amber-900">{analyticsData.units} ta</div>
+//                 <div className="text-3xl font-bold text-amber-900">
+//                   {analyticsData.units} ta
+//                 </div>
 //               </CardContent>
 //             </Card>
 //           </div>
 //         )}
-//         {/* Chart */}
+//         {/* CHART */}
 //         <Card className="bg-white">
 //           <CardContent className="pt-6">
 //             <ResponsiveContainer width="100%" height={300}>

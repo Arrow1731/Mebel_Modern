@@ -1,6 +1,7 @@
 // 'use client';
 
 // import { useState, useEffect } from 'react';
+// import LoginModal from '@/components/login-user'; // ✅ LOGIN MODAL QO‘SHILDI
 // import { collection, onSnapshot } from 'firebase/firestore';
 // import { db } from '@/lib/firebase';
 // import { Product, FURNITURE_CATEGORIES } from '@/lib/types';
@@ -10,12 +11,22 @@
 // import Link from 'next/link';
 
 // export default function CatalogPage() {
+//   const [isLoggedIn, setIsLoggedIn] = useState(false); // ✅ NEW
 //   const [products, setProducts] = useState<Product[]>([]);
 //   const [selectedCategory, setSelectedCategory] = useState('Barchasi');
 //   const [searchTerm, setSearchTerm] = useState('');
 //   const [loading, setLoading] = useState(true);
 
+//   // ✅ CHECK LOGIN
 //   useEffect(() => {
+//     const logged = localStorage.getItem('isLoggedIn') === 'true';
+//     setIsLoggedIn(logged);
+
+//     if (!logged) {
+//       setLoading(false);
+//       return;
+//     }
+
 //     const unsubscribe = onSnapshot(collection(db, 'products'), (snapshot) => {
 //       const prods = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Product));
 //       setProducts(prods);
@@ -24,6 +35,11 @@
 
 //     return () => unsubscribe();
 //   }, []);
+
+//   // ❗ AGAR ADMIN KIRMAGAN BO'LSA — FAQAT LOGIN CHIQADI
+//   if (!isLoggedIn) {
+//     return <LoginModal onLoginSuccess={() => setIsLoggedIn(true)} />;
+//   }
 
 //   const filteredProducts = products.filter(p => {
 //     const matchCategory = selectedCategory === 'Barchasi' || p.category === selectedCategory;
@@ -43,7 +59,7 @@
 //             placeholder="Mahsulotni Qidirish..."
 //             value={searchTerm}
 //             onChange={(e) => setSearchTerm(e.target.value)}
-//             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600"
+//             className="w-full px-4 py-2 border border-gray-300 rounded-lg"
 //           />
 //         </div>
 
@@ -82,15 +98,14 @@
 //           <div className='text-center'>
 //             <p className="text-gray-500 text-[40px] mt-[250px]">Mahsulotlar Topilmadi.</p>
 //             <span className='font-bold text-[32px] mt-[250px]'>
-//               Mahsulotlarni Ko'rish Uchun Yuqoridagi <span className='text-amber-800'>Kategoriyalardan</span> Birini Tanlang!
+//               Mahsulotlarni ko‘rish uchun yuqoridan <span className='text-amber-800'>kategoriyani</span> tanlang!
 //             </span>
 //           </div>
 //         ) : (
 //           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 //             {filteredProducts.map(product => (
 //               <Card key={product.id} className="overflow-hidden hover:shadow-lg transition group">
-                
-//                 {/* Image */}
+
 //                 <div className="relative w-full h-[250px] bg-gray-200">
 //                   {product.images && product.images[0] ? (
 //                     <Image
@@ -113,13 +128,12 @@
 
 //                   <div className="flex justify-between items-center mb-3">
 
-//                     {/* ✅ PRICE FORMATTED */}
 //                     <span className="text-lg font-bold text-amber-700">
 //                       {Number(product.price).toLocaleString('ru-RU')} So'm
 //                     </span>
 
 //                     <span className={`text-sm text-center px-2 py-1 rounded ${product.quantity > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-//                       {product.quantity > 0 ? 'Sotuvda Mavjud' : 'Sotuvda Mavjud Emas'}
+//                       {product.quantity > 0 ? 'Sotuvda Mavjud' : 'Tugagan'}
 //                     </span>
 
 //                   </div>
@@ -137,18 +151,6 @@
 //     </main>
 //   );
 // }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -219,6 +221,19 @@ export default function CatalogPage() {
   return (
     <main className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-8">
+
+        {/* 🔥 LOGOUT BUTTON ADDED */}
+        <button
+          onClick={() => {
+            localStorage.removeItem('isLoggedIn');
+            window.location.reload();
+          }}
+          className="mb-6 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+        >
+          Chiqish
+        </button>
+        {/* 🔥 END */}
+
         <h1 className="text-4xl font-bold text-amber-900 mb-8">Mahsulotlar Katalogi</h1>
 
         {/* Search */}
@@ -267,7 +282,7 @@ export default function CatalogPage() {
           <div className='text-center'>
             <p className="text-gray-500 text-[40px] mt-[250px]">Mahsulotlar Topilmadi.</p>
             <span className='font-bold text-[32px] mt-[250px]'>
-              Mahsulotlarni ko‘rish uchun yuqoridan <span className='text-amber-800'>kategoriyani</span> tanlang!
+              Mahsulotlarni ko‘rish uchun yuqoridan <span className='text-amber-800'>Kategoriyani</span> tanlang! <br /> Yoki sahifaga <b className='text-amber-800'>Yangilash</b> bering!
             </span>
           </div>
         ) : (

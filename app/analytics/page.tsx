@@ -8,7 +8,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { getDailyAnalytics, getMonthlyAnalytics, getYearlyAnalytics } from '@/lib/analytics-utils';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import LoginModal from '@/components/LoginModal';
-import { Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function AnalyticsPage() {
@@ -19,7 +18,7 @@ export default function AnalyticsPage() {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [analyticsData, setAnalyticsData] = useState<any>(null);
   const [chartData, setChartData] = useState<any[]>([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // login state
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
   // --- CHECK LOGIN ---
@@ -73,13 +72,14 @@ export default function AnalyticsPage() {
       setAnalyticsData(data);
 
       const lastYear = Array.from({ length: 12 }, (_, i) => {
-        const month = ((selectedMonth + i - 1) % 12) + 1;
-        const year = selectedYear - (selectedMonth + i - 1 >= 12 ? 1 : 0);
-        return getMonthlyAnalytics(orders, month, year);
-      }).map((d, i) => ({
-        ...d,
-        date: new Date(selectedYear, i, 1).toLocaleDateString('uz-UZ', { month: 'long' }),
-      }));
+        const month = i + 1;
+        const year = selectedYear;
+        const d = getMonthlyAnalytics(orders, month, year);
+        return {
+          ...d,
+          date: new Date(selectedYear, month - 1).toLocaleDateString('uz-UZ', { month: 'long' }),
+        };
+      });
       setChartData(lastYear);
     } else {
       const data = getYearlyAnalytics(orders, selectedYear);
@@ -92,20 +92,19 @@ export default function AnalyticsPage() {
     }
   }, [viewType, selectedDate, selectedMonth, selectedYear, orders]);
 
-  // --- FORMATTER ---
   const formatMoney = (value: number) => Number(value).toLocaleString('ru-RU');
 
-  // --- CSV DOWNLOAD ---
+  // --- CSV DOWNLOAD WITH MONTH NAMES ---
   const downloadCSV = () => {
     let csv = '';
     orders.forEach((order, index) => {
-      const dateStr = order.createdAt instanceof Date ? order.createdAt.toLocaleDateString('uz-UZ') : '';
+      const dateStr = order.createdAt instanceof Date ? order.createdAt.toLocaleDateString('uz-UZ', { day: '2-digit', month: 'long', year: 'numeric' }) : '';
       const partial = order.paymentStatus === 'partial';
       if (!partial) {
-        csv += `${index + 1},${order.clientName},${order.clientPhone},${order.productName || 'N/A'},${order.productQuantity || 1},${formatMoney(order.totalAmount)},${order.paymentStatus}\n`;
+        csv += `${index + 1},${order.clientName},${order.clientPhone},${order.productName || 'N/A'},${order.productQuantity || 1},${formatMoney(order.totalAmount)},${order.paymentStatus},${dateStr}\n`;
       } else {
-        const nextPayment = order.dueDate instanceof Date ? order.dueDate.toLocaleDateString('uz-UZ') : '';
-        const paidDates = order.payments.map(p => p.date instanceof Date ? p.date.toLocaleDateString('uz-UZ') : '').join('; ');
+        const nextPayment = order.dueDate instanceof Date ? order.dueDate.toLocaleDateString('uz-UZ', { day: '2-digit', month: 'long', year: 'numeric' }) : '';
+        const paidDates = order.payments.map(p => p.date instanceof Date ? p.date.toLocaleDateString('uz-UZ', { day: '2-digit', month: 'long', year: 'numeric' }) : '').join('; ');
         csv += `${index + 1},${order.clientName},${order.clientPhone},${order.productName || 'N/A'},${order.productQuantity || 1},${formatMoney(order.totalAmount)},${nextPayment},${paidDates},${order.paymentStatus}\n`;
       }
     });
@@ -118,7 +117,6 @@ export default function AnalyticsPage() {
     a.click();
   };
 
-  // --- IF NOT LOGGED IN SHOW LOGIN MODAL ---
   if (!isLoggedIn) {
     return <LoginModal onLoginSuccess={() => setIsLoggedIn(true)} redirectPath="/analytics" />;
   }
@@ -129,7 +127,6 @@ export default function AnalyticsPage() {
     <main className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-6xl mx-auto px-4">
 
-        {/* HEADER */}
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-amber-900">Analitika</h1>
           <Button
@@ -140,7 +137,6 @@ export default function AnalyticsPage() {
           </Button>
         </div>
 
-        {/* VIEW TYPE */}
         <div className="flex gap-2 mb-6">
           <button onClick={() => setViewType('daily')} className={`px-4 py-2 rounded-lg font-medium ${viewType === 'daily' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border'}`}>
             Kunlik
@@ -153,7 +149,6 @@ export default function AnalyticsPage() {
           </button>
         </div>
 
-        {/* DATE PICKERS */}
         {viewType === 'daily' && (
           <div className="mb-6">
             <input
@@ -172,11 +167,10 @@ export default function AnalyticsPage() {
               onChange={(e) => setSelectedMonth(parseInt(e.target.value))}
               className="px-4 py-2 border rounded-lg"
             >
-              {Array.from({ length: 12 }, (_, i) => (
-                <option key={i} value={i + 1}>
-                  {new Date(2024, i).toLocaleDateString('uz-UZ', { month: 'long' })}
-                </option>
-              ))}
+              {Array.from({ length: 12 }, (_, i) => {
+                const monthName = new Date(2024, i).toLocaleDateString('uz-UZ', { month: 'long' });
+                return <option key={i} value={i + 1}>{monthName}</option>
+              })}
             </select>
 
             <input
@@ -199,7 +193,6 @@ export default function AnalyticsPage() {
           </div>
         )}
 
-        {/* STATS CARDS */}
         {analyticsData && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             <Card className="bg-white border-amber-200">
@@ -237,7 +230,6 @@ export default function AnalyticsPage() {
           </div>
         )}
 
-        {/* CHART */}
         <Card className="bg-white">
           <CardContent className="pt-6">
             <ResponsiveContainer width="100%" height={300}>

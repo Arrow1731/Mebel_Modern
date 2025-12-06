@@ -1,33 +1,77 @@
+// import type { Metadata } from 'next'
+// import { Geist, Geist_Mono } from 'next/font/google'
+// import { Analytics } from '@vercel/analytics/next'
+// import './globals.css'
+// import { NavBar } from '@/components/nav-bar';
+// import Fav_icon from '../public/fav_i.png'
+
+// const _geist = Geist({ subsets: ["latin"] });
+// const _geistMono = Geist_Mono({ subsets: ["latin"] });
+
+// export const metadata: Metadata = {
+//   title: "BOG'OT - SHIMANAY MEBEL",
+//   icons: {
+//     icon: [
+//       {
+//         url: "",
+//         media: '(prefers-color-scheme: light)',
+//       }
+//     ]
+//   },
+// }
+
+// export default function RootLayout({
+//   children,
+// }: Readonly<{
+//   children: React.ReactNode
+// }>) {
+//   return (
+//     <html lang="uz">
+//       <body className={`font-sans antialiased`}>
+//         <NavBar />
+//         {children}
+//         <Analytics />
+//       </body>
+//     </html>
+//   )
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
-import { NavBar } from '@/components/nav-bar';
+import { NavBar } from '@/components/nav-bar'
+import Fav_icon from '../public/fav_i.png'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'MEBEL WEB SITE',
-  // description: 'Мебельная фабрика онлайн система управления',
-  // generator: 'v0.app',
-  // icons: {
-  //   icon: [
-  //     {
-  //       url: '/icon-light-32x32.png',
-  //       media: '(prefers-color-scheme: light)',
-  //     },
-  //     {
-  //       url: '/icon-dark-32x32.png',
-  //       media: '(prefers-color-scheme: dark)',
-  //     },
-  //     {
-  //       url: '/icon.svg',
-  //       type: 'image/svg+xml',
-  //     },
-  //   ],
-  //   apple: '/apple-icon.png',
-  // },
+  title: "BOG'OT - SHIMANAY MEBEL",
+  icons: {
+    icon: [
+      {
+        url: '/fav_i.png', // <-- You can also use the public folder path directly
+        type: 'image/png',
+      }
+    ]
+  },
 }
 
 export default function RootLayout({
@@ -37,6 +81,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="uz">
+      <head>
+        {/* Favicon */}
+        <link rel="icon" href="/fav_i.png" type="image/png" />
+      </head>
       <body className={`font-sans antialiased`}>
         <NavBar />
         {children}
