@@ -75,7 +75,7 @@ export default function HomePage() {
             <div className="text-center py-8">Yuklanmoqda...</div>
           ) : products.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
-              Hozircha mahsulotlar Mavjud emas. <Link href="/products" className="text-amber-600 hover:underline">Mahsulot Qo'shish</Link>
+              {/* Hozircha mahsulotlar Mavjud emas. <Link href="/products" className="text-amber-600 hover:underline">Mahsulot Qo'shish</Link> */}
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-[23px]">
